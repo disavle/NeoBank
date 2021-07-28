@@ -22,9 +22,13 @@ class ViewController: UIViewController {
             label.textAlignment = .center
             label.font = UIFont(name: "Kepler-296", size: 35)
             label.textColor = .label
+            label.clipsToBounds = true
+            label.layer.cornerRadius = 10
+            label.backgroundColor = .systemPink
             label.alpha = 0
-            UIView.animate(withDuration: 2) {
+            UIView.animate(withDuration: 1.5) {
                 label.alpha = 1
+                label.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
             }
             view.addSubview(label)
             label.snp.makeConstraints { maker in
