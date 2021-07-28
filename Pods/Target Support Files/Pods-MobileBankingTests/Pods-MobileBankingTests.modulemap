@@ -1,0 +1,6 @@
+framework module Pods_MobileBankingTests {
+  umbrella header "Pods-MobileBankingTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
