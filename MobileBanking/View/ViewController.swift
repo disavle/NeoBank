@@ -14,11 +14,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-//        navigationController?.navigationBar.isHidden = true
+        navigationController?.navigationBar.isHidden = true
         
         label = {
             let label = UILabel()
-            label.text = "DarkMoon"
+            label.text = "NeoBank"
             label.textAlignment = .center
             label.font = UIFont(name: "Kepler-296", size: 35)
             label.textColor = .label
@@ -39,6 +39,12 @@ class ViewController: UIViewController {
             }
             return label
         }()
+        DispatchQueue.main.asyncAfter(deadline: .now()+2) {
+            let vc = MainViewController()
+            let nav = UINavigationController(rootViewController: vc)
+            nav.modalPresentationStyle = .fullScreen
+            self.present(nav, animated: true)
+        }
     }
 }
 
