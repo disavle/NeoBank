@@ -7,7 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0CC439B726C514D0009E0B80 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC439B626C514D0009E0B80 /* MainViewController.swift */; };
+		0C9383C026C57D6A008955E5 /* BubbleTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9383BD26C57D6A008955E5 /* BubbleTabBar.swift */; };
+		0C9383C126C57D6A008955E5 /* CBTabBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9383BE26C57D6A008955E5 /* CBTabBarButton.swift */; };
+		0C9383C226C57D6A008955E5 /* BubbleTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9383BF26C57D6A008955E5 /* BubbleTabBarController.swift */; };
+		0C9383C526C58DEE008955E5 /* PaymentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9383C426C58DEE008955E5 /* PaymentsViewController.swift */; };
+		0C9383C726C58E02008955E5 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9383C626C58E02008955E5 /* ChatViewController.swift */; };
+		0C9383C926C58E0D008955E5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9383C826C58E0D008955E5 /* ProfileViewController.swift */; };
+		0CC439B726C514D0009E0B80 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC439B626C514D0009E0B80 /* HomeViewController.swift */; };
 		0CFC699126B1A33500D02C76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CFC699026B1A33500D02C76 /* AppDelegate.swift */; };
 		0CFC699326B1A33500D02C76 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CFC699226B1A33500D02C76 /* SceneDelegate.swift */; };
 		0CFC699526B1A33500D02C76 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CFC699426B1A33500D02C76 /* ViewController.swift */; };
@@ -39,8 +45,27 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		0C93839626C570F2008955E5 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		0CC439B626C514D0009E0B80 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		0C9383BD26C57D6A008955E5 /* BubbleTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleTabBar.swift; sourceTree = "<group>"; };
+		0C9383BE26C57D6A008955E5 /* CBTabBarButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBTabBarButton.swift; sourceTree = "<group>"; };
+		0C9383BF26C57D6A008955E5 /* BubbleTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleTabBarController.swift; sourceTree = "<group>"; };
+		0C9383C426C58DEE008955E5 /* PaymentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsViewController.swift; sourceTree = "<group>"; };
+		0C9383C626C58E02008955E5 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		0C9383C826C58E0D008955E5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		0CC439B626C514D0009E0B80 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		0CFC698D26B1A33500D02C76 /* MobileBanking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileBanking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CFC699026B1A33500D02C76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0CFC699226B1A33500D02C76 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -95,10 +120,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C9383C326C57DCF008955E5 /* BubbleTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				0C9383BD26C57D6A008955E5 /* BubbleTabBar.swift */,
+				0C9383BF26C57D6A008955E5 /* BubbleTabBarController.swift */,
+				0C9383BE26C57D6A008955E5 /* CBTabBarButton.swift */,
+			);
+			path = BubbleTabBar;
+			sourceTree = "<group>";
+		};
 		0CFC698426B1A33500D02C76 = {
 			isa = PBXGroup;
 			children = (
 				0CFC698F26B1A33500D02C76 /* MobileBanking */,
+				0C9383C326C57DCF008955E5 /* BubbleTabBar */,
 				0CFC69A926B1A33700D02C76 /* MobileBankingTests */,
 				0CFC69B426B1A33700D02C76 /* MobileBankingUITests */,
 				0CFC698E26B1A33500D02C76 /* Products */,
@@ -178,7 +214,10 @@
 			isa = PBXGroup;
 			children = (
 				0CFC699426B1A33500D02C76 /* ViewController.swift */,
-				0CC439B626C514D0009E0B80 /* MainViewController.swift */,
+				0CC439B626C514D0009E0B80 /* HomeViewController.swift */,
+				0C9383C426C58DEE008955E5 /* PaymentsViewController.swift */,
+				0C9383C626C58E02008955E5 /* ChatViewController.swift */,
+				0C9383C826C58E0D008955E5 /* ProfileViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -218,6 +257,7 @@
 				0CFC698A26B1A33500D02C76 /* Frameworks */,
 				0CFC698B26B1A33500D02C76 /* Resources */,
 				9944B00A3C10F5824B43ED83 /* [CP] Embed Pods Frameworks */,
+				0C93839626C570F2008955E5 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -444,11 +484,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C9383C126C57D6A008955E5 /* CBTabBarButton.swift in Sources */,
 				0CFC699B26B1A33500D02C76 /* MobileBanking.xcdatamodeld in Sources */,
 				0CFC699526B1A33500D02C76 /* ViewController.swift in Sources */,
+				0C9383C726C58E02008955E5 /* ChatViewController.swift in Sources */,
+				0C9383C226C57D6A008955E5 /* BubbleTabBarController.swift in Sources */,
 				0CFC699126B1A33500D02C76 /* AppDelegate.swift in Sources */,
+				0C9383C926C58E0D008955E5 /* ProfileViewController.swift in Sources */,
 				0CFC699326B1A33500D02C76 /* SceneDelegate.swift in Sources */,
-				0CC439B726C514D0009E0B80 /* MainViewController.swift in Sources */,
+				0C9383C526C58DEE008955E5 /* PaymentsViewController.swift in Sources */,
+				0CC439B726C514D0009E0B80 /* HomeViewController.swift in Sources */,
+				0C9383C026C57D6A008955E5 /* BubbleTabBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,6 +545,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -560,6 +607,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -619,6 +667,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7P93X87YPP;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = MobileBanking/Info/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -640,6 +693,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7P93X87YPP;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = MobileBanking/Info/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -661,6 +719,10 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7P93X87YPP;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = MobileBankingTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -684,6 +746,10 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7P93X87YPP;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = MobileBankingTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (

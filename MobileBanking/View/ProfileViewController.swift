@@ -1,5 +1,5 @@
 //
-//  MainViewController.swift
+//  ProfileViewController.swift
 //  MobileBanking
 //
 //  Created by Dima Savelyev on 12.08.2021.
@@ -7,17 +7,19 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
-    
+class ProfileViewController: UIViewController {
+
     var label: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationController?.navigationBar.isHidden = true
 
         view.backgroundColor = .systemBackground
         label = {
             let label = UILabel()
-            label.text = "MainPage"
+            label.text = "Profile"
             label.textAlignment = .center
             label.font = UIFont(name: "Kepler-296", size: 35)
             label.textColor = .label

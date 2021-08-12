@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        
         navigationController?.navigationBar.isHidden = true
         
         label = {
@@ -40,11 +41,28 @@ class ViewController: UIViewController {
             return label
         }()
         DispatchQueue.main.asyncAfter(deadline: .now()+2) {
-            let vc = MainViewController()
-            let nav = UINavigationController(rootViewController: vc)
-            nav.modalPresentationStyle = .fullScreen
-            self.present(nav, animated: true)
+            let homeVC = HomeViewController()
+            homeVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "nairasign.square"), tag: 0)
+            homeVC.tabBarItem.selectedImage = UIImage(systemName: "nairasign.square.fill")
+            let paymentsVC = PaymentsViewController()
+            paymentsVC.tabBarItem = UITabBarItem(title: "Payments", image: UIImage(systemName: "wave.3.right.circle"), tag: 1)
+            paymentsVC.tabBarItem.selectedImage = UIImage(systemName: "wave.3.right.circle.fill")
+            let chatVC = ChatViewController()
+            chatVC.tabBarItem = UITabBarItem(title: "Chat", image: UIImage(systemName: "bolt.horizontal"), tag: 2)
+            chatVC.tabBarItem.selectedImage = UIImage(systemName: "bolt.horizontal.fill")
+            let accountVC = ProfileViewController()
+            accountVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "eye"), tag: 3)
+            accountVC.tabBarItem.selectedImage = UIImage(systemName: "eye.fill")
+
+            let tabBarController = BubbleTabBarController()
+            tabBarController.viewControllers = [homeVC, paymentsVC, chatVC, accountVC]
+            
+            tabBarController.modalPresentationStyle = .fullScreen
+            self.present(tabBarController, animated: true)
+            
         }
     }
+
 }
+
 
