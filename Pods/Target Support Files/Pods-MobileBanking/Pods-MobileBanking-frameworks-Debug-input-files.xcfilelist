@@ -1,2 +1,4 @@
 ${PODS_ROOT}/Target Support Files/Pods-MobileBanking/Pods-MobileBanking-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework
+${BUILT_PRODUCTS_DIR}/liquid-swipe/liquid_swipe.framework
+${BUILT_PRODUCTS_DIR}/pop/pop.framework
