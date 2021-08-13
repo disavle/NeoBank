@@ -14,7 +14,9 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.navigationBar.isHidden = true
+        let buttonSettings = UIBarButtonItem(image: UIImage(systemName: "gearshape.fill"), style: .done, target: self, action: #selector(openSettings))
+        buttonSettings.tintColor = .secondaryLabel
+        navigationItem.rightBarButtonItem = buttonSettings
 
         view.backgroundColor = .systemBackground
         label = {
@@ -33,5 +35,12 @@ class ProfileViewController: UIViewController {
             }
             return label
         }()
+    }
+    
+    @objc func openSettings(){
+        TapticManager.shared.vibrateSoft()
+        let vc = SettingsViewController()
+        let nav = UINavigationController(rootViewController: vc)
+        present(nav, animated: true, completion: nil)
     }
 }
