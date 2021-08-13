@@ -41,6 +41,7 @@ class ViewController: UIViewController {
             return label
         }()
         DispatchQueue.main.asyncAfter(deadline: .now()+2) {
+            TapticManager.shared.vibrateFeedback(for: .success)
             let homeVC = HomeViewController()
             homeVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "nairasign.square"), tag: 0)
             homeVC.tabBarItem.selectedImage = UIImage(systemName: "nairasign.square.fill")
@@ -53,16 +54,15 @@ class ViewController: UIViewController {
             let accountVC = ProfileViewController()
             accountVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "eye"), tag: 3)
             accountVC.tabBarItem.selectedImage = UIImage(systemName: "eye.fill")
+            let accountNav = UINavigationController(rootViewController: accountVC)
 
             let tabBarController = BubbleTabBarController()
-            tabBarController.viewControllers = [homeVC, paymentsVC, chatVC, accountVC]
-            
+            tabBarController.viewControllers = [homeVC, paymentsVC, chatVC, accountNav]
+
             tabBarController.modalPresentationStyle = .fullScreen
             self.present(tabBarController, animated: true)
-            
         }
     }
-
 }
 
 

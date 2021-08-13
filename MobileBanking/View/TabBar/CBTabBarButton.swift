@@ -160,7 +160,7 @@ public class CBTabBarButton: UIControl {
         UIView.transition(with: tabImage, duration: duration, options: [.transitionCrossDissolve], animations: {
             self.tabImage.tintColor = self.tintColor
         }, completion: nil)
-
+        TapticManager.shared.vibrateSoft()
     }
 
     private func unfold(animationDuration duration: Double = 0.0) {

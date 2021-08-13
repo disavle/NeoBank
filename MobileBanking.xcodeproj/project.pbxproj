@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C2EDF4C26C63FA10085B8D0 /* TapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2EDF4B26C63FA10085B8D0 /* TapticManager.swift */; };
+		0C2EDF4E26C641500085B8D0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2EDF4D26C641500085B8D0 /* SettingsViewController.swift */; };
+		0C2EDF5026C64E0B0085B8D0 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2EDF4F26C64E0B0085B8D0 /* SettingsTableViewCell.swift */; };
 		0C9383C026C57D6A008955E5 /* BubbleTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9383BD26C57D6A008955E5 /* BubbleTabBar.swift */; };
 		0C9383C126C57D6A008955E5 /* CBTabBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9383BE26C57D6A008955E5 /* CBTabBarButton.swift */; };
 		0C9383C226C57D6A008955E5 /* BubbleTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9383BF26C57D6A008955E5 /* BubbleTabBarController.swift */; };
@@ -59,6 +62,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0C2EDF4B26C63FA10085B8D0 /* TapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapticManager.swift; sourceTree = "<group>"; };
+		0C2EDF4D26C641500085B8D0 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		0C2EDF4F26C64E0B0085B8D0 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		0C9383BD26C57D6A008955E5 /* BubbleTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleTabBar.swift; sourceTree = "<group>"; };
 		0C9383BE26C57D6A008955E5 /* CBTabBarButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBTabBarButton.swift; sourceTree = "<group>"; };
 		0C9383BF26C57D6A008955E5 /* BubbleTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleTabBarController.swift; sourceTree = "<group>"; };
@@ -120,21 +126,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0C9383C326C57DCF008955E5 /* BubbleTabBar */ = {
+		0C2EDF4A26C63EF00085B8D0 /* MainViews */ = {
+			isa = PBXGroup;
+			children = (
+				0CC439B626C514D0009E0B80 /* HomeViewController.swift */,
+				0C9383C426C58DEE008955E5 /* PaymentsViewController.swift */,
+				0C9383C626C58E02008955E5 /* ChatViewController.swift */,
+				0C9383C826C58E0D008955E5 /* ProfileViewController.swift */,
+			);
+			path = MainViews;
+			sourceTree = "<group>";
+		};
+		0C2EDF5126C66D180085B8D0 /* TapticEngine */ = {
+			isa = PBXGroup;
+			children = (
+				0C2EDF4B26C63FA10085B8D0 /* TapticManager.swift */,
+			);
+			path = TapticEngine;
+			sourceTree = "<group>";
+		};
+		0C2EDF5226C66D360085B8D0 /* SettingsViews */ = {
+			isa = PBXGroup;
+			children = (
+				0C2EDF4D26C641500085B8D0 /* SettingsViewController.swift */,
+				0C2EDF4F26C64E0B0085B8D0 /* SettingsTableViewCell.swift */,
+			);
+			path = SettingsViews;
+			sourceTree = "<group>";
+		};
+		0C9383C326C57DCF008955E5 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
 				0C9383BD26C57D6A008955E5 /* BubbleTabBar.swift */,
 				0C9383BF26C57D6A008955E5 /* BubbleTabBarController.swift */,
 				0C9383BE26C57D6A008955E5 /* CBTabBarButton.swift */,
 			);
-			path = BubbleTabBar;
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 		0CFC698426B1A33500D02C76 = {
 			isa = PBXGroup;
 			children = (
 				0CFC698F26B1A33500D02C76 /* MobileBanking */,
-				0C9383C326C57DCF008955E5 /* BubbleTabBar */,
 				0CFC69A926B1A33700D02C76 /* MobileBankingTests */,
 				0CFC69B426B1A33700D02C76 /* MobileBankingUITests */,
 				0CFC698E26B1A33500D02C76 /* Products */,
@@ -214,10 +247,10 @@
 			isa = PBXGroup;
 			children = (
 				0CFC699426B1A33500D02C76 /* ViewController.swift */,
-				0CC439B626C514D0009E0B80 /* HomeViewController.swift */,
-				0C9383C426C58DEE008955E5 /* PaymentsViewController.swift */,
-				0C9383C626C58E02008955E5 /* ChatViewController.swift */,
-				0C9383C826C58E0D008955E5 /* ProfileViewController.swift */,
+				0C2EDF4A26C63EF00085B8D0 /* MainViews */,
+				0C2EDF5226C66D360085B8D0 /* SettingsViews */,
+				0C9383C326C57DCF008955E5 /* TabBar */,
+				0C2EDF5126C66D180085B8D0 /* TapticEngine */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -486,13 +519,16 @@
 			files = (
 				0C9383C126C57D6A008955E5 /* CBTabBarButton.swift in Sources */,
 				0CFC699B26B1A33500D02C76 /* MobileBanking.xcdatamodeld in Sources */,
+				0C2EDF4C26C63FA10085B8D0 /* TapticManager.swift in Sources */,
 				0CFC699526B1A33500D02C76 /* ViewController.swift in Sources */,
+				0C2EDF5026C64E0B0085B8D0 /* SettingsTableViewCell.swift in Sources */,
 				0C9383C726C58E02008955E5 /* ChatViewController.swift in Sources */,
 				0C9383C226C57D6A008955E5 /* BubbleTabBarController.swift in Sources */,
 				0CFC699126B1A33500D02C76 /* AppDelegate.swift in Sources */,
 				0C9383C926C58E0D008955E5 /* ProfileViewController.swift in Sources */,
 				0CFC699326B1A33500D02C76 /* SceneDelegate.swift in Sources */,
 				0C9383C526C58DEE008955E5 /* PaymentsViewController.swift in Sources */,
+				0C2EDF4E26C641500085B8D0 /* SettingsViewController.swift in Sources */,
 				0CC439B726C514D0009E0B80 /* HomeViewController.swift in Sources */,
 				0C9383C026C57D6A008955E5 /* BubbleTabBar.swift in Sources */,
 			);
