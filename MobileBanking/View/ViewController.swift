@@ -55,7 +55,7 @@ class ViewController: UIViewController {
                 DispatchQueue.main.async {
                     guard success, error == nil else{
                         
-                        let vc = PasswordViewController()
+                        let vc = UINavigationController(rootViewController: PasswordViewController()) 
                         vc.modalPresentationStyle = .fullScreen
                         self?.present(vc, animated: true)
                         
@@ -94,9 +94,8 @@ class ViewController: UIViewController {
 
         let tabBarController = BubbleTabBarController()
         tabBarController.viewControllers = [homeVC, paymentsVC, chatVC, accountNav]
-
-        tabBarController.modalPresentationStyle = .fullScreen
-        self.present(tabBarController, animated: true)
+        
+        self.navigationController?.pushViewController(tabBarController, animated: true)
     }
 }
 

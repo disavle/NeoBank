@@ -10,6 +10,7 @@
 		0C2EDF4C26C63FA10085B8D0 /* TapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2EDF4B26C63FA10085B8D0 /* TapticManager.swift */; };
 		0C2EDF4E26C641500085B8D0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2EDF4D26C641500085B8D0 /* SettingsViewController.swift */; };
 		0C2EDF5026C64E0B0085B8D0 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2EDF4F26C64E0B0085B8D0 /* SettingsTableViewCell.swift */; };
+		0C5D976626C84AB500414FD8 /* ButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5D976526C84AB500414FD8 /* ButtonsView.swift */; };
 		0C7268D326C6E90300443204 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7268D226C6E90300443204 /* PasswordViewController.swift */; };
 		0C7268D826C6EA9C00443204 /* MouthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7268D526C6EA9B00443204 /* MouthView.swift */; };
 		0C7268D926C6EA9C00443204 /* EyeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7268D626C6EA9C00443204 /* EyeView.swift */; };
@@ -71,6 +72,7 @@
 		0C2EDF4B26C63FA10085B8D0 /* TapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapticManager.swift; sourceTree = "<group>"; };
 		0C2EDF4D26C641500085B8D0 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		0C2EDF4F26C64E0B0085B8D0 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		0C5D976526C84AB500414FD8 /* ButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsView.swift; sourceTree = "<group>"; };
 		0C7268D226C6E90300443204 /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
 		0C7268D526C6EA9B00443204 /* MouthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MouthView.swift; sourceTree = "<group>"; };
 		0C7268D626C6EA9C00443204 /* EyeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EyeView.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				0C7268D726C6EA9C00443204 /* ShakeView.swift */,
 				0C7268DB26C6EAB500443204 /* ProgressableAnimationView.swift */,
 				0C7268DD26C6EAF000443204 /* GeometryHelper.swift */,
+				0C5D976526C84AB500414FD8 /* ButtonsView.swift */,
 			);
 			path = PasswordViews;
 			sourceTree = "<group>";
@@ -557,6 +560,7 @@
 				0CFC699126B1A33500D02C76 /* AppDelegate.swift in Sources */,
 				0C9383C926C58E0D008955E5 /* ProfileViewController.swift in Sources */,
 				0CFC699326B1A33500D02C76 /* SceneDelegate.swift in Sources */,
+				0C5D976626C84AB500414FD8 /* ButtonsView.swift in Sources */,
 				0C9383C526C58DEE008955E5 /* PaymentsViewController.swift in Sources */,
 				0C7268DE26C6EAF000443204 /* GeometryHelper.swift in Sources */,
 				0C2EDF4E26C641500085B8D0 /* SettingsViewController.swift in Sources */,
@@ -735,11 +739,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7P93X87YPP;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-					"$(PROJECT_DIR)",
-				);
 				INFOPLIST_FILE = MobileBanking/Info/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (

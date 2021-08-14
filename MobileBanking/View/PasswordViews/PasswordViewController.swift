@@ -7,20 +7,23 @@
 
 import UIKit
 import SnapKit
+import SpriteKit
 
 class PasswordViewController: UIViewController {
     
     var faceContainer: UIView!
-    var passwordContainer: UIView! // input password
-    var passwordFieldContainer: UIView! // field password
+    var passwordContainer: UIView!
+    var passwordFieldContainer: UIView!
     var leftEye: EyeView!
     var rightEye: EyeView!
     var mouthView: MouthView!
+    let buttons = [[ButtonsView(value: 1, name: "1", img: nil)        ,ButtonsView(value: 2, name: "2", img: nil),ButtonsView(value: 3, name: "3", img: nil)],[ButtonsView(value: 4, name: "4", img: nil),ButtonsView(value: 5, name: "5", img: nil),ButtonsView(value: 6, name: "6", img: nil)],[ButtonsView(value: 7, name: "7", img: nil),ButtonsView(value: 8, name: "8", img: nil),ButtonsView(value: 9, name: "9", img: nil)],[ButtonsView(value: nil, name: "Exit", img: UIImage(systemName: "power")),ButtonsView(value: 0, name: "0", img: nil),ButtonsView(value: nil, name: "Delete", img: UIImage(systemName: "delete.left.fill"))]]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .systemPink
+        navigationController?.navigationBar.isHidden = true
         
         faceContainer = {
             let container = UIView()
@@ -36,7 +39,8 @@ class PasswordViewController: UIViewController {
         
         passwordFieldContainer = {
             let container = UIView()
-            container.backgroundColor = .blue
+            container.backgroundColor = .secondarySystemBackground
+            container.layer.cornerRadius = 20
             view.addSubview(container)
             container.snp.makeConstraints { maker in
                 maker.centerX.equalToSuperview()
@@ -49,7 +53,8 @@ class PasswordViewController: UIViewController {
         
         passwordContainer = {
             let container = UIView()
-            container.backgroundColor = .blue
+            container.backgroundColor = .secondarySystemBackground
+            container.layer.cornerRadius = 20
             view.addSubview(container)
             container.snp.makeConstraints { maker in
                 maker.centerX.equalToSuperview()
@@ -98,6 +103,19 @@ class PasswordViewController: UIViewController {
             return mouth
         }()
         
+        for i in 0..<4{
+            for j in 0..<3{
+                let button = buttons[i][j]
+                passwordContainer.addSubview(button)
+                button.snp.makeConstraints { maker in
+                    maker.top.equalToSuperview().inset(15+i*80) // issue
+                    maker.left.equalToSuperview().inset(25+j*100)
+                    maker.width.equalToSuperview().dividedBy(4)
+                    maker.height.equalTo(button.snp.width).dividedBy(1.3)
+                }
+            }
+        }
+        
         passwordFieldContainer.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(fail)))
         passwordContainer.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(success)))
     }
@@ -130,13 +148,23 @@ class PasswordViewController: UIViewController {
 
             let tabBarController = BubbleTabBarController()
             tabBarController.viewControllers = [homeVC, paymentsVC, chatVC, accountNav]
-
-            tabBarController.modalPresentationStyle = .fullScreen
-            self.present(tabBarController, animated: true)
+            
+            self.navigationController?.pushViewController(tabBarController, animated: true)
         }
     }
     
     func shake() {
         faceContainer.shake(count: 10, amplitude: 4.5)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        var position: CGPoint!
+        if let touch = touches.first {
+            position = touch.location(in: view)
+            print(position!)
+        }
+        [leftEye, rightEye].forEach {
+            $0?.track(to: $0?.convert(position, from: view), animated: ($0?.trackPoint == nil))
+        }
     }
 }
