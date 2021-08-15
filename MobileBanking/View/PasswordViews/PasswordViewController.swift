@@ -103,21 +103,11 @@ class PasswordViewController: UIViewController {
             return mouth
         }()
         
-        for i in 0..<4{
-            for j in 0..<3{
-                let button = buttons[i][j]
-                passwordContainer.addSubview(button)
-                button.snp.makeConstraints { maker in
-                    maker.top.equalToSuperview().inset(15+i*80) // issue
-                    maker.left.equalToSuperview().inset(25+j*100)
-                    maker.width.equalToSuperview().dividedBy(4)
-                    maker.height.equalTo(button.snp.width).dividedBy(1.3)
-                }
-            }
-        }
+        // MARK: Generator buttons for password.
         
-        passwordFieldContainer.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(fail)))
-        passwordContainer.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(success)))
+        buttonsGenerate()
+        
+        checkGesture()
     }
     
     @objc func fail(){
@@ -161,10 +151,68 @@ class PasswordViewController: UIViewController {
         var position: CGPoint!
         if let touch = touches.first {
             position = touch.location(in: view)
-            print(position!)
         }
         [leftEye, rightEye].forEach {
             $0?.track(to: $0?.convert(position, from: view), animated: ($0?.trackPoint == nil))
         }
+    }
+    
+    func buttonsGenerate(){
+        for i in 0..<4{
+            for j in 0..<3{
+                let button = buttons[i][j]
+                let buttonContainer = ButtonContainer()
+                passwordContainer.addSubview(buttonContainer)
+                buttonContainer.snp.makeConstraints { maker in
+                    maker.top.equalToSuperview().inset(Int(view.frame.size.height/2.7/4)*i)
+                    maker.left.equalToSuperview().inset(Int(view.frame.size.width/1.2/3)*j)
+                    maker.width.equalToSuperview().dividedBy(3)
+                    maker.height.equalToSuperview().dividedBy(4)
+                }
+                buttonContainer.addSubview(button)
+                button.snp.makeConstraints { maker in
+                    if(j==0 && i != 3){
+                        maker.centerY.equalToSuperview()
+                        maker.right.equalToSuperview()
+                        maker.width.equalToSuperview().dividedBy(1.4)
+                        maker.height.equalToSuperview().dividedBy(1.4)
+                    }
+                    if(j==1 && i != 3){
+                        maker.centerY.equalToSuperview()
+                        maker.centerX.equalToSuperview()
+                        maker.width.equalToSuperview().dividedBy(1.4)
+                        maker.height.equalToSuperview().dividedBy(1.4)
+                    }
+                    if(j==2 && i != 3){
+                        maker.centerY.equalToSuperview()
+                        maker.left.equalToSuperview()
+                        maker.width.equalToSuperview().dividedBy(1.4)
+                        maker.height.equalToSuperview().dividedBy(1.4)
+                    }
+                    if (button.img != nil && i==3){
+                        maker.top.equalToSuperview().inset(12)
+                        maker.width.equalToSuperview().dividedBy(2)
+                        maker.height.equalToSuperview().dividedBy(2)
+                        button.button.layer.cornerRadius = 10
+                        if(button.name == "Exit"){
+                            maker.right.equalToSuperview()
+                        }else {
+                            maker.left.equalToSuperview()
+                        }
+                    }
+                    if (button.img == nil && i==3){
+                        maker.centerX.equalToSuperview()
+                        maker.centerY.equalToSuperview()
+                        maker.width.equalToSuperview().dividedBy(1.4)
+                        maker.height.equalToSuperview().dividedBy(1.4)
+                    }
+                }
+            }
+        }
+    }
+    
+    func checkGesture(){
+        passwordFieldContainer.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(fail)))
+        passwordContainer.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(success)))
     }
 }

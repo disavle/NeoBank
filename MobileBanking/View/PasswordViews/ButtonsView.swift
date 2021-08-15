@@ -26,13 +26,10 @@ class ButtonsView: UIView {
         button = {
             let button = UIView()
             button.backgroundColor = .tertiarySystemBackground
-            button.layer.cornerRadius = 20
+            button.layer.cornerRadius = 14
             addSubview(button)
             button.snp.makeConstraints { maker in
-                maker.centerX.equalToSuperview()
-                maker.centerY.equalToSuperview()
-                maker.width.equalToSuperview()
-                maker.height.equalToSuperview()
+                maker.edges.equalToSuperview()
             }
             return button
         }()
