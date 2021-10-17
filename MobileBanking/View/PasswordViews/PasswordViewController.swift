@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import SpriteKit
+import LocalAuthentication
 
 class PasswordViewController: UIViewController {
     
@@ -17,8 +18,11 @@ class PasswordViewController: UIViewController {
     var leftEye: EyeView!
     var rightEye: EyeView!
     var mouthView: MouthView!
-    let buttons = [[ButtonsView(value: 1, name: "1", img: nil)        ,ButtonsView(value: 2, name: "2", img: nil),ButtonsView(value: 3, name: "3", img: nil)],[ButtonsView(value: 4, name: "4", img: nil),ButtonsView(value: 5, name: "5", img: nil),ButtonsView(value: 6, name: "6", img: nil)],[ButtonsView(value: 7, name: "7", img: nil),ButtonsView(value: 8, name: "8", img: nil),ButtonsView(value: 9, name: "9", img: nil)],[ButtonsView(value: nil, name: "Exit", img: UIImage(systemName: "power")),ButtonsView(value: 0, name: "0", img: nil),ButtonsView(value: nil, name: "Delete", img: UIImage(systemName: "delete.left.fill"))]]
-
+    let buttons = [[ButtonsView(value: 1, name: "1", img: nil),ButtonsView(value: 2, name: "2", img: nil),ButtonsView(value: 3, name: "3", img: nil)],[ButtonsView(value: 4, name: "4", img: nil),ButtonsView(value: 5, name: "5", img: nil),ButtonsView(value: 6, name: "6", img: nil)],[ButtonsView(value: 7, name: "7", img: nil),ButtonsView(value: 8, name: "8", img: nil),ButtonsView(value: 9, name: "9", img: nil)],[ButtonsView(value: nil, name: "Exit", img: UIImage(systemName: "power")),ButtonsView(value: 0, name: "0", img: nil),ButtonsView(value: nil, name: "Delete", img: UIImage(systemName: "delete.left.fill"))]]
+    var k = 0
+    var appPass = ""
+    let password = UserDefaults.standard.string(forKey: "password") ?? "1234"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -108,6 +112,8 @@ class PasswordViewController: UIViewController {
         buttonsGenerate()
         
         checkGesture()
+        
+        verify()
     }
     
     @objc func fail(){
@@ -135,7 +141,7 @@ class PasswordViewController: UIViewController {
             accountVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "eye"), tag: 3)
             accountVC.tabBarItem.selectedImage = UIImage(systemName: "eye.fill")
             let accountNav = UINavigationController(rootViewController: accountVC)
-
+            
             let tabBarController = BubbleTabBarController()
             tabBarController.viewControllers = [homeVC, paymentsVC, chatVC, accountNav]
             
@@ -211,8 +217,105 @@ class PasswordViewController: UIViewController {
         }
     }
     
+    func verify(){
+        let context = LAContext()
+        var error: NSError? = nil
+        let reason = "Please authorize with touchID"
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error){
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { [weak self] success, error in
+                DispatchQueue.main.async {
+                    guard success, error == nil else{
+                        
+                        //                        let vc = UINavigationController(rootViewController: PasswordViewController())
+                        //                        vc.modalPresentationStyle = .fullScreen
+                        //                        self?.present(vc, animated: true)
+                        //                        let alert = UIAlertController(title: "Is it you?", message: "Bro, drink less! I can't let you in(", preferredStyle: .alert)
+                        //                        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                        //                        self?.present(alert, animated: true, completion: nil)
+                        return
+                    }
+                    self?.success()
+                }
+            }
+        }
+        else{
+            let alert = UIAlertController(title: "You are sick!", message: "Bro, you can't use it(", preferredStyle: .alert)
+            alert.view.tintColor = .systemPink
+            alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+            present(alert, animated: true, completion: nil)
+        }
+    }
+    
     func checkGesture(){
         passwordFieldContainer.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(fail)))
-        passwordContainer.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(success)))
+        for i in 0..<4{
+            for j in 0..<3{
+                buttons[i][j].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(identButton(sender: ))))
+            }
+        }
+//        buttons[3][0].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(identButton(sender: ))))
+        buttons[3][2].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(deletePass(sender: ))))
+    }
+    @objc func identButton(sender: UITapGestureRecognizer){
+        if let button = sender.view as? ButtonsView {
+            guard let val = button.value else{return}
+            appPass += String(val)
+            passwordStars()
+        }
+    }
+    
+    @objc func deletePass(sender: UITapGestureRecognizer){
+        guard appPass != "" else {return}
+        appPass.removeLast()
+        guard k>0 && k<=4 else {return}
+        k-=1
+        view.viewWithTag(100*(k+1))?.removeFromSuperview()
+    }
+    
+    func removeAllPass(){
+        for i in 0...3{
+            view.viewWithTag(100*(i+1))?.removeFromSuperview()
+        }
+        appPass = ""
+        k=0
+    }
+    
+    func checkPass(){
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.3) {
+            if (self.appPass == self.password){
+                self.success()
+            }
+            else {
+                self.fail()
+                self.removeAllPass()
+            }
+        }
+    }
+    
+    func passwordStars(){
+        guard k<4 else {return}
+        let container = UIView()
+        passwordFieldContainer.addSubview(container)
+        container.snp.makeConstraints { maker in
+            maker.center.equalToSuperview()
+            maker.width.equalToSuperview().inset(view.frame.size.width/4)
+            maker.height.equalToSuperview()
+        }
+        let point = UIView()
+        point.layer.cornerRadius = 20
+        point.tag = 100*(k+1)
+        point.backgroundColor = .secondaryLabel
+        container.addSubview(point)
+        point.snp.makeConstraints { maker in
+            maker.left.equalToSuperview().inset(Double(view.frame.size.width/(4*3))*Double(k))
+            maker.centerY.equalToSuperview()
+            maker.width.equalTo(view.frame.size.width/(4*4))
+            maker.height.equalTo(view.frame.size.width/(4*4))
+        }
+        guard k<=3 else {return}
+        k+=1
+        if (k==4){
+            checkPass()
+        }
     }
 }
