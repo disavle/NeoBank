@@ -21,6 +21,7 @@ class PasswordViewController: UIViewController {
     let buttons = [[ButtonsView(value: 1, name: "1", img: nil),ButtonsView(value: 2, name: "2", img: nil),ButtonsView(value: 3, name: "3", img: nil)],[ButtonsView(value: 4, name: "4", img: nil),ButtonsView(value: 5, name: "5", img: nil),ButtonsView(value: 6, name: "6", img: nil)],[ButtonsView(value: 7, name: "7", img: nil),ButtonsView(value: 8, name: "8", img: nil),ButtonsView(value: 9, name: "9", img: nil)],[ButtonsView(value: nil, name: "Exit", img: UIImage(systemName: "power")),ButtonsView(value: 0, name: "0", img: nil),ButtonsView(value: nil, name: "Delete", img: UIImage(systemName: "delete.left.fill"))]]
     var k = 0
     var appPass = ""
+    // MARK: Password ia a PIN from Firebase.
     let password = UserDefaults.standard.string(forKey: "password") ?? "1234"
     
     override func viewDidLoad() {
@@ -253,6 +254,7 @@ class PasswordViewController: UIViewController {
                 buttons[i][j].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(identButton(sender: ))))
             }
         }
+        // MARK: Button of logging out of profile.
 //        buttons[3][0].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(identButton(sender: ))))
         buttons[3][2].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(deletePass(sender: ))))
     }

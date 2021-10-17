@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C1570DF271C2ACA00A2BA77 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1570DE271C2ACA00A2BA77 /* SignUpViewController.swift */; };
+		0C1570E2271C2CD900A2BA77 /* checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1570E1271C2CD900A2BA77 /* checkbox.swift */; };
+		0C1570E4271C474300A2BA77 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1570E3271C474300A2BA77 /* SignInViewController.swift */; };
 		0C2EDF4C26C63FA10085B8D0 /* TapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2EDF4B26C63FA10085B8D0 /* TapticManager.swift */; };
 		0C2EDF4E26C641500085B8D0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2EDF4D26C641500085B8D0 /* SettingsViewController.swift */; };
 		0C2EDF5026C64E0B0085B8D0 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2EDF4F26C64E0B0085B8D0 /* SettingsTableViewCell.swift */; };
@@ -71,6 +74,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0C1570DE271C2ACA00A2BA77 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		0C1570E1271C2CD900A2BA77 /* checkbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkbox.swift; sourceTree = "<group>"; };
+		0C1570E3271C474300A2BA77 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		0C2EDF4B26C63FA10085B8D0 /* TapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapticManager.swift; sourceTree = "<group>"; };
 		0C2EDF4D26C641500085B8D0 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		0C2EDF4F26C64E0B0085B8D0 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
@@ -144,6 +150,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C1570DD271C2A8700A2BA77 /* StartViews */ = {
+			isa = PBXGroup;
+			children = (
+				0CFC699426B1A33500D02C76 /* ViewController.swift */,
+				0C1570DE271C2ACA00A2BA77 /* SignUpViewController.swift */,
+				0C1570E1271C2CD900A2BA77 /* checkbox.swift */,
+				0C1570E3271C474300A2BA77 /* SignInViewController.swift */,
+			);
+			path = StartViews;
+			sourceTree = "<group>";
+		};
+		0C1570E0271C2B6E00A2BA77 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		0C2EDF4A26C63EF00085B8D0 /* MainViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -223,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				0CFC69C526B1A4E700D02C76 /* App */,
+				0C1570E0271C2B6E00A2BA77 /* Model */,
 				0CFC69C826B1BB9800D02C76 /* View */,
 				0CFC69C426B1A4A400D02C76 /* Info */,
 				0CFC69C326B1A49500D02C76 /* Data */,
@@ -280,7 +305,7 @@
 		0CFC69C826B1BB9800D02C76 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0CFC699426B1A33500D02C76 /* ViewController.swift */,
+				0C1570DD271C2A8700A2BA77 /* StartViews */,
 				0C2EDF4A26C63EF00085B8D0 /* MainViews */,
 				0C2EDF5226C66D360085B8D0 /* SettingsViews */,
 				0C9383C326C57DCF008955E5 /* TabBar */,
@@ -559,7 +584,9 @@
 				0CFC699B26B1A33500D02C76 /* MobileBanking.xcdatamodeld in Sources */,
 				0C2EDF4C26C63FA10085B8D0 /* TapticManager.swift in Sources */,
 				0CFC699526B1A33500D02C76 /* ViewController.swift in Sources */,
+				0C1570DF271C2ACA00A2BA77 /* SignUpViewController.swift in Sources */,
 				0C7268DC26C6EAB500443204 /* ProgressableAnimationView.swift in Sources */,
+				0C1570E4271C474300A2BA77 /* SignInViewController.swift in Sources */,
 				0C6BD80F26C9766900F711E7 /* ButtonContainer.swift in Sources */,
 				0C2EDF5026C64E0B0085B8D0 /* SettingsTableViewCell.swift in Sources */,
 				0C9383C726C58E02008955E5 /* ChatViewController.swift in Sources */,
@@ -568,6 +595,7 @@
 				0CFC699126B1A33500D02C76 /* AppDelegate.swift in Sources */,
 				0C9383C926C58E0D008955E5 /* ProfileViewController.swift in Sources */,
 				0CFC699326B1A33500D02C76 /* SceneDelegate.swift in Sources */,
+				0C1570E2271C2CD900A2BA77 /* checkbox.swift in Sources */,
 				0C5D976626C84AB500414FD8 /* ButtonsView.swift in Sources */,
 				0C9383C526C58DEE008955E5 /* PaymentsViewController.swift in Sources */,
 				0C7268DE26C6EAF000443204 /* GeometryHelper.swift in Sources */,
