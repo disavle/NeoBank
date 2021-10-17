@@ -217,14 +217,14 @@ class SignUpViewController: UIViewController {
         
         agreeLab = {
             let label = UILabel()
-            label.text = "Agree with a"
+            label.text = "Agree with a "
             label.font = UIFont(name: "Kepler-296", size: 10)
             label.textColor = .label
             view.addSubview(label)
             label.snp.makeConstraints { maker in
                 maker.centerY.equalTo(agree.snp.centerY)
                 maker.left.equalTo(agree.snp.right).inset(-15)
-                maker.width.equalTo(65)
+                maker.width.equalTo(69)
                 maker.height.equalTo(20)
             }
             return label
@@ -238,9 +238,9 @@ class SignUpViewController: UIViewController {
             button.titleLabel?.font = UIFont(name: "Kepler-296", size: 10)
             view.addSubview(button)
             button.snp.makeConstraints { maker in
-                maker.centerY.equalTo(agreeLab.snp.centerY)
+                maker.centerY.equalTo(agree.snp.centerY).offset(1)
                 maker.left.equalTo(agreeLab.snp.right)
-                maker.width.equalTo(50)
+                maker.width.equalTo(35)
                 maker.height.equalTo(20)
             }
             return button
