@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class SignUpViewController: UIViewController {
     
@@ -21,6 +22,7 @@ class SignUpViewController: UIViewController {
     var passInput: UITextField!
     var passConfInput: UITextField!
     var confirm: UIButton!
+    var license: UIButton!
     var signIn: UIButton!
     
     
@@ -215,17 +217,33 @@ class SignUpViewController: UIViewController {
         
         agreeLab = {
             let label = UILabel()
-            label.text = "Agree with ..."
+            label.text = "Agree with a"
             label.font = UIFont(name: "Kepler-296", size: 10)
             label.textColor = .label
             view.addSubview(label)
             label.snp.makeConstraints { maker in
                 maker.centerY.equalTo(agree.snp.centerY)
                 maker.left.equalTo(agree.snp.right).inset(-15)
-                maker.width.equalTo(200)
+                maker.width.equalTo(65)
                 maker.height.equalTo(20)
             }
             return label
+        }()
+        
+        license = {
+            let button = UIButton()
+            button.addTarget(self, action: #selector(openLicense), for: .touchUpInside)
+            button.setTitle("license", for: .normal)
+            button.setTitleColor(.systemPink, for: .normal)
+            button.titleLabel?.font = UIFont(name: "Kepler-296", size: 10)
+            view.addSubview(button)
+            button.snp.makeConstraints { maker in
+                maker.centerY.equalTo(agreeLab.snp.centerY)
+                maker.left.equalTo(agreeLab.snp.right)
+                maker.width.equalTo(50)
+                maker.height.equalTo(20)
+            }
+            return button
         }()
         
         confirm = {
@@ -280,9 +298,18 @@ class SignUpViewController: UIViewController {
             confirm.isEnabled = false
         }
     }
+    
+    @objc func openLicense(){
+        if let url = URL(string: "https://disavle.github.io/license"){
+            let sfvc = SFSafariViewController(url: url)
+            present(sfvc, animated: true, completion: nil)
+        }
+    }
+    
     // MARK: When authorization will be done - it is disabled.
     @objc func test(){
         let vc = PasswordViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    
 }
