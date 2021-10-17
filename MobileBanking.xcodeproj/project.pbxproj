@@ -308,9 +308,9 @@
 				0C1570DD271C2A8700A2BA77 /* StartViews */,
 				0C2EDF4A26C63EF00085B8D0 /* MainViews */,
 				0C2EDF5226C66D360085B8D0 /* SettingsViews */,
+				0C7268D426C6EA8B00443204 /* PasswordViews */,
 				0C9383C326C57DCF008955E5 /* TabBar */,
 				0C2EDF5126C66D180085B8D0 /* TapticEngine */,
-				0C7268D426C6EA8B00443204 /* PasswordViews */,
 			);
 			path = View;
 			sourceTree = "<group>";

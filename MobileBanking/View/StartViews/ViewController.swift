@@ -16,6 +16,7 @@ class ViewController: UIViewController {
         view.backgroundColor = .systemBackground
         
         navigationController?.navigationBar.isHidden = true
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         
         label = {
             let label = UILabel()
