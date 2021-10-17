@@ -24,6 +24,7 @@
 		0C9383C526C58DEE008955E5 /* PaymentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9383C426C58DEE008955E5 /* PaymentsViewController.swift */; };
 		0C9383C726C58E02008955E5 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9383C626C58E02008955E5 /* ChatViewController.swift */; };
 		0C9383C926C58E0D008955E5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9383C826C58E0D008955E5 /* ProfileViewController.swift */; };
+		0CAE02CC271B4640009E4CF1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0CAE02CB271B4640009E4CF1 /* GoogleService-Info.plist */; };
 		0CC439B726C514D0009E0B80 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC439B626C514D0009E0B80 /* HomeViewController.swift */; };
 		0CFC699126B1A33500D02C76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CFC699026B1A33500D02C76 /* AppDelegate.swift */; };
 		0CFC699326B1A33500D02C76 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CFC699226B1A33500D02C76 /* SceneDelegate.swift */; };
@@ -87,6 +88,7 @@
 		0C9383C426C58DEE008955E5 /* PaymentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsViewController.swift; sourceTree = "<group>"; };
 		0C9383C626C58E02008955E5 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		0C9383C826C58E0D008955E5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		0CAE02CB271B4640009E4CF1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0CC439B626C514D0009E0B80 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		0CFC698D26B1A33500D02C76 /* MobileBanking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileBanking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CFC699026B1A33500D02C76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -261,6 +263,7 @@
 				0CFC699C26B1A33600D02C76 /* Assets.xcassets */,
 				0CFC699E26B1A33600D02C76 /* LaunchScreen.storyboard */,
 				0CFC69A126B1A33600D02C76 /* Info.plist */,
+				0CAE02CB271B4640009E4CF1 /* GoogleService-Info.plist */,
 			);
 			path = Info;
 			sourceTree = "<group>";
@@ -420,6 +423,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0CFC69A026B1A33600D02C76 /* LaunchScreen.storyboard in Resources */,
+				0CAE02CC271B4640009E4CF1 /* GoogleService-Info.plist in Resources */,
 				0CFC69C726B1ADB200D02C76 /* Kepler-296.otf in Resources */,
 				0CFC699D26B1A33600D02C76 /* Assets.xcassets in Resources */,
 			);

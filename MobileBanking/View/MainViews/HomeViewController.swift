@@ -6,10 +6,15 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class HomeViewController: UIViewController {
     
     var label: UILabel!
+    
+    let ref = Database.database().reference(withPath: "dfsdf")
+    var refObservers: [DatabaseHandle] = []
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,5 +38,10 @@ class HomeViewController: UIViewController {
             }
             return label
         }()
+        
+        ref.observe(.value, with: { snapshot in
+          print(snapshot.value!)
+        })
+
     }
 }
