@@ -7,6 +7,8 @@
 
 import UIKit
 import SafariServices
+import FirebaseDatabase
+import BCryptSwift
 
 class SignUpViewController: UIViewController {
     
@@ -25,13 +27,23 @@ class SignUpViewController: UIViewController {
     var license: UIButton!
     var signIn: UIButton!
     
+    //MARK: Install database
+    
+    private let database = Database.database().reference()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .tertiarySystemBackground
         
-        navigationController?.navigationBar.isHidden = true
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(closeSignUp))
+        
+        //MARK: Hide keyboard
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,action: #selector(dissmisskeyboard))
+        self.view.addGestureRecognizer(tap)
         
         logo = {
             let label = UILabel()
@@ -158,43 +170,6 @@ class SignUpViewController: UIViewController {
             return label
         }()
         
-        passConfInput = {
-            let field = UITextField()
-            field.backgroundColor = .secondarySystemBackground
-            field.layer.cornerRadius = 10
-            field.textColor = .label
-            field.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
-            field.returnKeyType = .done
-            field.font = UIFont(name: "Kepler-296", size: 15)
-            field.autocapitalizationType = .words
-            field.autocorrectionType = .no
-            field.attributedPlaceholder = NSAttributedString(string: "qwerty123",attributes: [NSAttributedString.Key.foregroundColor: UIColor.secondaryLabel, NSAttributedString.Key.font: UIFont(name: "Kepler-296", size: 15)!])
-            field.isSecureTextEntry = true
-            view.addSubview(field)
-            field.snp.makeConstraints { maker in
-                maker.top.equalTo(passInput.snp.bottom).offset(70)
-                maker.centerX.equalToSuperview()
-                maker.width.equalToSuperview().dividedBy(1.2)
-                maker.height.equalTo(30)
-            }
-            return field
-        }()
-        
-        passConf = {
-            let label = UILabel()
-            label.text = "Confirm password"
-            label.font = UIFont(name: "Kepler-296", size: 15)
-            label.textColor = .label
-            view.addSubview(label)
-            label.snp.makeConstraints { maker in
-                maker.bottom.equalTo(passConfInput.snp.top).inset(-10)
-                maker.left.equalTo(nameInput)
-                maker.width.equalTo(200)
-                maker.height.equalTo(20)
-            }
-            return label
-        }()
-        
         agree = {
             let agree = Checkbox()
             agree.uncheckedBorderColor = .label
@@ -207,7 +182,7 @@ class SignUpViewController: UIViewController {
             agree.addTarget(self, action: #selector(checkboxValueChanged(sender:)), for: .valueChanged)
             view.addSubview(agree)
             agree.snp.makeConstraints { maker in
-                maker.top.equalTo(passConfInput.snp.bottom).offset(50)
+                maker.top.equalTo(passInput.snp.bottom).offset(50)
                 maker.left.equalTo(pass)
                 maker.width.equalTo(view.frame.size.width/16)
                 maker.height.equalTo(view.frame.size.width/16)
@@ -248,8 +223,8 @@ class SignUpViewController: UIViewController {
         
         confirm = {
             let button = UIButton()
-            button.addTarget(self, action: #selector(test), for: .touchUpInside)
             button.backgroundColor = .systemGray3
+            button.addTarget(self, action: #selector(confirmJSON), for: .touchUpInside)
             button.setTitle("Sign Up", for: .normal)
             button.setTitleColor(.label, for: .normal)
             button.titleLabel?.font = UIFont(name: "Kepler-296", size: 20)
@@ -268,7 +243,7 @@ class SignUpViewController: UIViewController {
         
         signIn = {
             let button = UIButton()
-            button.addTarget(self, action: #selector(goTosignIn), for: .touchUpInside)
+            button.addTarget(self, action: #selector(closeSignUp), for: .touchUpInside)
             button.setTitle("Sign In", for: .normal)
             button.setTitleColor(.secondaryLabel, for: .normal)
             button.titleLabel?.font = UIFont(name: "Kepler-296", size: 17)
@@ -283,10 +258,14 @@ class SignUpViewController: UIViewController {
         }()
     }
     
-    @objc func goTosignIn(){
-        let vc = SignInViewController()
-        let nav = UINavigationController(rootViewController: vc)
-        present(nav, animated: true, completion: nil)
+    @objc func confirmJSON(){
+        let hash = BCryptSwift.hashPassword(passInput.text ?? "", withSalt: BCryptSwift.generateSalt())
+        let obj: [String:Any] = ["id":UUID().uuidString,"name":nameInput.text ?? "" as NSObject, "email":emailInput.text ?? "","password":hash ?? "", "cardNum":Int.random(in: 100000000000...999999999999), "PIN":Int.random(in: 1000...9999), "CVV":Int.random(in: 100...999)]
+        database.child("\(Int.random(in: 1...9))").setValue(obj)
+    }
+    
+    @objc func closeSignUp(){
+        dismiss(animated: true, completion: nil)
     }
     
     @objc func checkboxValueChanged(sender: Checkbox) {
@@ -306,10 +285,7 @@ class SignUpViewController: UIViewController {
         }
     }
     
-    // MARK: When authorization will be done - it is disabled.
-    @objc func test(){
-        let vc = PasswordViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
+    @objc func dissmisskeyboard (){
+        self.view.endEditing (true)
     }
-    
 }

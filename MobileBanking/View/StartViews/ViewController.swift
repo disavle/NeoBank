@@ -44,7 +44,7 @@ class ViewController: UIViewController {
         
         DispatchQueue.main.asyncAfter(deadline: .now()+1.6) {
             // MARK: Authorization mode
-            let vc = SignUpViewController()
+            let vc = SignInViewController()
 //            let vc = PasswordViewController()
             self.navigationController?.pushViewController(vc, animated: true)
         }

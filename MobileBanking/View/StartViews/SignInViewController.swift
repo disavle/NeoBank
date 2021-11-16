@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import BCryptSwift
 
 class SignInViewController: UIViewController {
     
@@ -17,15 +19,31 @@ class SignInViewController: UIViewController {
     var confirm: UIButton!
     var signUp: UIButton!
     
+    private let database = Database.database().reference()
+    
+    var val: [String: Any]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .tertiarySystemBackground
         
-        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.isHidden = true
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(closeSignIn))
+        //MARK: It's simple read database code
+        
+        database.child("3").observeSingleEvent(of: .value) { snapshot in
+            guard let value = snapshot.value as? [String: Any] else {
+                return
+            }
+            self.val = value
+            print ("Value : \(value) ")
+        }
+        
+        //MARK: Hide keyboard
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,action: #selector(dissmisskeyboard))
+        self.view.addGestureRecognizer(tap)
         
         logo = {
             let label = UILabel()
@@ -35,7 +53,7 @@ class SignInViewController: UIViewController {
             label.textColor = .label
             view.addSubview(label)
             label.snp.makeConstraints { maker in
-                maker.top.equalToSuperview().offset(100)
+                maker.top.equalToSuperview().offset(180)
                 maker.centerX.equalToSuperview()
                 maker.width.equalToSuperview().dividedBy(1.5)
                 maker.height.equalTo(50)
@@ -56,7 +74,7 @@ class SignInViewController: UIViewController {
             field.attributedPlaceholder = NSAttributedString(string: "example@email.com",attributes: [NSAttributedString.Key.foregroundColor: UIColor.secondaryLabel, NSAttributedString.Key.font: UIFont(name: "Kepler-296", size: 15)!])
             view.addSubview(field)
             field.snp.makeConstraints { maker in
-                maker.top.equalTo(logo.snp.bottom).offset(70)
+                maker.top.equalTo(logo.snp.bottom).offset(100)
                 maker.centerX.equalToSuperview()
                 maker.width.equalToSuperview().dividedBy(1.2)
                 maker.height.equalTo(30)
@@ -119,12 +137,12 @@ class SignInViewController: UIViewController {
         confirm = {
             let button = UIButton()
             button.backgroundColor = .systemPink
+            button.addTarget(self, action: #selector(confurm), for: .touchUpInside)
             button.setTitle("Sign In", for: .normal)
             button.setTitleColor(.label, for: .normal)
             button.titleLabel?.font = UIFont(name: "Kepler-296", size: 20)
             button.layer.cornerRadius = 15
             button.clipsToBounds = true
-            button.isEnabled = false
             view.addSubview(button)
             button.snp.makeConstraints { maker in
                 maker.top.equalTo(passInput.snp.bottom).offset(60)
@@ -137,7 +155,7 @@ class SignInViewController: UIViewController {
         
         signUp = {
             let button = UIButton()
-            button.addTarget(self, action: #selector(closeSignIn), for: .touchUpInside)
+            button.addTarget(self, action: #selector(goTosignUp), for: .touchUpInside)
             button.setTitle("Sign Up", for: .normal)
             button.setTitleColor(.secondaryLabel, for: .normal)
             button.titleLabel?.font = UIFont(name: "Kepler-296", size: 17)
@@ -152,7 +170,23 @@ class SignInViewController: UIViewController {
         }()
     }
     
-    @objc func closeSignIn(){
-        dismiss(animated: true, completion: nil)
+    // MARK: When authorization will be done - it is disabled.
+    @objc func confurm(){
+        if (BCryptSwift.verifyPassword(passInput.text ?? "", matchesHash: val.values.first as! String) ?? true){
+            let vc = PasswordViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+            print("Da")
+        }
+        print("pizda")
+    }
+    
+    @objc func goTosignUp(){
+        let vc = SignUpViewController()
+        let nav = UINavigationController(rootViewController: vc)
+        present(nav, animated: true, completion: nil)
+    }
+    
+    @objc func dissmisskeyboard (){
+        self.view.endEditing (true)
     }
 }

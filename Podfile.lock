@@ -1,4 +1,5 @@
 PODS:
+  - BCryptSwift (1.1)
   - Firebase/Analytics (7.0.0):
     - Firebase/Core
   - Firebase/Core (7.0.0):
@@ -72,6 +73,7 @@ PODS:
   - SnapKit (5.0.1)
 
 DEPENDENCIES:
+  - BCryptSwift
   - Firebase/Analytics
   - Firebase/Core
   - Firebase/Database
@@ -79,6 +81,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - BCryptSwift
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
@@ -94,6 +97,7 @@ SPEC REPOS:
     - SnapKit
 
 SPEC CHECKSUMS:
+  BCryptSwift: f69992ea5685f6714260842c2770688043b89ab2
   Firebase: 50be68416f50eb4eb2ecb0e78acab9a051ef95df
   FirebaseAnalytics: c1166b7990bae464c6436132510bb718c6680f80
   FirebaseCore: cf3122185fce1cf71cedbbc498ea84d2b3e7cb69
@@ -108,6 +112,6 @@ SPEC CHECKSUMS:
   PromisesObjC: 8c196f5a328c2cba3e74624585467a557dcb482f
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
-PODFILE CHECKSUM: 1cdb1bb8cd61ed7f89169500f1923f78712068aa
+PODFILE CHECKSUM: d2be17236ba3055cd26223e33be7afbe6713fa77
 
 COCOAPODS: 1.10.0
