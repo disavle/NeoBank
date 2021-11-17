@@ -10,9 +10,8 @@ pod'SnapKit'
 pod 'Firebase/Analytics'
 pod 'Firebase/Database'
 pod ‘Firebase/Core’ 
-pod "BCryptSwift"
-
-
+pod ‘Firebase/Auth’ 
+pod ‘Firebase/Firestore’ 
 
   target 'MobileBankingTests' do
     inherit! :search_paths

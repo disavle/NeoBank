@@ -7,8 +7,8 @@
 
 import UIKit
 import SafariServices
-import FirebaseDatabase
-import BCryptSwift
+import FirebaseAuth
+import Firebase
 
 class SignUpViewController: UIViewController, UITextFieldDelegate {
     
@@ -24,10 +24,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     var confirm: UIButton!
     var license: UIButton!
     var signIn: UIButton!
-    
-    //MARK: Install database
-    
-    private let database = Database.database().reference()
+    var error: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,20 +62,37 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             return label
         }()
         
+        error = {
+            let label = UILabel()
+            label.text = "Некорректные данные"
+            label.alpha = 0
+            label.textAlignment = .center
+            label.font = UIFont(name: "Kepler-296", size: 15)
+            label.textColor = .systemRed
+            view.addSubview(label)
+            label.snp.makeConstraints { maker in
+                maker.top.equalTo(logo.snp.bottom).offset(10)
+                maker.centerX.equalToSuperview()
+                maker.width.equalToSuperview().dividedBy(1.5)
+                maker.height.equalTo(50)
+            }
+            return label
+        }()
+        
         nameInput = {
             let field = UITextField()
             field.backgroundColor = .secondarySystemBackground
             field.layer.cornerRadius = 10
             field.textColor = .label
             field.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
-            field.returnKeyType = .done
+            field.returnKeyType = .next
             field.font = UIFont(name: "Kepler-296", size: 15)
             field.autocapitalizationType = .words
             field.autocorrectionType = .no
             field.attributedPlaceholder = NSAttributedString(string: "Alex",attributes: [NSAttributedString.Key.foregroundColor: UIColor.secondaryLabel, NSAttributedString.Key.font: UIFont(name: "Kepler-296", size: 15)!])
             view.addSubview(field)
             field.snp.makeConstraints { maker in
-                maker.top.equalTo(logo.snp.bottom).offset(70)
+                maker.top.equalTo(error.snp.bottom).offset(15)
                 maker.centerX.equalToSuperview()
                 maker.width.equalToSuperview().dividedBy(1.2)
                 maker.height.equalTo(30)
@@ -107,7 +121,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             field.layer.cornerRadius = 10
             field.textColor = .label
             field.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
-            field.returnKeyType = .done
+            field.returnKeyType = .next
             field.font = UIFont(name: "Kepler-296", size: 15)
             field.autocapitalizationType = .words
             field.autocorrectionType = .no
@@ -143,7 +157,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             field.layer.cornerRadius = 10
             field.textColor = .label
             field.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
-            field.returnKeyType = .done
+            field.returnKeyType = .join
             field.font = UIFont(name: "Kepler-296", size: 15)
             field.autocapitalizationType = .words
             field.autocorrectionType = .no
@@ -186,7 +200,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             agree.addTarget(self, action: #selector(checkboxValueChanged(sender:)), for: .valueChanged)
             view.addSubview(agree)
             agree.snp.makeConstraints { maker in
-                maker.top.equalTo(passInput.snp.bottom).offset(50)
+                maker.top.equalTo(passInput.snp.bottom).offset(30)
                 maker.left.equalTo(pass)
                 maker.width.equalTo(view.frame.size.width/16)
                 maker.height.equalTo(view.frame.size.width/16)
@@ -228,7 +242,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         confirm = {
             let button = UIButton()
             button.backgroundColor = .systemGray3
-            button.addTarget(self, action: #selector(confirmJSON), for: .touchUpInside)
+            button.addTarget(self, action: #selector(signUp), for: .touchUpInside)
             button.setTitle("Sign Up", for: .normal)
             button.setTitleColor(.label, for: .normal)
             button.titleLabel?.font = UIFont(name: "Kepler-296", size: 20)
@@ -237,7 +251,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             button.isEnabled = false
             view.addSubview(button)
             button.snp.makeConstraints { maker in
-                maker.top.equalTo(agree.snp.bottom).offset(60)
+                maker.top.equalTo(agree.snp.bottom).offset(40)
                 maker.centerX.equalToSuperview()
                 maker.width.equalToSuperview().dividedBy(2)
                 maker.height.equalTo(40)
@@ -262,10 +276,56 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         }()
     }
     
-    @objc func confirmJSON(){
-        let hash = BCryptSwift.hashPassword(passInput.text ?? "", withSalt: BCryptSwift.generateSalt())
-        let obj: [String:Any] = ["id":UUID().uuidString,"name":nameInput.text ?? "" as NSObject, "email":emailInput.text ?? "","password":hash ?? "", "cardNum":Int.random(in: 100000000000...999999999999), "PIN":Int.random(in: 1000...9999), "CVV":Int.random(in: 100...999)]
-        database.child("\(Int.random(in: 1...9))").setValue(obj)
+    func validateFields() -> String?{
+        if nameInput.text?.trimmingCharacters(in: . whitespacesAndNewlines) == "" ||
+            emailInput.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            passInput.text? .trimmingCharacters(in: .whitespacesAndNewlines) == "" {
+            return "Please fill in all fields."
+        }
+        //MARK: Validation
+//        let cleanedPassword = passInput.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+//        if Utils.isPasswordValid(cleanedPassword) == false{
+//            //Password isn't secure
+//        }
+        return nil
+    }
+    
+    @objc func signUp(){
+        let cleanedName = self.nameInput.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+        let cleanedEmail = self.emailInput.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+        let cleanedPass = self.passInput.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+        Auth.auth().createUser(withEmail: cleanedEmail ?? "", password: cleanedPass ?? "") { (result, err) in
+            if err != nil{
+                if let errCode = AuthErrorCode(rawValue: err!._code) {
+                    switch errCode {
+                    case .invalidEmail:
+                        self.error.text = "Неподходящий email!"
+                        self.error.alpha = 1
+                    case .emailAlreadyInUse:
+                        self.error.text = "Чел с таким email уже есть!"
+                        self.error.alpha = 1
+                    case .weakPassword:
+                        self.error.text = "Отстойный пароль!"
+                        self.error.alpha = 1
+                    default:
+                        self.error.text = "Какая-то ошибка"
+                        self.error.alpha = 1
+                    }
+                }
+            } else {
+                self.error.alpha = 0
+                let db = Firestore.firestore()
+                db.collection("users").addDocument(data: ["id":result!.user.uid,"name":cleanedName ?? "", "email":cleanedEmail ?? "","password":cleanedPass ?? "", "cardNum":Int.random(in: 100000000000...999999999999), "PIN":Int.random(in: 1000...9999), "CVV":Int.random(in: 100...999)]){ (err) in
+                    if err != nil{
+                        print("Error auth")
+                        self.error.alpha = 1
+                        self.error.text = "Траблы с сервером :("
+                    } else {
+                        LogIn().Home(self.view)
+                    }
+                }
+            }
+        }
     }
     
     @objc func closeSignUp(){

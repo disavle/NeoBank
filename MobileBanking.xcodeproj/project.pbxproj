@@ -29,6 +29,8 @@
 		0C9383C726C58E02008955E5 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9383C626C58E02008955E5 /* ChatViewController.swift */; };
 		0C9383C926C58E0D008955E5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9383C826C58E0D008955E5 /* ProfileViewController.swift */; };
 		0CAE02CC271B4640009E4CF1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0CAE02CB271B4640009E4CF1 /* GoogleService-Info.plist */; };
+		0CB8895227458EC500C3D319 /* LogIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB8895127458EC500C3D319 /* LogIn.swift */; };
+		0CB889542745A8AE00C3D319 /* Pass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB889532745A8AE00C3D319 /* Pass.swift */; };
 		0CC439B726C514D0009E0B80 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC439B626C514D0009E0B80 /* HomeViewController.swift */; };
 		0CFC699126B1A33500D02C76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CFC699026B1A33500D02C76 /* AppDelegate.swift */; };
 		0CFC699326B1A33500D02C76 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CFC699226B1A33500D02C76 /* SceneDelegate.swift */; };
@@ -97,6 +99,8 @@
 		0C9383C626C58E02008955E5 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		0C9383C826C58E0D008955E5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		0CAE02CB271B4640009E4CF1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0CB8895127458EC500C3D319 /* LogIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogIn.swift; sourceTree = "<group>"; };
+		0CB889532745A8AE00C3D319 /* Pass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pass.swift; sourceTree = "<group>"; };
 		0CC439B626C514D0009E0B80 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		0CFC698D26B1A33500D02C76 /* MobileBanking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileBanking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CFC699026B1A33500D02C76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -167,6 +171,8 @@
 			isa = PBXGroup;
 			children = (
 				0C25D99E27443FC100A452A0 /* Extensions.swift */,
+				0CB8895127458EC500C3D319 /* LogIn.swift */,
+				0CB889532745A8AE00C3D319 /* Pass.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -352,8 +358,8 @@
 				0CFC698926B1A33500D02C76 /* Sources */,
 				0CFC698A26B1A33500D02C76 /* Frameworks */,
 				0CFC698B26B1A33500D02C76 /* Resources */,
-				9944B00A3C10F5824B43ED83 /* [CP] Embed Pods Frameworks */,
 				0C93839626C570F2008955E5 /* Embed Frameworks */,
+				DB3E1BA638367C05124D7735 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -391,7 +397,7 @@
 				0CFC69AD26B1A33700D02C76 /* Sources */,
 				0CFC69AE26B1A33700D02C76 /* Frameworks */,
 				0CFC69AF26B1A33700D02C76 /* Resources */,
-				911ACCC0AA368B9E866415C0 /* [CP] Embed Pods Frameworks */,
+				1509246CDFD700AE8E44AFF9 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -496,6 +502,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		1509246CDFD700AE8E44AFF9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MobileBanking-MobileBankingUITests/Pods-MobileBanking-MobileBankingUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MobileBanking-MobileBankingUITests/Pods-MobileBanking-MobileBankingUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MobileBanking-MobileBankingUITests/Pods-MobileBanking-MobileBankingUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		1C2DC07AD23BCB3143548175 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -518,24 +541,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		911ACCC0AA368B9E866415C0 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MobileBanking-MobileBankingUITests/Pods-MobileBanking-MobileBankingUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MobileBanking-MobileBankingUITests/Pods-MobileBanking-MobileBankingUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MobileBanking-MobileBankingUITests/Pods-MobileBanking-MobileBankingUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9944B00A3C10F5824B43ED83 /* [CP] Embed Pods Frameworks */ = {
+		DB3E1BA638367C05124D7735 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -585,9 +591,11 @@
 				0C9383C126C57D6A008955E5 /* CBTabBarButton.swift in Sources */,
 				0C7268D826C6EA9C00443204 /* MouthView.swift in Sources */,
 				0CFC699B26B1A33500D02C76 /* MobileBanking.xcdatamodeld in Sources */,
+				0CB889542745A8AE00C3D319 /* Pass.swift in Sources */,
 				0C2EDF4C26C63FA10085B8D0 /* TapticManager.swift in Sources */,
 				0CFC699526B1A33500D02C76 /* ViewController.swift in Sources */,
 				0C1570DF271C2ACA00A2BA77 /* SignUpViewController.swift in Sources */,
+				0CB8895227458EC500C3D319 /* LogIn.swift in Sources */,
 				0C7268DC26C6EAB500443204 /* ProgressableAnimationView.swift in Sources */,
 				0C1570E4271C474300A2BA77 /* SignInViewController.swift in Sources */,
 				0C6BD80F26C9766900F711E7 /* ButtonContainer.swift in Sources */,

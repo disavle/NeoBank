@@ -6,8 +6,8 @@
 //
 
 import UIKit
-import FirebaseDatabase
-import BCryptSwift
+import FirebaseAuth
+import Firebase
 
 class SignInViewController: UIViewController, UITextFieldDelegate {
     
@@ -18,10 +18,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     var passInput: UITextField!
     var confirm: UIButton!
     var signUp: UIButton!
-    
-    private let database = Database.database().reference()
-    
-    var val: [String: Any]!
+    var error: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,18 +31,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         view.backgroundColor = .tertiarySystemBackground
         
         navigationController?.navigationBar.isHidden = true
-        
-        //MARK: It's simple read database code
-        
-        database.child("3").observeSingleEvent(of: .value) { snapshot in
-            guard let value = snapshot.value as? [String: Any] else {
-                return
-            }
-            self.val = value
-            print ("Value : \(value) ")
-        }
-        
-        
+            
         //MARK: Hide keyboard
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,action: #selector(dissmisskeyboard))
@@ -67,20 +53,37 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             return label
         }()
         
+        error = {
+            let label = UILabel()
+            label.text = "Некорректные данные"
+            label.alpha = 0
+            label.textAlignment = .center
+            label.font = UIFont(name: "Kepler-296", size: 15)
+            label.textColor = .systemRed
+            view.addSubview(label)
+            label.snp.makeConstraints { maker in
+                maker.top.equalTo(logo.snp.bottom).offset(17)
+                maker.centerX.equalToSuperview()
+                maker.width.equalToSuperview().dividedBy(1.5)
+                maker.height.equalTo(50)
+            }
+            return label
+        }()
+        
         emailInput = {
             let field = UITextField()
             field.backgroundColor = .secondarySystemBackground
             field.layer.cornerRadius = 10
             field.textColor = .label
             field.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
-            field.returnKeyType = .done
+            field.returnKeyType = .next
             field.font = UIFont(name: "Kepler-296", size: 15)
             field.autocapitalizationType = .words
             field.autocorrectionType = .no
             field.attributedPlaceholder = NSAttributedString(string: "example@email.com",attributes: [NSAttributedString.Key.foregroundColor: UIColor.secondaryLabel, NSAttributedString.Key.font: UIFont(name: "Kepler-296", size: 15)!])
             view.addSubview(field)
             field.snp.makeConstraints { maker in
-                maker.top.equalTo(logo.snp.bottom).offset(100)
+                maker.top.equalTo(error.snp.bottom).offset(40)
                 maker.centerX.equalToSuperview()
                 maker.width.equalToSuperview().dividedBy(1.2)
                 maker.height.equalTo(30)
@@ -109,7 +112,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             field.layer.cornerRadius = 10
             field.textColor = .label
             field.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
-            field.returnKeyType = .done
+            field.returnKeyType = .join
             field.font = UIFont(name: "Kepler-296", size: 15)
             field.autocapitalizationType = .words
             field.autocorrectionType = .no
@@ -143,7 +146,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         confirm = {
             let button = UIButton()
             button.backgroundColor = .systemPink
-            button.addTarget(self, action: #selector(confurm), for: .touchUpInside)
+            button.addTarget(self, action: #selector(signIn), for: .touchUpInside)
             button.setTitle("Sign In", for: .normal)
             button.setTitleColor(.label, for: .normal)
             button.titleLabel?.font = UIFont(name: "Kepler-296", size: 20)
@@ -177,13 +180,29 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     }
     
     // MARK: When authorization will be done - it is disabled.
-    @objc func confurm(){
-        if (BCryptSwift.verifyPassword(passInput.text ?? "", matchesHash: val.values.first as! String) ?? true){
-            let vc = PasswordViewController()
-            self.navigationController?.pushViewController(vc, animated: true)
-            print("Da")
+    @objc func signIn(){
+        let cleanedEmail = self.emailInput.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+        let cleanedPass = self.passInput.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+        Auth.auth().signIn(withEmail: cleanedEmail ?? "", password: cleanedPass ?? "") { result, err in
+            if err != nil{
+                if let errCode = AuthErrorCode(rawValue: err!._code) {
+                    switch errCode {
+                    case .unverifiedEmail:
+                        self.error.text = "Такого email нет :("
+                        self.error.alpha = 1
+                    case .wrongPassword:
+                        self.error.text = "Забыл пароль что ли?"
+                        self.error.alpha = 1
+                    default:
+                        self.error.text = "Неверный логин и пароль!"
+                        self.error.alpha = 1
+                    }
+                }
+            } else {
+                self.error.alpha = 0
+                LogIn().Home(self.view)
+            }
         }
-        print("pizda")
     }
     
     @objc func goTosignUp(){
@@ -192,9 +211,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         present(nav, animated: true, completion: nil)
     }
     
-    @objc func dissmisskeyboard (){
-        self.view.endEditing (true)
-    }
+    //MARK: Keyboard next/done button
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.switchBasedNextTextField(textField)
@@ -208,5 +225,11 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         default:
             self.passInput.resignFirstResponder()
         }
+    }
+    
+    //MARK: Keyboard dismiss in touch
+    
+    @objc func dissmisskeyboard (){
+        self.view.endEditing (true)
     }
 }

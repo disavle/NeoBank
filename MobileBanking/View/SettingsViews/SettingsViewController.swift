@@ -51,10 +51,16 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCell.id, for: indexPath) as! SettingsTableViewCell
         cell.selectionStyle = .none
+        //MARK: Delete test function
+        cell.toggle.addTarget(self, action: #selector(test), for: .primaryActionTriggered)
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
+    }
+    
+    @objc func test(){
+        Pass().goToPass(self.view)
     }
 }

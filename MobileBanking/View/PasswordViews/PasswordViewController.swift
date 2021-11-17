@@ -19,6 +19,7 @@ class PasswordViewController: UIViewController {
     var rightEye: EyeView!
     var mouthView: MouthView!
     let buttons = [[ButtonsView(value: 1, name: "1", img: nil),ButtonsView(value: 2, name: "2", img: nil),ButtonsView(value: 3, name: "3", img: nil)],[ButtonsView(value: 4, name: "4", img: nil),ButtonsView(value: 5, name: "5", img: nil),ButtonsView(value: 6, name: "6", img: nil)],[ButtonsView(value: 7, name: "7", img: nil),ButtonsView(value: 8, name: "8", img: nil),ButtonsView(value: 9, name: "9", img: nil)],[ButtonsView(value: nil, name: "Exit", img: UIImage(systemName: "power")),ButtonsView(value: 0, name: "0", img: nil),ButtonsView(value: nil, name: "Delete", img: UIImage(systemName: "delete.left.fill"))]]
+    //MARK: Counting password to delete and input
     var k = 0
     var appPass = ""
     // MARK: Password ia a PIN from Firebase.
@@ -129,24 +130,7 @@ class PasswordViewController: UIViewController {
         leftEye.progress = 2
         mouthView.progress = 2
         DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
-            let homeVC = HomeViewController()
-            homeVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "nairasign.square"), tag: 0)
-            homeVC.tabBarItem.selectedImage = UIImage(systemName: "nairasign.square.fill")
-            let paymentsVC = PaymentsViewController()
-            paymentsVC.tabBarItem = UITabBarItem(title: "Payments", image: UIImage(systemName: "wave.3.right.circle"), tag: 1)
-            paymentsVC.tabBarItem.selectedImage = UIImage(systemName: "wave.3.right.circle.fill")
-            let chatVC = ChatViewController()
-            chatVC.tabBarItem = UITabBarItem(title: "Chat", image: UIImage(systemName: "bolt.horizontal"), tag: 2)
-            chatVC.tabBarItem.selectedImage = UIImage(systemName: "bolt.horizontal.fill")
-            let accountVC = ProfileViewController()
-            accountVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "eye"), tag: 3)
-            accountVC.tabBarItem.selectedImage = UIImage(systemName: "eye.fill")
-            let accountNav = UINavigationController(rootViewController: accountVC)
-            
-            let tabBarController = BubbleTabBarController()
-            tabBarController.viewControllers = [homeVC, paymentsVC, chatVC, accountNav]
-            
-            self.navigationController?.pushViewController(tabBarController, animated: true)
+            LogIn().Home(self.view)
         }
     }
     

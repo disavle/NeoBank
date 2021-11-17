@@ -28,7 +28,6 @@ class SettingsTableViewCell: UITableViewCell {
             maker.width.equalTo(toggle.bounds.width)
             maker.height.equalTo(toggle.bounds.height)
         }
-        
     }
     
     required init?(coder: NSCoder) {
