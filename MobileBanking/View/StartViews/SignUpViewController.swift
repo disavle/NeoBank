@@ -10,19 +10,17 @@ import SafariServices
 import FirebaseDatabase
 import BCryptSwift
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     var logo: UILabel!
     var name: UILabel!
     var email: UILabel!
     var pass: UILabel!
-    var passConf: UILabel!
     var agreeLab: UILabel!
     var agree: Checkbox!
     var nameInput: UITextField!
     var emailInput: UITextField!
     var passInput: UITextField!
-    var passConfInput: UITextField!
     var confirm: UIButton!
     var license: UIButton!
     var signIn: UIButton!
@@ -33,7 +31,13 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        nameInput.delegate = self
+        emailInput.delegate = self
+        passInput.delegate = self
+    }
+    
+    override func loadView() {
+        super.loadView()
         view.backgroundColor = .tertiarySystemBackground
         
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -287,5 +291,21 @@ class SignUpViewController: UIViewController {
     
     @objc func dissmisskeyboard (){
         self.view.endEditing (true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.switchBasedNextTextField(textField)
+        return true
+    }
+    
+    private func switchBasedNextTextField(_ textField: UITextField) {
+        switch textField {
+        case self.nameInput:
+            self.emailInput.becomeFirstResponder()
+        case self.emailInput:
+            self.passInput.becomeFirstResponder()
+        default:
+            self.passInput.resignFirstResponder()
+        }
     }
 }

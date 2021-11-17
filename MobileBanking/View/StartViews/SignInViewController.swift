@@ -9,7 +9,7 @@ import UIKit
 import FirebaseDatabase
 import BCryptSwift
 
-class SignInViewController: UIViewController {
+class SignInViewController: UIViewController, UITextFieldDelegate {
     
     var logo: UILabel!
     var email: UILabel!
@@ -25,7 +25,12 @@ class SignInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        emailInput.delegate = self
+        passInput.delegate = self
+    }
+    
+    override func loadView() {
+        super.loadView()
         view.backgroundColor = .tertiarySystemBackground
         
         navigationController?.navigationBar.isHidden = true
@@ -39,6 +44,7 @@ class SignInViewController: UIViewController {
             self.val = value
             print ("Value : \(value) ")
         }
+        
         
         //MARK: Hide keyboard
         
@@ -188,5 +194,19 @@ class SignInViewController: UIViewController {
     
     @objc func dissmisskeyboard (){
         self.view.endEditing (true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.switchBasedNextTextField(textField)
+        return true
+    }
+    
+    private func switchBasedNextTextField(_ textField: UITextField) {
+        switch textField {
+        case self.emailInput:
+            self.passInput.becomeFirstResponder()
+        default:
+            self.passInput.resignFirstResponder()
+        }
     }
 }
