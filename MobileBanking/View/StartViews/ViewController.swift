@@ -53,9 +53,9 @@ class ViewController: UIViewController {
             // MARK: Authorization mode
             Auth.auth().addStateDidChangeListener { auth, user in
                 if (user == nil){
-                    LogIn().goToSignIn(self.view.window!)
+                    LogIn().goToSignIn(self.view)
                 } else {
-                    LogIn().goToPass(self.view.window!)
+                    LogIn().goToPass(self.view)
                 }
             }
         }

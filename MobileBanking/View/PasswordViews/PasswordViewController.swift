@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 import SpriteKit
 import LocalAuthentication
+import Firebase
 
 class PasswordViewController: UIViewController {
     
@@ -23,13 +24,25 @@ class PasswordViewController: UIViewController {
     var k = 0
     var appPass = ""
     // MARK: Password ia a PIN from Firebase.
-    let password = UserDefaults.standard.string(forKey: "password") ?? "1234"
+    var password: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .systemPink
         navigationController?.navigationBar.isHidden = true
+        
+        //MARK: DataBase
+        let id = Auth.auth().currentUser?.uid
+        let db = Firestore.firestore()
+        db.collection("users").document(id!).getDocument { snapshot, err in
+            if err == nil{
+                if snapshot != nil && snapshot!.exists{
+                    let docData = snapshot!.data()
+                    self.password = docData!["PIN"].map(String.init(describing:)) ?? "nil"
+                }
+            }
+        }
         
         faceContainer = {
             let container = UIView()
@@ -239,7 +252,7 @@ class PasswordViewController: UIViewController {
             }
         }
         // MARK: Button of logging out of profile.
-//        buttons[3][0].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(identButton(sender: ))))
+        buttons[3][0].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(logOut)))
         buttons[3][2].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(deletePass(sender: ))))
     }
     @objc func identButton(sender: UITapGestureRecognizer){
@@ -247,6 +260,15 @@ class PasswordViewController: UIViewController {
             guard let val = button.value else{return}
             appPass += String(val)
             passwordStars()
+        }
+    }
+    
+    @objc func logOut(){
+        do{
+            try Auth.auth().signOut()
+            LogIn().goToSignIn(self.view)
+        }   catch{
+            print(error)
         }
     }
     

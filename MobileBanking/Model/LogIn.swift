@@ -28,14 +28,14 @@ class LogIn{
         view.window?.rootViewController = tabBarController
         view.window?.makeKeyAndVisible()
     }
-    func goToPass(_ window: UIWindow){
+    func goToPass(_ view: UIView){
         let vc = PasswordViewController()
-        window.rootViewController = vc
-        window.makeKeyAndVisible()
+        view.window?.rootViewController = vc
+        view.window?.makeKeyAndVisible()
     }
-    func goToSignIn(_ window: UIWindow){
+    func goToSignIn(_ view: UIView){
         let vc = SignInViewController()
-        window.rootViewController = vc
-        window.makeKeyAndVisible()
+        view.window?.rootViewController = vc
+        view.window?.makeKeyAndVisible()
     }
 }

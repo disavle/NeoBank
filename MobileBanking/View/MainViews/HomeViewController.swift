@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class HomeViewController: UIViewController {
     
@@ -24,6 +25,16 @@ class HomeViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
 
         view.backgroundColor = .systemBackground
+        let id = Auth.auth().currentUser?.uid
+        let db = Firestore.firestore()
+        db.collection("users").document(id!).getDocument { snapshot, err in
+            if err == nil{
+                if snapshot != nil && snapshot!.exists{
+                    let docData = snapshot?.data()
+                    
+                }
+            }
+        }
         
         label = {
             let label = UILabel()

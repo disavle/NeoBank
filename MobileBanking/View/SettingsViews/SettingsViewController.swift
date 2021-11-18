@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -79,7 +80,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @objc func test(){
-        LogIn().goToPass(self.view.window!)
+        LogIn().goToPass(self.view)
     }
     
     @objc func mode(sender: UISwitch){
@@ -97,7 +98,11 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @objc func SignOut(){
-        
-        LogIn().goToSignIn(self.view.window!)
+        do{
+            try Auth.auth().signOut()
+            LogIn().goToSignIn(self.view)
+        }   catch{
+            print(error)
+        }
     }
 }
