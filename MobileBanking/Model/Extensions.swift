@@ -18,14 +18,16 @@ class Utils {
     static func darkMode(sender: UISwitch){
         //MARK: Dark mode switcher
         if (sender.isOn == false){
-            UIApplication.shared.connectedScenes.forEach { (scene: UIScene) in
-                (scene.delegate as? SceneDelegate)?.window?.overrideUserInterfaceStyle = .light
-            }
+            AppDelegate.window?.overrideUserInterfaceStyle = .light
         } else {
-            UIApplication.shared.connectedScenes.forEach { (scene: UIScene) in
-                (scene.delegate as? SceneDelegate)?.window?.overrideUserInterfaceStyle = .dark
-            }
+            AppDelegate.window?.overrideUserInterfaceStyle = .dark
         }
+    }
+    
+    static func animateSoon(_ sender: UILabel, _ view: UIView){
+        UIView.animate(withDuration: 1, delay: 0.25, usingSpringWithDamping: 0.2, initialSpringVelocity: 0.2, options: [.repeat, .autoreverse], animations: {
+            sender.center.x = view.bounds.width - 100
+        },completion : nil)
     }
 }
 
@@ -33,10 +35,9 @@ extension UIFont{
     enum FontType: String {
         case logo = "Kepler-296"
         case main = "MusticaPro-SemiBold"
+        case contemp = "StretchProRegular"
     }
     static func font(_ size: CGFloat, _ type: FontType) -> UIFont{
-        print(size)
-        print(type.rawValue)
         return UIFont(name: type.rawValue, size: size)!
     }
 }

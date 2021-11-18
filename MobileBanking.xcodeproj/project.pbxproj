@@ -23,6 +23,7 @@
 		0C7268DA26C6EA9C00443204 /* ShakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7268D726C6EA9C00443204 /* ShakeView.swift */; };
 		0C7268DC26C6EAB500443204 /* ProgressableAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7268DB26C6EAB500443204 /* ProgressableAnimationView.swift */; };
 		0C7268DE26C6EAF000443204 /* GeometryHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7268DD26C6EAF000443204 /* GeometryHelper.swift */; };
+		0C83F7E027469499006D31FF /* StretchPro.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0C83F7DF27469499006D31FF /* StretchPro.otf */; };
 		0C9383C026C57D6A008955E5 /* BubbleTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9383BD26C57D6A008955E5 /* BubbleTabBar.swift */; };
 		0C9383C126C57D6A008955E5 /* CBTabBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9383BE26C57D6A008955E5 /* CBTabBarButton.swift */; };
 		0C9383C226C57D6A008955E5 /* BubbleTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9383BF26C57D6A008955E5 /* BubbleTabBarController.swift */; };
@@ -34,7 +35,6 @@
 		0CC439B726C514D0009E0B80 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC439B626C514D0009E0B80 /* HomeViewController.swift */; };
 		0CE5F8DE27462593002DCBF5 /* MusticaproSemibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0CE5F8DD27462593002DCBF5 /* MusticaproSemibold.otf */; };
 		0CFC699126B1A33500D02C76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CFC699026B1A33500D02C76 /* AppDelegate.swift */; };
-		0CFC699326B1A33500D02C76 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CFC699226B1A33500D02C76 /* SceneDelegate.swift */; };
 		0CFC699526B1A33500D02C76 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CFC699426B1A33500D02C76 /* ViewController.swift */; };
 		0CFC699B26B1A33500D02C76 /* MobileBanking.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0CFC699926B1A33500D02C76 /* MobileBanking.xcdatamodeld */; };
 		0CFC699D26B1A33600D02C76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0CFC699C26B1A33600D02C76 /* Assets.xcassets */; };
@@ -94,6 +94,7 @@
 		0C7268D726C6EA9C00443204 /* ShakeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShakeView.swift; sourceTree = "<group>"; };
 		0C7268DB26C6EAB500443204 /* ProgressableAnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressableAnimationView.swift; sourceTree = "<group>"; };
 		0C7268DD26C6EAF000443204 /* GeometryHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeometryHelper.swift; sourceTree = "<group>"; };
+		0C83F7DF27469499006D31FF /* StretchPro.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = StretchPro.otf; sourceTree = "<group>"; };
 		0C9383BD26C57D6A008955E5 /* BubbleTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleTabBar.swift; sourceTree = "<group>"; };
 		0C9383BE26C57D6A008955E5 /* CBTabBarButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBTabBarButton.swift; sourceTree = "<group>"; };
 		0C9383BF26C57D6A008955E5 /* BubbleTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleTabBarController.swift; sourceTree = "<group>"; };
@@ -106,7 +107,6 @@
 		0CE5F8DD27462593002DCBF5 /* MusticaproSemibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MusticaproSemibold.otf; sourceTree = "<group>"; };
 		0CFC698D26B1A33500D02C76 /* MobileBanking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileBanking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CFC699026B1A33500D02C76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0CFC699226B1A33500D02C76 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		0CFC699426B1A33500D02C76 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0CFC699A26B1A33500D02C76 /* MobileBanking.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MobileBanking.xcdatamodel; sourceTree = "<group>"; };
 		0CFC699C26B1A33600D02C76 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -295,6 +295,7 @@
 		0CFC69C426B1A4A400D02C76 /* Info */ = {
 			isa = PBXGroup;
 			children = (
+				0C83F7DF27469499006D31FF /* StretchPro.otf */,
 				0CE5F8DD27462593002DCBF5 /* MusticaproSemibold.otf */,
 				0CFC69C626B1ADB200D02C76 /* Kepler-296.otf */,
 				0CFC699C26B1A33600D02C76 /* Assets.xcassets */,
@@ -309,7 +310,6 @@
 			isa = PBXGroup;
 			children = (
 				0CFC699026B1A33500D02C76 /* AppDelegate.swift */,
-				0CFC699226B1A33500D02C76 /* SceneDelegate.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -464,6 +464,7 @@
 				0CFC69C726B1ADB200D02C76 /* Kepler-296.otf in Resources */,
 				0CE5F8DE27462593002DCBF5 /* MusticaproSemibold.otf in Resources */,
 				0CFC699D26B1A33600D02C76 /* Assets.xcassets in Resources */,
+				0C83F7E027469499006D31FF /* StretchPro.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -609,7 +610,6 @@
 				0CFC699126B1A33500D02C76 /* AppDelegate.swift in Sources */,
 				0C9383C926C58E0D008955E5 /* ProfileViewController.swift in Sources */,
 				0C0AA79027461D8700E8408F /* SignOutTableViewCell.swift in Sources */,
-				0CFC699326B1A33500D02C76 /* SceneDelegate.swift in Sources */,
 				0C1570E2271C2CD900A2BA77 /* checkbox.swift in Sources */,
 				0C5D976626C84AB500414FD8 /* ButtonsView.swift in Sources */,
 				0C9383C526C58DEE008955E5 /* PaymentsViewController.swift in Sources */,

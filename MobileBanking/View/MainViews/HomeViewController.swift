@@ -10,6 +10,13 @@ import UIKit
 class HomeViewController: UIViewController {
     
     var label: UILabel!
+    //MARK: Pull to update
+    let refControl: UIRefreshControl! = {
+        let ref = UIRefreshControl()
+        ref.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        return ref
+    }()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,5 +41,9 @@ class HomeViewController: UIViewController {
             }
             return label
         }()
+    }
+    
+    @objc private func refresh(_ sender: UIRefreshControl){
+        sender.endRefreshing()
     }
 }

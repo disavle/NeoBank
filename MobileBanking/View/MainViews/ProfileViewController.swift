@@ -9,7 +9,9 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
-    var label: UILabel!
+    var labelTitle: UILabel!
+    //MARK: Delete after realization
+    var labelSoon: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,9 +21,9 @@ class ProfileViewController: UIViewController {
         navigationItem.rightBarButtonItem = buttonSettings
 
         view.backgroundColor = .systemBackground
-        label = {
+        labelTitle = {
             let label = UILabel()
-            label.text = "Профиль"
+            label.text = "Чат"
             label.textAlignment = .center
             label.font = UIFont.font(35, .main)
             label.textColor = .label
@@ -30,6 +32,23 @@ class ProfileViewController: UIViewController {
             label.snp.makeConstraints { maker in
                 maker.centerX.equalToSuperview()
                 maker.centerY.equalToSuperview()
+                maker.width.equalToSuperview().dividedBy(2)
+                maker.height.equalTo(50)
+            }
+            return label
+        }()
+        
+        labelSoon = {
+            let label = UILabel()
+            label.text = "Soon..."
+            label.textAlignment = .center
+            label.font = UIFont.font(30, .contemp)
+            label.textColor = .systemOrange
+            Utils.animateSoon(label, view)
+            view.addSubview(label)
+            label.snp.makeConstraints { maker in
+                maker.centerX.equalToSuperview()
+                maker.top.equalTo(labelTitle.snp.bottom).inset(10)
                 maker.width.equalToSuperview().dividedBy(2)
                 maker.height.equalTo(50)
             }

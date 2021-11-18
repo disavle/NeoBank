@@ -79,7 +79,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @objc func test(){
-        LogIn().goToPass(self.view)
+        LogIn().goToPass(self.view.window!)
     }
     
     @objc func mode(sender: UISwitch){
@@ -97,6 +97,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @objc func SignOut(){
-        LogIn().goToSignIn(self.view)
+        
+        LogIn().goToSignIn(self.view.window!)
     }
 }

@@ -6,6 +6,7 @@
 //
 import SnapKit
 import UIKit
+import Firebase
 
 class ViewController: UIViewController {
     
@@ -50,24 +51,24 @@ class ViewController: UIViewController {
         
         DispatchQueue.main.asyncAfter(deadline: .now()+1.6) {
             // MARK: Authorization mode
-//            LogIn().goToSignIn(self.view)
-            LogIn().Home(self.view)
+            Auth.auth().addStateDidChangeListener { auth, user in
+                if (user == nil){
+                    LogIn().goToSignIn(self.view.window!)
+                } else {
+                    LogIn().goToPass(self.view.window!)
+                }
+            }
         }
         
     }
     
     private func setStyle(_ check:Bool){
         if (check == false){
-            UIApplication.shared.connectedScenes.forEach { (scene: UIScene) in
-                (scene.delegate as? SceneDelegate)?.window?.overrideUserInterfaceStyle = .light
-            }
-        } else {
-            UIApplication.shared.connectedScenes.forEach { (scene: UIScene) in
-                (scene.delegate as? SceneDelegate)?.window?.overrideUserInterfaceStyle = .dark
+                AppDelegate.window?.overrideUserInterfaceStyle = .light
+            } else {
+                AppDelegate.window?.overrideUserInterfaceStyle = .dark
             }
         }
-    }
-    
 }
 
 

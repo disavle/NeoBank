@@ -38,8 +38,8 @@ class SettingsTableViewCell: UITableViewCell {
         label.snp.makeConstraints(){maker in
             maker.centerY.equalToSuperview()
             maker.left.equalToSuperview().offset(20)
-            maker.width.equalToSuperview().dividedBy(1.25)
-            maker.height.equalToSuperview().dividedBy(4)
+            maker.width.equalToSuperview()
+            maker.height.equalToSuperview()
         }
     }
     

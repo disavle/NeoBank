@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class BubbleTabBarController: UITabBarController {
+open class BubbleTabBarController: UITabBarController, UITabBarControllerDelegate {
 
     fileprivate var shouldSelectOnTabBar = true
 
