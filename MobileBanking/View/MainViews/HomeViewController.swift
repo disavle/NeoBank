@@ -34,10 +34,12 @@ class HomeViewController: UIViewController {
             if err == nil{
                 if snapshot != nil && snapshot!.exists{
                     let docData = snapshot!.data()
-                    self.labelName.text = docData!["name"].map(String.init(describing:))!
-                    self.labelCardNum.text = docData!["cardNum"].map(String.init(describing:))!
-                    self.labelCVV.text = docData!["CVV"].map(String.init(describing:))!
-                    self.labelPIN.text = docData!["PIN"].map(String.init(describing:))!
+                    DispatchQueue.main.async {
+                        self.labelName.text = docData!["name"].map(String.init(describing:))!
+                        self.labelCardNum.text = docData!["cardNum"].map(String.init(describing:))!
+                        self.labelCVV.text = docData!["CVV"].map(String.init(describing:))!
+                        self.labelPIN.text = docData!["PIN"].map(String.init(describing:))!
+                    }
                 }
             }
         }
