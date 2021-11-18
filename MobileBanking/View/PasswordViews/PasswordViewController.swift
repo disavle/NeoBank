@@ -39,7 +39,7 @@ class PasswordViewController: UIViewController {
             if err == nil{
                 if snapshot != nil && snapshot!.exists{
                     let docData = snapshot!.data()
-                    self.password = docData!["PIN"].map(String.init(describing:)) ?? "nil"
+                    self.password = docData!["PIN"].map(String.init(describing:))!
                 }
             }
         }
@@ -260,6 +260,7 @@ class PasswordViewController: UIViewController {
             guard let val = button.value else{return}
             appPass += String(val)
             passwordStars()
+            TapticManager.shared.vibrateSoft()
         }
     }
     
@@ -267,6 +268,7 @@ class PasswordViewController: UIViewController {
         do{
             try Auth.auth().signOut()
             LogIn().goToSignIn(self.view)
+            TapticManager.shared.vibrateSoft()
         }   catch{
             print(error)
         }
@@ -275,6 +277,7 @@ class PasswordViewController: UIViewController {
     @objc func deletePass(sender: UITapGestureRecognizer){
         guard appPass != "" else {return}
         appPass.removeLast()
+        TapticManager.shared.vibrateSoft()
         guard k>0 && k<=4 else {return}
         k-=1
         view.viewWithTag(100*(k+1))?.removeFromSuperview()
