@@ -13,7 +13,7 @@ class SignOutTableViewCell: UITableViewCell {
     
     let signOut: UIButton = {
         let button = UIButton()
-        button.titleLabel?.font = UIFont.font(15, .main)
+        button.titleLabel?.font = UIFont.font(17, .main)
         button.setTitleColor(.systemRed, for: .normal)
         return button
     }()

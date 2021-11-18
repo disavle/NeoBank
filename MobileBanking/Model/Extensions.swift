@@ -14,6 +14,19 @@ class Utils {
                                         "^(?=.*[a-z])(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{8,}")
         return passwordTest.evaluate (with: password)
     }
+    
+    static func darkMode(sender: UISwitch){
+        //MARK: Dark mode switcher
+        if (sender.isOn == false){
+            UIApplication.shared.connectedScenes.forEach { (scene: UIScene) in
+                (scene.delegate as? SceneDelegate)?.window?.overrideUserInterfaceStyle = .light
+            }
+        } else {
+            UIApplication.shared.connectedScenes.forEach { (scene: UIScene) in
+                (scene.delegate as? SceneDelegate)?.window?.overrideUserInterfaceStyle = .dark
+            }
+        }
+    }
 }
 
 extension UIFont{

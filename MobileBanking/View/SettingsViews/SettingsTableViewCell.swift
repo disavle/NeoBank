@@ -14,9 +14,15 @@ class SettingsTableViewCell: UITableViewCell {
     let toggle: UISwitch = {
         let toggle = UISwitch()
         toggle.onTintColor = .systemPink
-        toggle.isOn = false
         toggle.thumbTintColor = .label
         return toggle
+    }()
+    
+    let label: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.font(15, .main)
+        label.textColor = .label
+        return label
     }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -27,6 +33,13 @@ class SettingsTableViewCell: UITableViewCell {
             maker.right.equalToSuperview().inset(20)
             maker.width.equalTo(toggle.bounds.width)
             maker.height.equalTo(toggle.bounds.height)
+        }
+        contentView.addSubview(label)
+        label.snp.makeConstraints(){maker in
+            maker.centerY.equalToSuperview()
+            maker.left.equalToSuperview().offset(20)
+            maker.width.equalToSuperview().dividedBy(1.25)
+            maker.height.equalToSuperview().dividedBy(4)
         }
     }
     

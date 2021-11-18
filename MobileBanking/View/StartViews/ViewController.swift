@@ -10,6 +10,12 @@ import UIKit
 class ViewController: UIViewController {
     
     var label: UILabel!
+    
+    override func loadView() {
+        super.loadView()
+        let style = UserDefaults.standard.value(forKey: "style") as! Bool
+        setStyle(style)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +54,18 @@ class ViewController: UIViewController {
             LogIn().Home(self.view)
         }
         
+    }
+    
+    private func setStyle(_ check:Bool){
+        if (check == false){
+            UIApplication.shared.connectedScenes.forEach { (scene: UIScene) in
+                (scene.delegate as? SceneDelegate)?.window?.overrideUserInterfaceStyle = .light
+            }
+        } else {
+            UIApplication.shared.connectedScenes.forEach { (scene: UIScene) in
+                (scene.delegate as? SceneDelegate)?.window?.overrideUserInterfaceStyle = .dark
+            }
+        }
     }
     
 }
