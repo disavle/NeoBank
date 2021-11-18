@@ -38,7 +38,7 @@ class ButtonsView: UIView {
             label = {
                 let label = UILabel()
                 label.textAlignment = .center
-                label.font = UIFont(name: "Kepler-296", size: 35)
+                label.font = UIFont.font(35, .main)
                 label.text = name
                 label.textColor = .secondaryLabel
                 button.addSubview(label)

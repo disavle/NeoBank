@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C0AA79027461D8700E8408F /* SignOutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0AA78F27461D8700E8408F /* SignOutTableViewCell.swift */; };
 		0C1570DF271C2ACA00A2BA77 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1570DE271C2ACA00A2BA77 /* SignUpViewController.swift */; };
 		0C1570E2271C2CD900A2BA77 /* checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1570E1271C2CD900A2BA77 /* checkbox.swift */; };
 		0C1570E4271C474300A2BA77 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1570E3271C474300A2BA77 /* SignInViewController.swift */; };
@@ -30,8 +31,8 @@
 		0C9383C926C58E0D008955E5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9383C826C58E0D008955E5 /* ProfileViewController.swift */; };
 		0CAE02CC271B4640009E4CF1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0CAE02CB271B4640009E4CF1 /* GoogleService-Info.plist */; };
 		0CB8895227458EC500C3D319 /* LogIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB8895127458EC500C3D319 /* LogIn.swift */; };
-		0CB889542745A8AE00C3D319 /* Pass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB889532745A8AE00C3D319 /* Pass.swift */; };
 		0CC439B726C514D0009E0B80 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC439B626C514D0009E0B80 /* HomeViewController.swift */; };
+		0CE5F8DE27462593002DCBF5 /* MusticaproSemibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0CE5F8DD27462593002DCBF5 /* MusticaproSemibold.otf */; };
 		0CFC699126B1A33500D02C76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CFC699026B1A33500D02C76 /* AppDelegate.swift */; };
 		0CFC699326B1A33500D02C76 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CFC699226B1A33500D02C76 /* SceneDelegate.swift */; };
 		0CFC699526B1A33500D02C76 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CFC699426B1A33500D02C76 /* ViewController.swift */; };
@@ -77,6 +78,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0C0AA78F27461D8700E8408F /* SignOutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOutTableViewCell.swift; sourceTree = "<group>"; };
 		0C1570DE271C2ACA00A2BA77 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		0C1570E1271C2CD900A2BA77 /* checkbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkbox.swift; sourceTree = "<group>"; };
 		0C1570E3271C474300A2BA77 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -100,8 +102,8 @@
 		0C9383C826C58E0D008955E5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		0CAE02CB271B4640009E4CF1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0CB8895127458EC500C3D319 /* LogIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogIn.swift; sourceTree = "<group>"; };
-		0CB889532745A8AE00C3D319 /* Pass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pass.swift; sourceTree = "<group>"; };
 		0CC439B626C514D0009E0B80 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		0CE5F8DD27462593002DCBF5 /* MusticaproSemibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MusticaproSemibold.otf; sourceTree = "<group>"; };
 		0CFC698D26B1A33500D02C76 /* MobileBanking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileBanking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CFC699026B1A33500D02C76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0CFC699226B1A33500D02C76 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -172,7 +174,6 @@
 			children = (
 				0C25D99E27443FC100A452A0 /* Extensions.swift */,
 				0CB8895127458EC500C3D319 /* LogIn.swift */,
-				0CB889532745A8AE00C3D319 /* Pass.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -201,6 +202,7 @@
 			children = (
 				0C2EDF4D26C641500085B8D0 /* SettingsViewController.swift */,
 				0C2EDF4F26C64E0B0085B8D0 /* SettingsTableViewCell.swift */,
+				0C0AA78F27461D8700E8408F /* SignOutTableViewCell.swift */,
 			);
 			path = SettingsViews;
 			sourceTree = "<group>";
@@ -293,6 +295,7 @@
 		0CFC69C426B1A4A400D02C76 /* Info */ = {
 			isa = PBXGroup;
 			children = (
+				0CE5F8DD27462593002DCBF5 /* MusticaproSemibold.otf */,
 				0CFC69C626B1ADB200D02C76 /* Kepler-296.otf */,
 				0CFC699C26B1A33600D02C76 /* Assets.xcassets */,
 				0CFC699E26B1A33600D02C76 /* LaunchScreen.storyboard */,
@@ -459,6 +462,7 @@
 				0CFC69A026B1A33600D02C76 /* LaunchScreen.storyboard in Resources */,
 				0CAE02CC271B4640009E4CF1 /* GoogleService-Info.plist in Resources */,
 				0CFC69C726B1ADB200D02C76 /* Kepler-296.otf in Resources */,
+				0CE5F8DE27462593002DCBF5 /* MusticaproSemibold.otf in Resources */,
 				0CFC699D26B1A33600D02C76 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -591,7 +595,6 @@
 				0C9383C126C57D6A008955E5 /* CBTabBarButton.swift in Sources */,
 				0C7268D826C6EA9C00443204 /* MouthView.swift in Sources */,
 				0CFC699B26B1A33500D02C76 /* MobileBanking.xcdatamodeld in Sources */,
-				0CB889542745A8AE00C3D319 /* Pass.swift in Sources */,
 				0C2EDF4C26C63FA10085B8D0 /* TapticManager.swift in Sources */,
 				0CFC699526B1A33500D02C76 /* ViewController.swift in Sources */,
 				0C1570DF271C2ACA00A2BA77 /* SignUpViewController.swift in Sources */,
@@ -605,6 +608,7 @@
 				0C7268DA26C6EA9C00443204 /* ShakeView.swift in Sources */,
 				0CFC699126B1A33500D02C76 /* AppDelegate.swift in Sources */,
 				0C9383C926C58E0D008955E5 /* ProfileViewController.swift in Sources */,
+				0C0AA79027461D8700E8408F /* SignOutTableViewCell.swift in Sources */,
 				0CFC699326B1A33500D02C76 /* SceneDelegate.swift in Sources */,
 				0C1570E2271C2CD900A2BA77 /* checkbox.swift in Sources */,
 				0C5D976626C84AB500414FD8 /* ButtonsView.swift in Sources */,

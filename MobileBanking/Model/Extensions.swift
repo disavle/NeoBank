@@ -15,3 +15,15 @@ class Utils {
         return passwordTest.evaluate (with: password)
     }
 }
+
+extension UIFont{
+    enum FontType: String {
+        case logo = "Kepler-296"
+        case main = "MusticaPro-SemiBold"
+    }
+    static func font(_ size: CGFloat, _ type: FontType) -> UIFont{
+        print(size)
+        print(type.rawValue)
+        return UIFont(name: type.rawValue, size: size)!
+    }
+}

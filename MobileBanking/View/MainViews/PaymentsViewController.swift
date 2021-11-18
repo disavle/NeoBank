@@ -19,9 +19,9 @@ class PaymentsViewController: UIViewController {
         view.backgroundColor = .systemBackground
         label = {
             let label = UILabel()
-            label.text = "Payment"
+            label.text = "Переводы"
             label.textAlignment = .center
-            label.font = UIFont(name: "Kepler-296", size: 35)
+            label.font = UIFont.font(35, .main)
             label.textColor = .label
             
             view.addSubview(label)

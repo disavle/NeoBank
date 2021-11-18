@@ -6,15 +6,10 @@
 //
 
 import UIKit
-import FirebaseDatabase
 
 class HomeViewController: UIViewController {
     
     var label: UILabel!
-    
-    let ref = Database.database().reference(withPath: "dfsdf")
-    var refObservers: [DatabaseHandle] = []
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,11 +17,12 @@ class HomeViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
 
         view.backgroundColor = .systemBackground
+        
         label = {
             let label = UILabel()
-            label.text = "Home"
+            label.text = "Главная"
             label.textAlignment = .center
-            label.font = UIFont(name: "Kepler-296", size: 35)
+            label.font = UIFont.font(35, .main)
             label.textColor = .label
             
             view.addSubview(label)
@@ -38,10 +34,5 @@ class HomeViewController: UIViewController {
             }
             return label
         }()
-        
-        ref.observe(.value, with: { snapshot in
-          print(snapshot.value!)
-        })
-
     }
 }

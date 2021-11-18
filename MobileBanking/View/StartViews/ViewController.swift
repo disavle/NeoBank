@@ -22,7 +22,7 @@ class ViewController: UIViewController {
             let label = UILabel()
             label.text = "NeoBank"
             label.textAlignment = .center
-            label.font = UIFont(name: "Kepler-296", size: 35)
+            label.font = UIFont.font(35, .logo)
             label.textColor = .label
             label.clipsToBounds = true
             label.layer.cornerRadius = 10
@@ -44,9 +44,8 @@ class ViewController: UIViewController {
         
         DispatchQueue.main.asyncAfter(deadline: .now()+1.6) {
             // MARK: Authorization mode
-            let vc = SignInViewController()
-            self.view.window?.rootViewController = vc
-            self.view.window?.makeKeyAndVisible()
+//            LogIn().goToSignIn(self.view)
+            LogIn().Home(self.view)
         }
         
     }

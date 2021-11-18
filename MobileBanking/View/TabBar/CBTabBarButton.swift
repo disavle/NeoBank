@@ -80,7 +80,7 @@ public class CBTabBarButton: UIControl {
                 tabImage.tintColor = tintColor
             }
             tabLabel.textColor = .white
-            tabLabel.font = UIFont(name: "Kepler-296", size: 12)
+            tabLabel.font = UIFont.font(12, .main)
             tabBg.backgroundColor = .systemPink
         }
     }

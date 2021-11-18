@@ -15,8 +15,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewDidLoad()
 
         view.backgroundColor = .systemBackground
-        title = "Settings"
-        navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor:  UIColor.label, .font: UIFont(name: "Kepler-296", size: 35)!]
+        title = "Настройки"
+        navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor:  UIColor.label, .font: UIFont.font(35, .main)]
         navigationController?.navigationBar.prefersLargeTitles = true
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(close))
@@ -34,10 +34,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         }()
         
         tableView.register(SettingsTableViewCell.self, forCellReuseIdentifier: SettingsTableViewCell.id)
+        tableView.register(SignOutTableViewCell.self, forCellReuseIdentifier: SignOutTableViewCell.id)
         tableView.tableFooterView = UIView()
         tableView.delegate = self
         tableView.dataSource = self
-        
     }
     
     @objc func close(){
@@ -45,14 +45,21 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCell.id, for: indexPath) as! SettingsTableViewCell
-        cell.selectionStyle = .none
-        //MARK: Delete test function
-        cell.toggle.addTarget(self, action: #selector(test), for: .primaryActionTriggered)
+        if indexPath.row == 0{
+            let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCell.id, for: indexPath) as! SettingsTableViewCell
+            cell.selectionStyle = .none
+            //MARK: Delete test function
+            cell.toggle.addTarget(self, action: #selector(test), for: .primaryActionTriggered)
+            return cell
+        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: SignOutTableViewCell.id, for: indexPath) as! SignOutTableViewCell
+        cell.signOut.setTitle("Выйти", for: .normal)
+        cell.signOut.tag = indexPath.row
+        cell.signOut.addTarget(self, action: #selector(SignOut), for: .touchUpInside)
         return cell
     }
     
@@ -61,6 +68,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @objc func test(){
-        Pass().goToPass(self.view)
+        LogIn().goToPass(self.view)
+    }
+    
+    @objc func SignOut(){
+        LogIn().goToSignIn(self.view)
     }
 }

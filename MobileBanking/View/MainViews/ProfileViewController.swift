@@ -21,9 +21,9 @@ class ProfileViewController: UIViewController {
         view.backgroundColor = .systemBackground
         label = {
             let label = UILabel()
-            label.text = "Profile"
+            label.text = "Профиль"
             label.textAlignment = .center
-            label.font = UIFont(name: "Kepler-296", size: 35)
+            label.font = UIFont.font(35, .main)
             label.textColor = .label
             
             view.addSubview(label)

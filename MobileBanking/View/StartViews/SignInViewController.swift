@@ -41,7 +41,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             let label = UILabel()
             label.text = "NeoBank"
             label.textAlignment = .center
-            label.font = UIFont(name: "Kepler-296", size: 40)
+            label.font = UIFont.font(40, .logo)
             label.textColor = .label
             view.addSubview(label)
             label.snp.makeConstraints { maker in
@@ -58,7 +58,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             label.text = "Некорректные данные"
             label.alpha = 0
             label.textAlignment = .center
-            label.font = UIFont(name: "Kepler-296", size: 15)
+            label.font = UIFont.font(15, .main)
             label.textColor = .systemRed
             view.addSubview(label)
             label.snp.makeConstraints { maker in
@@ -77,10 +77,10 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             field.textColor = .label
             field.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
             field.returnKeyType = .next
-            field.font = UIFont(name: "Kepler-296", size: 15)
+            field.font = UIFont.font(15, .main)
             field.autocapitalizationType = .words
             field.autocorrectionType = .no
-            field.attributedPlaceholder = NSAttributedString(string: "example@email.com",attributes: [NSAttributedString.Key.foregroundColor: UIColor.secondaryLabel, NSAttributedString.Key.font: UIFont(name: "Kepler-296", size: 15)!])
+            field.attributedPlaceholder = NSAttributedString(string: "example@email.com",attributes: [NSAttributedString.Key.foregroundColor: UIColor.secondaryLabel, NSAttributedString.Key.font: UIFont.font(15, .main)])
             view.addSubview(field)
             field.snp.makeConstraints { maker in
                 maker.top.equalTo(error.snp.bottom).offset(40)
@@ -94,7 +94,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         email = {
             let label = UILabel()
             label.text = "Email"
-            label.font = UIFont(name: "Kepler-296", size: 15)
+            label.font = UIFont.font(15, .main)
             label.textColor = .label
             view.addSubview(label)
             label.snp.makeConstraints { maker in
@@ -113,10 +113,10 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             field.textColor = .label
             field.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
             field.returnKeyType = .join
-            field.font = UIFont(name: "Kepler-296", size: 15)
+            field.font = UIFont.font(15, .main)
             field.autocapitalizationType = .words
             field.autocorrectionType = .no
-            field.attributedPlaceholder = NSAttributedString(string: "qwerty123",attributes: [NSAttributedString.Key.foregroundColor: UIColor.secondaryLabel, NSAttributedString.Key.font: UIFont(name: "Kepler-296", size: 15)!])
+            field.attributedPlaceholder = NSAttributedString(string: "bKM46AUzgnXBCWmZ8eCh",attributes: [NSAttributedString.Key.foregroundColor: UIColor.secondaryLabel, NSAttributedString.Key.font: UIFont.font(15, .main)])
             field.isSecureTextEntry = true
             view.addSubview(field)
             field.snp.makeConstraints { maker in
@@ -130,8 +130,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
         pass = {
             let label = UILabel()
-            label.text = "Password"
-            label.font = UIFont(name: "Kepler-296", size: 15)
+            label.text = "Пароль"
+            label.font = UIFont.font(15, .main)
             label.textColor = .label
             view.addSubview(label)
             label.snp.makeConstraints { maker in
@@ -147,9 +147,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             let button = UIButton()
             button.backgroundColor = .systemPink
             button.addTarget(self, action: #selector(signIn), for: .touchUpInside)
-            button.setTitle("Sign In", for: .normal)
+            button.setTitle("Войти", for: .normal)
             button.setTitleColor(.label, for: .normal)
-            button.titleLabel?.font = UIFont(name: "Kepler-296", size: 20)
+            button.titleLabel?.font = UIFont.font(20, .main)
             button.layer.cornerRadius = 15
             button.clipsToBounds = true
             view.addSubview(button)
@@ -165,9 +165,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         signUp = {
             let button = UIButton()
             button.addTarget(self, action: #selector(goTosignUp), for: .touchUpInside)
-            button.setTitle("Sign Up", for: .normal)
+            button.setTitle("Зарегистрироваться", for: .normal)
             button.setTitleColor(.secondaryLabel, for: .normal)
-            button.titleLabel?.font = UIFont(name: "Kepler-296", size: 17)
+            button.titleLabel?.font = UIFont.font(12, .main)
             view.addSubview(button)
             button.snp.makeConstraints { maker in
                 maker.top.equalTo(confirm.snp.bottom).offset(15)

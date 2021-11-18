@@ -24,6 +24,7 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
+		<string>MusticaproSemibold.otf</string>
 		<string>Kepler-296.otf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
