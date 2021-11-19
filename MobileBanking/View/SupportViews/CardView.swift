@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class CardView{
-    static func card(view: UIView, cardNum: String, cardName: String){
+    static func card(view: UIView, cardNum: String?, cardName: String?){
         var form: UIView = {
             let form = UIView()
             form.backgroundColor = .systemPink
@@ -17,7 +17,7 @@ class CardView{
             view.addSubview(form)
             form.snp.makeConstraints { maker in
                 maker.centerX.equalToSuperview()
-                maker.top.equalToSuperview().inset(100)
+                maker.top.equalToSuperview().inset(30)
                 maker.width.equalToSuperview().dividedBy(1.25)
                 maker.height.equalToSuperview().dividedBy(4)
             }
@@ -56,7 +56,7 @@ class CardView{
         var labelCardName: UILabel = {
             let label = UILabel()
             label.textAlignment = .center
-            label.font = UIFont.font(25, .contemp)
+            label.font = UIFont.font(25, .main)
             label.textColor = .label
             label.text = cardName
             form.addSubview(label)

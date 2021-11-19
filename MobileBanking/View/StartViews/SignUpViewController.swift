@@ -301,7 +301,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             } else {
                 self.error.alpha = 0
                 let db = Firestore.firestore()
-                db.collection("users").document(result!.user.uid).setData(["id":result!.user.uid,"name":cleanedName ?? "", "email":cleanedEmail ?? "","password":cleanedPass ?? "", "cardNum":"\(Int.random(in: 10000000000000...99999999999999))", "PIN":"\(Int.random(in: 1000...9999))", "CVV":"\(Int.random(in: 100...999))"]){ (err) in
+                db.collection("users").document(result!.user.uid).setData(["id":result!.user.uid,"name":cleanedName ?? "", "email":cleanedEmail ?? "","password":cleanedPass ?? "", "cardNum":"\(Int.random(in: 1000000000000000...9999999999999999))", "PIN":"\(Int.random(in: 1000...9999))", "CVV":"\(Int.random(in: 100...999))"]){ (err) in
                     if err != nil{
                         print("Error auth")
                         self.error.alpha = 1

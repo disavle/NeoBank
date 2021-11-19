@@ -15,6 +15,8 @@
 		0C2EDF4C26C63FA10085B8D0 /* TapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2EDF4B26C63FA10085B8D0 /* TapticManager.swift */; };
 		0C2EDF4E26C641500085B8D0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2EDF4D26C641500085B8D0 /* SettingsViewController.swift */; };
 		0C2EDF5026C64E0B0085B8D0 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2EDF4F26C64E0B0085B8D0 /* SettingsTableViewCell.swift */; };
+		0C5385EA27482F35004ED8D7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5385E927482F35004ED8D7 /* User.swift */; };
+		0C5385EE27483B1A004ED8D7 /* DB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5385ED27483B1A004ED8D7 /* DB.swift */; };
 		0C5D976626C84AB500414FD8 /* ButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5D976526C84AB500414FD8 /* ButtonsView.swift */; };
 		0C61B8EB2747AE35006549E4 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C61B8EA2747AE35006549E4 /* CardView.swift */; };
 		0C6BD80F26C9766900F711E7 /* ButtonContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6BD80E26C9766900F711E7 /* ButtonContainer.swift */; };
@@ -87,6 +89,8 @@
 		0C2EDF4B26C63FA10085B8D0 /* TapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapticManager.swift; sourceTree = "<group>"; };
 		0C2EDF4D26C641500085B8D0 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		0C2EDF4F26C64E0B0085B8D0 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		0C5385E927482F35004ED8D7 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		0C5385ED27483B1A004ED8D7 /* DB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DB.swift; sourceTree = "<group>"; };
 		0C5D976526C84AB500414FD8 /* ButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsView.swift; sourceTree = "<group>"; };
 		0C61B8EA2747AE35006549E4 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		0C6BD80E26C9766900F711E7 /* ButtonContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonContainer.swift; sourceTree = "<group>"; };
@@ -176,6 +180,8 @@
 			children = (
 				0C25D99E27443FC100A452A0 /* Extensions.swift */,
 				0CB8895127458EC500C3D319 /* LogIn.swift */,
+				0C5385E927482F35004ED8D7 /* User.swift */,
+				0C5385ED27483B1A004ED8D7 /* DB.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -611,6 +617,7 @@
 				0CFC699526B1A33500D02C76 /* ViewController.swift in Sources */,
 				0C1570DF271C2ACA00A2BA77 /* SignUpViewController.swift in Sources */,
 				0CB8895227458EC500C3D319 /* LogIn.swift in Sources */,
+				0C5385EA27482F35004ED8D7 /* User.swift in Sources */,
 				0C7268DC26C6EAB500443204 /* ProgressableAnimationView.swift in Sources */,
 				0C1570E4271C474300A2BA77 /* SignInViewController.swift in Sources */,
 				0C6BD80F26C9766900F711E7 /* ButtonContainer.swift in Sources */,
@@ -625,6 +632,7 @@
 				0C1570E2271C2CD900A2BA77 /* checkbox.swift in Sources */,
 				0C5D976626C84AB500414FD8 /* ButtonsView.swift in Sources */,
 				0C9383C526C58DEE008955E5 /* PaymentsViewController.swift in Sources */,
+				0C5385EE27483B1A004ED8D7 /* DB.swift in Sources */,
 				0C7268DE26C6EAF000443204 /* GeometryHelper.swift in Sources */,
 				0C25D99F27443FC100A452A0 /* Extensions.swift in Sources */,
 				0C2EDF4E26C641500085B8D0 /* SettingsViewController.swift in Sources */,
