@@ -16,6 +16,7 @@
 		0C2EDF4E26C641500085B8D0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2EDF4D26C641500085B8D0 /* SettingsViewController.swift */; };
 		0C2EDF5026C64E0B0085B8D0 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2EDF4F26C64E0B0085B8D0 /* SettingsTableViewCell.swift */; };
 		0C5D976626C84AB500414FD8 /* ButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5D976526C84AB500414FD8 /* ButtonsView.swift */; };
+		0C61B8EB2747AE35006549E4 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C61B8EA2747AE35006549E4 /* CardView.swift */; };
 		0C6BD80F26C9766900F711E7 /* ButtonContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6BD80E26C9766900F711E7 /* ButtonContainer.swift */; };
 		0C7268D326C6E90300443204 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7268D226C6E90300443204 /* PasswordViewController.swift */; };
 		0C7268D826C6EA9C00443204 /* MouthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7268D526C6EA9B00443204 /* MouthView.swift */; };
@@ -87,6 +88,7 @@
 		0C2EDF4D26C641500085B8D0 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		0C2EDF4F26C64E0B0085B8D0 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		0C5D976526C84AB500414FD8 /* ButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsView.swift; sourceTree = "<group>"; };
+		0C61B8EA2747AE35006549E4 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		0C6BD80E26C9766900F711E7 /* ButtonContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonContainer.swift; sourceTree = "<group>"; };
 		0C7268D226C6E90300443204 /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
 		0C7268D526C6EA9B00443204 /* MouthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MouthView.swift; sourceTree = "<group>"; };
@@ -207,6 +209,14 @@
 			path = SettingsViews;
 			sourceTree = "<group>";
 		};
+		0C61B8E92747ADF6006549E4 /* SupportViews */ = {
+			isa = PBXGroup;
+			children = (
+				0C61B8EA2747AE35006549E4 /* CardView.swift */,
+			);
+			path = SupportViews;
+			sourceTree = "<group>";
+		};
 		0C7268D426C6EA8B00443204 /* PasswordViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -318,6 +328,7 @@
 			isa = PBXGroup;
 			children = (
 				0C1570DD271C2A8700A2BA77 /* StartViews */,
+				0C61B8E92747ADF6006549E4 /* SupportViews */,
 				0C2EDF4A26C63EF00085B8D0 /* MainViews */,
 				0C2EDF5226C66D360085B8D0 /* SettingsViews */,
 				0C7268D426C6EA8B00443204 /* PasswordViews */,
@@ -606,6 +617,7 @@
 				0C2EDF5026C64E0B0085B8D0 /* SettingsTableViewCell.swift in Sources */,
 				0C9383C726C58E02008955E5 /* ChatViewController.swift in Sources */,
 				0C9383C226C57D6A008955E5 /* BubbleTabBarController.swift in Sources */,
+				0C61B8EB2747AE35006549E4 /* CardView.swift in Sources */,
 				0C7268DA26C6EA9C00443204 /* ShakeView.swift in Sources */,
 				0CFC699126B1A33500D02C76 /* AppDelegate.swift in Sources */,
 				0C9383C926C58E0D008955E5 /* ProfileViewController.swift in Sources */,

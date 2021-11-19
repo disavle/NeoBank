@@ -39,8 +39,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.tableFooterView = UIView()
         tableView.delegate = self
         tableView.dataSource = self
-        
-        
     }
     
     @objc func close(){
@@ -48,7 +46,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -60,14 +58,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             cell.toggle.addTarget(self, action: #selector(mode), for: .primaryActionTriggered)
             return cell
         }
-        if indexPath.row == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCell.id, for: indexPath) as! SettingsTableViewCell
-            cell.selectionStyle = .none
-            cell.label.text = "Тест блокировки"
-            //MARK: Delete test function
-            cell.toggle.addTarget(self, action: #selector(test), for: .primaryActionTriggered)
-            return cell
-        }
         let cell = tableView.dequeueReusableCell(withIdentifier: SignOutTableViewCell.id, for: indexPath) as! SignOutTableViewCell
         cell.signOut.setTitle("Выйти", for: .normal)
         cell.signOut.tag = indexPath.row
@@ -77,10 +67,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
-    }
-    
-    @objc func test(){
-        LogIn().goToPass(self.view)
     }
     
     @objc func mode(sender: UISwitch){

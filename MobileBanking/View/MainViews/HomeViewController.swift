@@ -28,6 +28,12 @@ class HomeViewController: UIViewController {
 
         view.backgroundColor = .systemBackground
         
+       
+    }
+    
+    override func loadView() {
+        super.loadView()
+        
         let id = Auth.auth().currentUser?.uid
         let db = Firestore.firestore()
         db.collection("users").document(id!).getDocument { snapshot, err in
@@ -43,6 +49,8 @@ class HomeViewController: UIViewController {
                 }
             }
         }
+        //MARK: Change cardNum + cardName to real from db
+        CardView.card(view: view, cardNum: "3030 3030 3030 3030", cardName: "Test")
         
         labelName = {
             let label = UILabel()

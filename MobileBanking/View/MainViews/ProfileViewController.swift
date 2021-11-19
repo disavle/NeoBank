@@ -23,7 +23,7 @@ class ProfileViewController: UIViewController {
         view.backgroundColor = .systemBackground
         labelTitle = {
             let label = UILabel()
-            label.text = "Чат"
+            label.text = "Профиль"
             label.textAlignment = .center
             label.font = UIFont.font(35, .main)
             label.textColor = .label
