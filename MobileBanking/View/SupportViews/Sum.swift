@@ -16,7 +16,7 @@ class SumView{
     init(view: UIView, extraView: UIView?){
         sum = {
             let sum = UIView()
-            sum.backgroundColor = .tertiarySystemBackground
+            sum.backgroundColor = .secondarySystemBackground
             sum.layer.cornerRadius = 15
             view.addSubview(sum)
             sum.snp.makeConstraints { maker in

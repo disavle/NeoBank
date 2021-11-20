@@ -19,7 +19,6 @@
 		0C37D56727497D7800F396C2 /* Sum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C37D56627497D7800F396C2 /* Sum.swift */; };
 		0C37D56A274980BD00F396C2 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C37D569274980BD00F396C2 /* Card.swift */; };
 		0C37D56C274985A800F396C2 /* Payments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C37D56B274985A800F396C2 /* Payments.swift */; };
-		0C37D56E27498CA200F396C2 /* MainViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C37D56D27498CA200F396C2 /* MainViewCell.swift */; };
 		0C5385EA27482F35004ED8D7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5385E927482F35004ED8D7 /* User.swift */; };
 		0C5385EE27483B1A004ED8D7 /* DB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5385ED27483B1A004ED8D7 /* DB.swift */; };
 		0C5D976626C84AB500414FD8 /* ButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5D976526C84AB500414FD8 /* ButtonsView.swift */; };
@@ -97,7 +96,6 @@
 		0C37D56627497D7800F396C2 /* Sum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sum.swift; sourceTree = "<group>"; };
 		0C37D569274980BD00F396C2 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		0C37D56B274985A800F396C2 /* Payments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payments.swift; sourceTree = "<group>"; };
-		0C37D56D27498CA200F396C2 /* MainViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCell.swift; sourceTree = "<group>"; };
 		0C5385E927482F35004ED8D7 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0C5385ED27483B1A004ED8D7 /* DB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DB.swift; sourceTree = "<group>"; };
 		0C5D976526C84AB500414FD8 /* ButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsView.swift; sourceTree = "<group>"; };
@@ -230,7 +228,6 @@
 				0C37D56627497D7800F396C2 /* Sum.swift */,
 				0C37D569274980BD00F396C2 /* Card.swift */,
 				0C37D56B274985A800F396C2 /* Payments.swift */,
-				0C37D56D27498CA200F396C2 /* MainViewCell.swift */,
 			);
 			path = SupportViews;
 			sourceTree = "<group>";
@@ -640,7 +637,6 @@
 				0C9383C226C57D6A008955E5 /* BubbleTabBarController.swift in Sources */,
 				0C7268DA26C6EA9C00443204 /* ShakeView.swift in Sources */,
 				0CFC699126B1A33500D02C76 /* AppDelegate.swift in Sources */,
-				0C37D56E27498CA200F396C2 /* MainViewCell.swift in Sources */,
 				0C9383C926C58E0D008955E5 /* ProfileViewController.swift in Sources */,
 				0C0AA79027461D8700E8408F /* SignOutTableViewCell.swift in Sources */,
 				0C1570E2271C2CD900A2BA77 /* checkbox.swift in Sources */,

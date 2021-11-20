@@ -48,8 +48,9 @@ class HomeViewController: UIViewController, UITableViewDataSource {
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "d")
         tableView.refreshControl = refControl
-//        tableView.backgroundColor = .cyan
         tableView.tableFooterView = UIView()
+        tableView.tableHeaderView = UIView()
+        tableView.dataSource = self
         
         DispatchQueue.main.async {
             self.getFront()
@@ -59,7 +60,7 @@ class HomeViewController: UIViewController, UITableViewDataSource {
         
         card = Card(tableView)
         sum = SumView(view: tableView, extraView: card.form)
-//        PaymentView(view: tableView, extraView: sum.sum)
+        PaymentView(view: tableView, extraView: sum.sum)
     }
     
     func getFront(){
@@ -73,17 +74,12 @@ class HomeViewController: UIViewController, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: MainViewCell.id, for: indexPath) as! MainViewCell
-            cell.selectionStyle = .none
-            return cell
-        }
         let cell = tableView.dequeueReusableCell(withIdentifier: "d", for: indexPath)
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 0
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
