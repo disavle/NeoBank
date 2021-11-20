@@ -24,9 +24,13 @@ class Utils {
         }
     }
     
-    static func animateSoon(_ sender: UILabel, _ view: UIView){
+    static func animateSoon(_ sender: UILabel?,_ senderView: UIView?, _ view: UIView){
         UIView.animate(withDuration: 1, delay: 0.25, usingSpringWithDamping: 0.2, initialSpringVelocity: 0.2, options: [.repeat, .autoreverse], animations: {
-            sender.center.x = view.bounds.width - 100
+            if sender == nil{
+                senderView!.center.x = view.bounds.width - 100
+            } else {
+                sender!.center.x = view.bounds.width - 100
+            }
         },completion : nil)
     }
 }

@@ -11,13 +11,32 @@ import Firebase
 class ViewController: UIViewController {
     
     var label: UILabel!
-    
+    let authed: Void = {
+        let sign = UserDefaults.standard.value(forKey: "verify") as? Bool ?? false
+        if sign == false{
+            Auth.auth().addStateDidChangeListener { auth, user in
+                if (user != nil){
+                    do{
+                        try Auth.auth().signOut()
+                    }   catch{
+                        print(error)
+                    }
+                }
+            }
+        }
+    }()
     override func loadView() {
         super.loadView()
-        let style = UserDefaults.standard.value(forKey: "style") as! Bool
-        setStyle(style)
+        var styled: Bool!
+        if (self.traitCollection.userInterfaceStyle == .dark){
+            styled = true
+        } else {
+            styled = false
+        }
+        let style = UserDefaults.standard.value(forKey: "style") as? Bool ?? styled
+        setStyle(style!)
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -64,11 +83,11 @@ class ViewController: UIViewController {
     
     private func setStyle(_ check:Bool){
         if (check == false){
-                AppDelegate.window?.overrideUserInterfaceStyle = .light
-            } else {
-                AppDelegate.window?.overrideUserInterfaceStyle = .dark
-            }
+            AppDelegate.window?.overrideUserInterfaceStyle = .light
+        } else {
+            AppDelegate.window?.overrideUserInterfaceStyle = .dark
         }
+    }
 }
 
 

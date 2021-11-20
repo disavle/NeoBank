@@ -14,7 +14,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.backgroundColor = .systemBackground
         title = "Настройки"
         navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor:  UIColor.label, .font: UIFont.font(35, .main)]
@@ -74,6 +74,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         Utils.darkMode(sender: sender)
         UserDefaults.standard.setValue(sender.isOn, forKey: "style")
     }
+    
     //MARK: Check dark mode style
     func checkStyle(sender: UISwitch){
         if (self.traitCollection.userInterfaceStyle == .dark){

@@ -301,7 +301,27 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             } else {
                 self.error.alpha = 0
                 let db = Firestore.firestore()
-                db.collection("users").document(result!.user.uid).setData(["id":result!.user.uid,"name":cleanedName ?? "", "email":cleanedEmail ?? "","password":cleanedPass ?? "", "cardNum":"\(Int.random(in: 1000000000000000...9999999999999999))", "PIN":"\(Int.random(in: 1000...9999))", "CVV":"\(Int.random(in: 100...999))"]){ (err) in
+                db.collection("user").document(result!.user.uid).setData(["id":result!.user.uid,"name":cleanedName ?? "", "email":cleanedEmail ?? "","password":cleanedPass ?? ""]){ (err) in
+                    if err != nil{
+                        print("Error auth")
+                        self.error.alpha = 1
+                        self.error.text = "Траблы с сервером :("
+                    } else {
+                        LogIn().Home(self.view)
+                    }
+                }
+                let cardId = UUID().uuidString
+                db.collection("card").document(cardId).setData(["id":cardId, "cardNum":"\(Int.random(in: 1000000000000000...9999999999999999))", "expiredDate":"\(Int.random(in: 1...12))/\(Int.random(in: 2024...2029))","PIN":"\(Int.random(in: 1000...9999))", "CVV":"\(Int.random(in: 100...999))", "userId":result!.user.uid]){ (err) in
+                    if err != nil{
+                        print("Error auth")
+                        self.error.alpha = 1
+                        self.error.text = "Траблы с сервером :("
+                    } else {
+                        LogIn().Home(self.view)
+                    }
+                }
+                let accoubtId = UUID().uuidString
+                db.collection("account").document(accoubtId).setData(["id":accoubtId, "num":"\(Int.random(in: 1000000...9999999))", "currency":Currency.allCases.randomElement()!.rawValue,"sum":"\(Float.random(in: 1000...9999999))", "cardId":"\(cardId)"]){ (err) in
                     if err != nil{
                         print("Error auth")
                         self.error.alpha = 1

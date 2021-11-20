@@ -13,7 +13,4 @@ struct User {
     var name: String?
     var email: String?
     var password: String?
-    var cardNum: String?
-    var CVV: String?
-    var PIN: String?
 }

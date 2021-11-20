@@ -43,7 +43,7 @@ class PaymentsViewController: UIViewController {
             label.textAlignment = .center
             label.font = UIFont.font(30, .contemp)
             label.textColor = .systemOrange
-            Utils.animateSoon(label, view)
+            Utils.animateSoon(label, nil, view)
             view.addSubview(label)
             label.snp.makeConstraints { maker in
                 maker.centerX.equalToSuperview()

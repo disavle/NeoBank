@@ -35,12 +35,10 @@ class PasswordViewController: UIViewController {
         //MARK: DataBase
         let id = Auth.auth().currentUser?.uid
         let db = Firestore.firestore()
-        db.collection("users").document(id!).getDocument { snapshot, err in
-            if err == nil{
-                if snapshot != nil && snapshot!.exists{
-                    let docData = snapshot!.data()
-                    self.password = docData!["PIN"].map(String.init(describing:))!
-                }
+        db.collection("card").whereField("userId", isEqualTo: id!).getDocuments { snapshot, err in
+            if err == nil && snapshot != nil{
+                let docData = snapshot!.documents[0]
+                    self.password = docData["PIN"].map(String.init(describing:))!
             }
         }
         
