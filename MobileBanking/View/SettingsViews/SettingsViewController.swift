@@ -61,6 +61,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let cell = tableView.dequeueReusableCell(withIdentifier: SignOutTableViewCell.id, for: indexPath) as! SignOutTableViewCell
         cell.signOut.setTitle("Выйти", for: .normal)
         cell.signOut.tag = indexPath.row
+        cell.selectionStyle = .none
         cell.signOut.addTarget(self, action: #selector(SignOut), for: .touchUpInside)
         return cell
     }

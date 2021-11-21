@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Firebase
 
 class Card{
     var labelCardNum: UILabel!
@@ -16,7 +17,11 @@ class Card{
     var labelDate: UILabel!
     var mcLabel: UIImageView!
     var form: UIView!
+    var ac: UIAlertController!
+    var view: UIView!
+    
     init(_ view: UIView){
+        self.view = view
         form = {
             let form = UIView()
             form.backgroundColor = .systemPink
@@ -121,5 +126,78 @@ class Card{
             }
             return label
         }()
+    }
+    
+    func getFront(){
+        guard let id = Auth.auth().currentUser?.uid else {return}
+        DB.shared.get(col: "user", docName: id) { doc in
+            self.labelCardName.text = doc!.name
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.animationCard))
+            self.form.addGestureRecognizer(tapGesture)
+            self.form.isUserInteractionEnabled = true
+        }
+    }
+    
+    func getBack(_ viewController: UIViewController?){
+        let userId = Auth.auth().currentUser?.uid
+        let db = Firestore.firestore()
+        db.collection("card").whereField("userId", isEqualTo: userId!).getDocuments  { snapshot, err in
+            if err == nil && snapshot != nil{
+                let docData = snapshot!.documents[0]
+                let changeCardNum = docData["cardNum"].map(String.init(describing:))!.separate(every: 4, with: " ")
+                self.labelCardNum.text = changeCardNum
+                self.labelPIN.text = docData["PIN"].map(String.init(describing:))!
+                self.labelCVV.text = "CVV: \(docData["CVV"].map(String.init(describing:))!)"
+                self.labelDate.text = self.dateForm(str: docData["expiredDate"].map(String.init(describing:))!)
+                if(UserDefaults.standard.value(forKey: "alert") as? Bool != true){
+                    self.ac = UIAlertController(title: "Твой PIN - код от приложения", message: "Твой код-пароль: \(docData["PIN"].map(String.init(describing:))!.separate(every: 4, with: " "))", preferredStyle: .alert)
+                    self.ac.addAction(UIAlertAction(title: "Понял", style: .default, handler: nil))
+                    viewController!.present(self.ac, animated: true, completion: nil)
+                    UserDefaults.standard.setValue(true, forKey: "alert")
+                }
+            }
+        }
+    }
+    
+    @objc func animationCard(sender: UITapGestureRecognizer) {
+        guard let a = sender.view else { return }
+        DispatchQueue.main.asyncAfter(deadline: .now()+1.5) {
+            if (self.mcLabel.alpha == 0){
+                self.labelCardNum.alpha = 1
+                self.labelCardName.alpha = 1
+                self.mcLabel.alpha = 1
+                self.labelPIN.alpha = 0
+                self.labelCVV.alpha = 0
+                self.labelDate.alpha = 1
+            } else {
+                self.labelCVV.alpha = 1
+                self.labelPIN.alpha = 1
+                self.mcLabel.alpha = 0
+                self.labelCardName.alpha = 0
+                self.labelCardNum.alpha = 0
+                self.labelDate.alpha = 0
+            }
+            self.getFront()
+            self.getBack(nil)
+        }
+        UIView.animate(withDuration: 1, delay: 0.25, usingSpringWithDamping: 0.2, initialSpringVelocity: 0.2, options: [], animations: {
+            a.center.x = self.view.bounds.width - 100
+        },completion: {_ in
+            
+            UIView.animate(withDuration: 1, delay: 0.25, usingSpringWithDamping: 0.2, initialSpringVelocity: 0.2, options: [], animations: {
+                a.center.x = self.view.center.x
+            },completion: {_ in })})
+    }
+    
+    
+    func dateForm(str: String) -> String{
+        var r: String!
+        let b = str.components(separatedBy: CharacterSet(charactersIn: "/"))
+        if (Int(b[0])! <= 9){
+            r = "0"+str
+        } else {
+            r = str
+        }
+        return r
     }
 }
