@@ -10,6 +10,8 @@ import Firebase
 
 class HomeViewController: UIViewController, UITableViewDataSource {
     
+    static let shared = HomeViewController()
+    
     var tableView: UITableView!
     //MARK: Pull to update
     let refControl: UIRefreshControl! = {
@@ -46,20 +48,30 @@ class HomeViewController: UIViewController, UITableViewDataSource {
             return tableView
         }()
         
+        card = Card(tableView)
+        sum = SumView(view: tableView, extraView: card.form)
+        pay = PaymentView(frame: .zero, style: .plain)
+        HomeViewController.shared.pay = pay
+        
+        tableView.addSubview(pay)
+        pay.snp.makeConstraints { maker in
+            maker.centerX.equalToSuperview()
+            maker.top.equalTo(sum.sum.snp.bottom).offset(5)
+            maker.width.equalTo(sum.sum.snp.width)
+            maker.height.equalToSuperview().dividedBy(2.23)
+        }
+        
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "d")
         tableView.refreshControl = refControl
         tableView.tableFooterView = UIView()
         tableView.tableHeaderView = UIView()
         tableView.dataSource = self
         
-        card = Card(tableView)
-        sum = SumView(view: tableView, extraView: card.form)
-        pay = PaymentView(view: tableView, extraView: sum.sum)
-        
         DispatchQueue.main.async {
             self.card.getBack(self)
             self.card.getFront()
             self.sum.getSum()
+            self.pay.get()
         }
     }
     
@@ -80,6 +92,7 @@ class HomeViewController: UIViewController, UITableViewDataSource {
         card.getBack(nil)
         card.getFront()
         sum.getSum()
+        pay.get()
         sender.endRefreshing()
     }
 }

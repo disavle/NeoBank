@@ -33,6 +33,20 @@ class Utils {
             }
         },completion : nil)
     }
+    
+    static func sumForm(str: String) -> String{
+        var s: String!
+        let b = str.components(separatedBy: CharacterSet(charactersIn: "."))
+        s = String(Decimal(Int(b[0])!).formattedWithSeparator)
+        return s+"."+b[1]
+    }
+    
+    static func payForm(str: String) -> String{
+        var s: String!
+        let b = str.components(separatedBy: CharacterSet(charactersIn: "."))
+        s = String(Decimal(Int(b[0])!).formattedWithSeparator)
+        return s
+    }
 }
 
 extension UIFont{
