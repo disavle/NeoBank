@@ -78,7 +78,6 @@ class ViewController: UIViewController {
                 }
             }
         }
-        
     }
     
     private func setStyle(_ check:Bool){

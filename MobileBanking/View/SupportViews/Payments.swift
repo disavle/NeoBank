@@ -45,16 +45,16 @@ class PaymentView: UITableView, UITableViewDelegate, UITableViewDataSource{
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: PayViewCell.id, for: indexPath) as! PayViewCell
         cell.selectionStyle = .none
-        cell.labelName.text = payments[count-indexPath.row-1].data()["name"] as! String
+        cell.labelName.text = payments[indexPath.row].data()["name"] as! String
         
         //MARK: Set the date format
-        let date = payments[count-indexPath.row-1].data()["timeStamp"] as! Timestamp
+        let date = payments[indexPath.row].data()["timeStamp"] as! Timestamp
         let time = date.dateValue()
         let formatter1 = DateFormatter()
         formatter1.dateFormat = "HH:mm, d MM y"
 
         cell.labelDate.text = formatter1.string(from: time)
-        let str = Utils.payForm(str: payments[count-indexPath.row-1].data()["sum"] as! String)
+        let str = Utils.payForm(str: payments[indexPath.row].data()["sum"] as! String)
         let str2 = payments[indexPath.row].data()["currency"] as! String
         cell.labelSum.text = str+str2
         return cell
@@ -66,7 +66,7 @@ class PaymentView: UITableView, UITableViewDelegate, UITableViewDataSource{
         db.collection("card").whereField("userId", isEqualTo: userId!).getDocuments  { snapshot, err in
             if err == nil && snapshot != nil{
                 let docData = snapshot!.documents[0]
-                db.collection("payment").whereField("accountId", in: docData["accountId"] as! [Any]).getDocuments  { snapshot1, err1 in
+                db.collection("payment").whereField("accountId", in: docData["accountId"] as! [Any]).order(by: "timeStamp", descending: true).getDocuments  { snapshot1, err1 in
                     if err1 == nil && snapshot1 != nil{
                         let docData1 = snapshot1!.documents
                         self.payments = docData1

@@ -54,6 +54,4 @@ class PaymentsViewController: UIViewController {
             return label
         }()
     }
-    
-   
 }
