@@ -177,8 +177,8 @@
 			children = (
 				0CFC699426B1A33500D02C76 /* ViewController.swift */,
 				0C1570DE271C2ACA00A2BA77 /* SignUpViewController.swift */,
-				0C1570E1271C2CD900A2BA77 /* checkbox.swift */,
 				0C1570E3271C474300A2BA77 /* SignInViewController.swift */,
+				0C7268D226C6E90300443204 /* PasswordViewController.swift */,
 			);
 			path = StartViews;
 			sourceTree = "<group>";
@@ -202,6 +202,7 @@
 				0C9383C426C58DEE008955E5 /* PaymentsViewController.swift */,
 				0C9383C626C58E02008955E5 /* ChatViewController.swift */,
 				0C9383C826C58E0D008955E5 /* ProfileViewController.swift */,
+				0C2EDF4D26C641500085B8D0 /* SettingsViewController.swift */,
 			);
 			path = MainViews;
 			sourceTree = "<group>";
@@ -217,7 +218,6 @@
 		0C2EDF5226C66D360085B8D0 /* SettingsViews */ = {
 			isa = PBXGroup;
 			children = (
-				0C2EDF4D26C641500085B8D0 /* SettingsViewController.swift */,
 				0C2EDF4F26C64E0B0085B8D0 /* SettingsTableViewCell.swift */,
 				0C0AA78F27461D8700E8408F /* SignOutTableViewCell.swift */,
 			);
@@ -227,6 +227,7 @@
 		0C37D568274980A700F396C2 /* SupportViews */ = {
 			isa = PBXGroup;
 			children = (
+				0C1570E1271C2CD900A2BA77 /* checkbox.swift */,
 				0C37D56627497D7800F396C2 /* Sum.swift */,
 				0C37D569274980BD00F396C2 /* Card.swift */,
 				0C37D56B274985A800F396C2 /* Payments.swift */,
@@ -238,7 +239,6 @@
 		0C7268D426C6EA8B00443204 /* PasswordViews */ = {
 			isa = PBXGroup;
 			children = (
-				0C7268D226C6E90300443204 /* PasswordViewController.swift */,
 				0C7268D626C6EA9C00443204 /* EyeView.swift */,
 				0C7268D526C6EA9B00443204 /* MouthView.swift */,
 				0C7268D726C6EA9C00443204 /* ShakeView.swift */,
@@ -398,6 +398,8 @@
 			dependencies = (
 			);
 			name = MobileBanking;
+			packageProductDependencies = (
+			);
 			productName = MobileBanking;
 			productReference = 0CFC698D26B1A33500D02C76 /* MobileBanking.app */;
 			productType = "com.apple.product-type.application";
@@ -472,6 +474,8 @@
 				Base,
 			);
 			mainGroup = 0CFC698426B1A33500D02C76;
+			packageReferences = (
+			);
 			productRefGroup = 0CFC698E26B1A33500D02C76 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
