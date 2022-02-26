@@ -16,7 +16,7 @@ class DB{
         db.collection(col).document(docName).getDocument { document, err in
             guard err == nil else {return}
             guard document != nil && document!.exists else {return}
-            let doc = User(id: (document?.get("id") as! String), name: (document?.get("name") as! String), email: (document?.get("email") as! String), password: (document?.get("password") as! String))
+            let doc = User(id: (document?.get("id") as! String), name: (document?.get("name") as! String), email: (document?.get("email") as! String))
             completion(doc)
         }
     }
