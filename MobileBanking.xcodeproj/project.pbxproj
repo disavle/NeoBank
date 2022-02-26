@@ -11,6 +11,8 @@
 		0C1570DF271C2ACA00A2BA77 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1570DE271C2ACA00A2BA77 /* SignUpViewController.swift */; };
 		0C1570E2271C2CD900A2BA77 /* checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1570E1271C2CD900A2BA77 /* checkbox.swift */; };
 		0C1570E4271C474300A2BA77 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1570E3271C474300A2BA77 /* SignInViewController.swift */; };
+		0C1AFCE927CAB72B00BA3451 /* CurrencyRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1AFCE827CAB72B00BA3451 /* CurrencyRate.swift */; };
+		0C1AFCED27CAC44100BA3451 /* GallaryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1AFCEB27CAC44100BA3451 /* GallaryItem.swift */; };
 		0C25D99F27443FC100A452A0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C25D99E27443FC100A452A0 /* Extensions.swift */; };
 		0C2EDF4C26C63FA10085B8D0 /* TapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2EDF4B26C63FA10085B8D0 /* TapticManager.swift */; };
 		0C2EDF4E26C641500085B8D0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2EDF4D26C641500085B8D0 /* SettingsViewController.swift */; };
@@ -89,6 +91,8 @@
 		0C1570DE271C2ACA00A2BA77 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		0C1570E1271C2CD900A2BA77 /* checkbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkbox.swift; sourceTree = "<group>"; };
 		0C1570E3271C474300A2BA77 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		0C1AFCE827CAB72B00BA3451 /* CurrencyRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRate.swift; sourceTree = "<group>"; };
+		0C1AFCEB27CAC44100BA3451 /* GallaryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GallaryItem.swift; sourceTree = "<group>"; };
 		0C25D99E27443FC100A452A0 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		0C2EDF4B26C63FA10085B8D0 /* TapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapticManager.swift; sourceTree = "<group>"; };
 		0C2EDF4D26C641500085B8D0 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -191,6 +195,7 @@
 				0C5385E927482F35004ED8D7 /* User.swift */,
 				0C5385ED27483B1A004ED8D7 /* DB.swift */,
 				0C37D564274957A400F396C2 /* Currency.swift */,
+				0C1AFCE827CAB72B00BA3451 /* CurrencyRate.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -232,6 +237,7 @@
 				0C37D569274980BD00F396C2 /* Card.swift */,
 				0C37D56B274985A800F396C2 /* Payments.swift */,
 				0C8684EC274A64D4003D3949 /* PayViewCell.swift */,
+				0C1AFCEB27CAC44100BA3451 /* GallaryItem.swift */,
 			);
 			path = SupportViews;
 			sourceTree = "<group>";
@@ -628,6 +634,7 @@
 				0C7268D326C6E90300443204 /* PasswordViewController.swift in Sources */,
 				0C9383C126C57D6A008955E5 /* CBTabBarButton.swift in Sources */,
 				0C7268D826C6EA9C00443204 /* MouthView.swift in Sources */,
+				0C1AFCED27CAC44100BA3451 /* GallaryItem.swift in Sources */,
 				0CFC699B26B1A33500D02C76 /* MobileBanking.xcdatamodeld in Sources */,
 				0C2EDF4C26C63FA10085B8D0 /* TapticManager.swift in Sources */,
 				0CFC699526B1A33500D02C76 /* ViewController.swift in Sources */,
@@ -654,6 +661,7 @@
 				0C25D99F27443FC100A452A0 /* Extensions.swift in Sources */,
 				0C37D56C274985A800F396C2 /* Payments.swift in Sources */,
 				0C2EDF4E26C641500085B8D0 /* SettingsViewController.swift in Sources */,
+				0C1AFCE927CAB72B00BA3451 /* CurrencyRate.swift in Sources */,
 				0CC439B726C514D0009E0B80 /* HomeViewController.swift in Sources */,
 				0C7268D926C6EA9C00443204 /* EyeView.swift in Sources */,
 				0C9383C026C57D6A008955E5 /* BubbleTabBar.swift in Sources */,

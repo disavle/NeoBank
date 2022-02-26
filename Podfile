@@ -7,12 +7,10 @@ target 'MobileBanking' do
 
   # Pods for MobileBanking
 pod'SnapKit'
-pod 'Firebase/Analytics'
-pod 'Firebase/Database'
-pod ‘Firebase/Core’ 
 pod ‘Firebase/Auth’ 
 pod ‘Firebase/Firestore’ 
-pod ‘Firebase/Messaging’ 
+pod 'Alamofire'
+pod 'SwiftyJSON'
 
   target 'MobileBankingTests' do
     inherit! :search_paths
