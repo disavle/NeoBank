@@ -12,6 +12,7 @@ import Firebase
 class SumView{
     var sum: UIView!
     var labelSum: UILabel!
+    private var sumBefore = ""
     
     init(view: UIView, extraView: UIView?){
         sum = {
@@ -59,6 +60,7 @@ class SumView{
                 db.collection("account").whereField("cardId", isEqualTo: docData["id"].map(String.init(describing:))!).getDocuments  { snapshot1, err1 in
                     if err1 == nil && snapshot1 != nil{
                         let docData1 = snapshot1!.documents[0]
+                        self.sumBefore = docData1["sum"].map(String.init(describing:))!
                         self.labelSum.text = Utils.sumForm(str: docData1["sum"].map(String.init(describing:))!)+docData1["currency"].map(String.init(describing:))!
                     }
                 }
@@ -71,18 +73,40 @@ class SumView{
         let userId = Auth.auth().currentUser?.uid
         let db = Firestore.firestore()
         let paymentId = UUID().uuidString
+        let changedSum = Int.random(in: 50...9999)
         db.collection("card").whereField("userId", isEqualTo: userId!).getDocuments  { snapshot, err in
             if err == nil && snapshot != nil{
                 let docData = snapshot!.documents[0]
                 let doc = docData["accountId"] as! [Any]
-                db.collection("payment").document(paymentId).setData(["id":paymentId,"MCC":"\(Int.random(in: 1000...9999))", "accountId": doc[0] as! String, "sum":"\(Int.random(in: 50...99999))", "timeStamp": Date(timeIntervalSinceNow: 2), "currency":Currency.allCases.randomElement()!.rawValue, "name":Target.allCases.randomElement()!.rawValue ]){ (err) in
+                db.collection("payment").document(paymentId).setData(["id":paymentId,"MCC":"\(Int.random(in: 1000...9999))", "accountId": doc[0] as! String, "sum":"\(changedSum)", "timeStamp": Date(timeIntervalSinceNow: 2), "currency":Currency.dol.rawValue, "name":Target.allCases.randomElement()!.rawValue ]){ (err) in
                     if err != nil{
                         print("Error auth")
                     } else {
+                        self.changeSum(change: changedSum)
                         HomeViewController.shared.pay.get()
+                        TapticManager.shared.vibrateFeedback(for: .success)
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    func changeSum(change: Int){
+        let userId = Auth.auth().currentUser?.uid
+        let db = Firestore.firestore()
+        db.collection("card").whereField("userId", isEqualTo: userId!).getDocuments  { snapshot, err in
+            if err == nil && snapshot != nil{
+                let docData = snapshot!.documents[0]
+                db.collection("account").whereField("cardId", isEqualTo: docData["id"].map(String.init(describing:))!).getDocuments  { snapshot1, err1 in
+                    if err1 == nil && snapshot1 != nil{
+                        let docData1 = snapshot1!.documents.first
+                        docData1?.reference.updateData(["sum": "\(Double(self.sumBefore)!-Double(change))"])
+                        self.getSum()
                     }
                 }
             }
         }
     }
 }
+

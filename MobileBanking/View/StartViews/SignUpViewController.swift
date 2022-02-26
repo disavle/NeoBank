@@ -302,7 +302,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 self.error.alpha = 0
                 let cardId = UUID().uuidString
                 let db = Firestore.firestore()
-                db.collection("user").document(result!.user.uid).setData(["id":result!.user.uid,"name":cleanedName ?? "", "email":cleanedEmail ?? "","password":cleanedPass ?? "", "cardId": [cardId]]){ (err) in
+                db.collection("user").document(result!.user.uid).setData(["id":result!.user.uid,"name":cleanedName ?? "", "email":cleanedEmail ?? "", "cardId": [cardId]]){ (err) in
                     if err != nil{
                         print("Error auth")
                         self.error.alpha = 1
@@ -321,7 +321,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                         LogIn().Home(self.view)
                     }
                 }
-                db.collection("account").document(accountId).setData(["id":accountId, "num":"\(Int.random(in: 1000000...9999999))", "currency":Currency.allCases.randomElement()!.rawValue,"sum":"\(Float.random(in: 1000...9999999).advanced(by: 2))", "cardId":"\(cardId)", "userId":result!.user.uid]){ (err) in
+                db.collection("account").document(accountId).setData(["id":accountId, "currency":Currency.dol.rawValue,"sum":"\(Float.random(in: 1000...9999999).advanced(by: 2))", "cardId":"\(cardId)", "userId":result!.user.uid]){ (err) in
                     if err != nil{
                         print("Error auth")
                         self.error.alpha = 1

@@ -144,8 +144,8 @@ class Card{
         db.collection("card").whereField("userId", isEqualTo: userId!).getDocuments  { snapshot, err in
             if err == nil && snapshot != nil{
                 let docData = snapshot!.documents[0]
-                let changeCardNum = docData["cardNum"].map(String.init(describing:))!.separate(every: 4, with: " ")
-                self.labelCardNum.text = changeCardNum
+                let changeCardNum = docData["cardNum"].map(String.init(describing:))!
+                self.labelCardNum.text = "xxxx xxxx xxxx "+changeCardNum.dropFirst(12)
                 self.labelPIN.text = docData["PIN"].map(String.init(describing:))!
                 self.labelCVV.text = "CVV: \(docData["CVV"].map(String.init(describing:))!)"
                 self.labelDate.text = self.dateForm(str: docData["expiredDate"].map(String.init(describing:))!)
@@ -169,6 +169,7 @@ class Card{
                 self.labelPIN.alpha = 0
                 self.labelCVV.alpha = 0
                 self.labelDate.alpha = 1
+                TapticManager.shared.vibrateFeedback(for: .success)
             } else {
                 self.labelCVV.alpha = 1
                 self.labelPIN.alpha = 1
@@ -176,6 +177,7 @@ class Card{
                 self.labelCardName.alpha = 0
                 self.labelCardNum.alpha = 0
                 self.labelDate.alpha = 0
+                TapticManager.shared.vibrateFeedback(for: .warning)
             }
             self.getFront()
             self.getBack(nil)
