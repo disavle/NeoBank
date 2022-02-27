@@ -9,68 +9,134 @@ import UIKit
 
 class PaymentsViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    private var backButton: UIButton!
+    private var companiesGet: [Company?]!
     private var gallery: UICollectionView!
-    private var currency: [CurrencyRateModel]!
+    private var companies = [String]()
     private let refControl: UIRefreshControl! = {
         let ref = UIRefreshControl()
         ref.addTarget(self, action: #selector(refresh), for: .valueChanged)
         return ref
     }()
     
+    private var indecator: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationController?.navigationBar.isHidden = true
-        
         view.backgroundColor = .systemBackground
         
-        CurrencyRate.getCurrencyList { currencies, er in
-            self.currency = currencies!
-            
+        indecator = {
+            let ind = UIActivityIndicatorView()
+            ind.style = .large
+            ind.center = view.center
+            view.addSubview(ind)
+            ind.startAnimating()
+            return ind
+        }()
+        
+        backButton = {
+            let vie = UIButton()
+            vie.backgroundColor = .systemPink
+            vie.layer.cornerRadius = 15
+            vie.layer.masksToBounds = true
+            vie.setTitle("Валюта", for: .normal)
+            vie.titleLabel?.font = UIFont.font(17, .main)
+            vie.addTarget(self, action: #selector(toMarket), for: .touchUpInside)
+            vie.setTitleColor(.label, for: .normal)
+            view.addSubview(vie)
+            vie.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                make.top.equalTo(view.snp.bottom).offset(-70)
+                make.width.equalToSuperview().dividedBy(1.1)
+                make.height.equalToSuperview().dividedBy(14)
+            }
+            return vie
+        }()
+        
+        CompanyInfo.getCompanies { k in
+            self.companies = k
+            CompanyInfo.getMarkets(tickers: self.companies) { com in
+                self.companiesGet = com!
+                
+                self.companiesGet!.sort { k, v in
+                    k!.title! < v!.title!
+                }
+                self.gallery.reloadData()
+                self.indecator.stopAnimating()
+            }
             self.gallery = {
                 let layout = UICollectionViewFlowLayout()
                 layout.scrollDirection = .vertical
                 let gal = UICollectionView(frame: .zero, collectionViewLayout: layout)
-                gal.register(GalleryItem.self, forCellWithReuseIdentifier: GalleryItem.cell)
+                gal.register(GalleryMarketItem.self, forCellWithReuseIdentifier: GalleryMarketItem.cell)
                 gal.dataSource = self
                 gal.delegate = self
-                gal.backgroundColor = .clear
+                gal.layer.masksToBounds = true
+                gal.layer.cornerRadius = 15
+                gal.backgroundColor = .tertiarySystemBackground
                 gal.contentInsetAdjustmentBehavior = .always
+                gal.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
                 gal.refreshControl = self.refControl
-                gal.contentInset = UIEdgeInsets(top: 0, left: self.view.frame.width/(self.view.frame.width/10), bottom: 0, right: self.view.frame.width/(self.view.frame.width/10))
-                self.view = gal
-                gal.reloadData()
+                self.view.insertSubview(gal, belowSubview: self.indecator)
+                gal.snp.makeConstraints { make in
+                    make.centerX.equalToSuperview()
+                    make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+                    make.width.equalToSuperview().dividedBy(1.1)
+                    make.height.equalToSuperview().dividedBy(1.22)
+                }
                 return gal
             }()
         }
     }
     
+    @objc func toMarket(){
+        navigationController?.pushViewController(MarketViewController(), animated: true)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        currency.count
+        companies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GalleryItem.cell, for: indexPath) as! GalleryItem
-        cell.title.text = currency[indexPath.row].title
-        cell.price.text = "\(Double(round(100 * (1/currency[indexPath.row].price!)) / 100).description)₽"
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GalleryMarketItem.cell, for: indexPath) as! GalleryMarketItem
+        if let com = companiesGet{
+            if com.count == companies.count{
+                cell.img.image =  com[indexPath.row]?.img ?? UIImage()
+                cell.img.contentMode = .scaleAspectFit
+                cell.title.text = com[indexPath.row]?.title ?? ""
+                cell.tocker.text = com[indexPath.row]?.ticker ?? ""
+                cell.price.text = "\(com[indexPath.row]?.price ?? 0.0)"
+                if((com[indexPath.row]?.priceChange)! > 0.0){
+                    cell.priceChange.textColor = .systemGreen
+                }
+                else if ((com[indexPath.row]?.priceChange)! < 0.0){
+                    cell.priceChange.textColor = .systemRed
+                }
+                cell.priceChange.text = "\(com[indexPath.row]?.priceChange ?? 0.0)"
+            }
+        }
         return cell
     }
     
-    //MARK: Just gag
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("User tapped on item \(indexPath.row)")
-    }
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width/2.2, height: collectionView.frame.height/10)
+        return CGSize(width: collectionView.frame.width/1.2, height: collectionView.frame.height/4)
     }
     
     @objc private func refresh(_ sender: UIRefreshControl){
-        CurrencyRate.getCurrencyList { currencies, er in
-            self.currency = currencies!
-            self.gallery.reloadData()
-            sender.endRefreshing()
+        CompanyInfo.getCompanies { k in
+            self.companies = k
+            CompanyInfo.getMarkets(tickers: self.companies) { com in
+                self.companiesGet = com!
+                
+                self.companiesGet.sort { k, v in
+                    k!.title! < v!.title!
+                }
+                self.gallery.reloadData()
+                sender.endRefreshing()
+            }
+            
         }
-        
     }
 }

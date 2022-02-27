@@ -22,18 +22,18 @@ class GalleryItem: UICollectionViewCell{
         self.title = {
             let lab = UILabel()
             lab.textAlignment = .center
-            lab.font = UIFont.font(10, UIFont.FontType.contemp)
+            lab.font = UIFont.font(15, UIFont.FontType.contemp)
             tintColor = .label
             layer.cornerRadius = 15
             layer.masksToBounds = true
             lab.numberOfLines = 3
+            lab.sizeToFit()
             lab.textAlignment = .center
             self.addSubview(lab)
             lab.snp.makeConstraints { snap in
                 snap.centerX.equalToSuperview()
                 snap.centerY.equalToSuperview().offset(-10)
                 snap.width.equalToSuperview().dividedBy(1.2)
-                snap.height.equalToSuperview().dividedBy(5)
             }
             return lab
         }()
@@ -41,18 +41,18 @@ class GalleryItem: UICollectionViewCell{
         self.price = {
             let lab = UILabel()
             lab.textAlignment = .center
-            lab.font = UIFont.font(10, UIFont.FontType.contemp)
+            lab.font = UIFont.font(20, UIFont.FontType.main)
             tintColor = .label
             layer.cornerRadius = 15
             layer.masksToBounds = true
             lab.numberOfLines = 3
             lab.textAlignment = .center
+            lab.sizeToFit()
             self.addSubview(lab)
             lab.snp.makeConstraints { snap in
                 snap.centerX.equalToSuperview()
-                snap.top.equalTo(self.title.snp.bottom).offset(15)
+                snap.top.equalTo(self.title.snp.bottom).offset(5)
                 snap.width.equalToSuperview().dividedBy(1.2)
-                snap.height.equalToSuperview().dividedBy(10)
             }
             return lab
         }()

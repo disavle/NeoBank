@@ -14,8 +14,8 @@ struct CurrencyRateModel{
     var price: Double!
 }
 
-let token = "2194a4a0-973a-11ec-a9b5-35ed6c525522"
-let query = ["apikey":token,"base_currency":"RUB"]
+private let token = "2194a4a0-973a-11ec-a9b5-35ed6c525522"
+private let query = ["apikey":token,"base_currency":"RUB"]
 
 class CurrencyRate{
     
@@ -30,7 +30,7 @@ class CurrencyRate{
             guard let res = response.value else {return}
             let rates = JSON(res)
             for rate in rates["data"].dictionaryObject!{
-                result.append(CurrencyRateModel(title: rate.key, price: rate.value as? Double))
+                result.append(CurrencyRateModel(title: rate.key, price: (Double(round(100 * (1/((rate.value as? Double)!)))/100) )))
             }
             completion(result, nil)
         }
