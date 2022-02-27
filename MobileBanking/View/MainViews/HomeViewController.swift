@@ -31,6 +31,7 @@ class HomeViewController: UIViewController, UITableViewDataSource {
         
         navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .systemBackground
+        
     }
     
     override func loadView() {

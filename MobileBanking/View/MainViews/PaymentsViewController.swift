@@ -7,51 +7,136 @@
 
 import UIKit
 
-class PaymentsViewController: UIViewController {
+class PaymentsViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    var labelTitle: UILabel!
-    //MARK: Delete after realization
-    var labelSoon: UILabel!
+    private var backButton: UIButton!
+    private var companiesGet: [Company?]!
+    private var gallery: UICollectionView!
+    private var companies = [String]()
+    private let refControl: UIRefreshControl! = {
+        let ref = UIRefreshControl()
+        ref.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        return ref
+    }()
+    
+    private var indecator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationController?.navigationBar.isHidden = true
-        
         view.backgroundColor = .systemBackground
         
-        labelTitle = {
-            let label = UILabel()
-            label.text = "Переводы"
-            label.textAlignment = .center
-            label.font = UIFont.font(35, .main)
-            label.textColor = .label
-            
-            view.addSubview(label)
-            label.snp.makeConstraints { maker in
-                maker.centerX.equalToSuperview()
-                maker.centerY.equalToSuperview()
-                maker.width.equalToSuperview().dividedBy(2)
-                maker.height.equalTo(50)
-            }
-            return label
+        indecator = {
+            let ind = UIActivityIndicatorView()
+            ind.style = .large
+            ind.center = view.center
+            view.addSubview(ind)
+            ind.startAnimating()
+            return ind
         }()
         
-        labelSoon = {
-            let label = UILabel()
-            label.text = "Soon..."
-            label.textAlignment = .center
-            label.font = UIFont.font(30, .contemp)
-            label.textColor = .systemOrange
-            Utils.animateSoon(label, nil, view)
-            view.addSubview(label)
-            label.snp.makeConstraints { maker in
-                maker.centerX.equalToSuperview()
-                maker.top.equalTo(labelTitle.snp.bottom).inset(10)
-                maker.width.equalToSuperview().dividedBy(2)
-                maker.height.equalTo(50)
+        backButton = {
+            let vie = UIButton()
+            vie.backgroundColor = .systemPink
+            vie.layer.cornerRadius = 15
+            vie.layer.masksToBounds = true
+            vie.setTitle("Валюта", for: .normal)
+            vie.titleLabel?.font = UIFont.font(17, .main)
+            vie.addTarget(self, action: #selector(toMarket), for: .touchUpInside)
+            vie.setTitleColor(.label, for: .normal)
+            view.addSubview(vie)
+            vie.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                make.top.equalTo(view.snp.bottom).offset(-70)
+                make.width.equalToSuperview().dividedBy(1.1)
+                make.height.equalToSuperview().dividedBy(14)
             }
-            return label
+            return vie
         }()
+        
+        CompanyInfo.getCompanies { k in
+            self.companies = k
+            CompanyInfo.getMarkets(tickers: self.companies) { com in
+                self.companiesGet = com!
+                
+                self.companiesGet!.sort { k, v in
+                    k!.title! < v!.title!
+                }
+                self.gallery.reloadData()
+                self.indecator.stopAnimating()
+            }
+            self.gallery = {
+                let layout = UICollectionViewFlowLayout()
+                layout.scrollDirection = .vertical
+                let gal = UICollectionView(frame: .zero, collectionViewLayout: layout)
+                gal.register(GalleryMarketItem.self, forCellWithReuseIdentifier: GalleryMarketItem.cell)
+                gal.dataSource = self
+                gal.delegate = self
+                gal.layer.masksToBounds = true
+                gal.layer.cornerRadius = 15
+                gal.backgroundColor = .tertiarySystemBackground
+                gal.contentInsetAdjustmentBehavior = .always
+                gal.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
+                gal.refreshControl = self.refControl
+                self.view.insertSubview(gal, belowSubview: self.indecator)
+                gal.snp.makeConstraints { make in
+                    make.centerX.equalToSuperview()
+                    make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+                    make.width.equalToSuperview().dividedBy(1.1)
+                    make.height.equalToSuperview().dividedBy(1.22)
+                }
+                return gal
+            }()
+        }
+    }
+    
+    @objc func toMarket(){
+        navigationController?.pushViewController(MarketViewController(), animated: true)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        companies.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GalleryMarketItem.cell, for: indexPath) as! GalleryMarketItem
+        if let com = companiesGet{
+            if com.count == companies.count{
+                cell.img.image =  com[indexPath.row]?.img ?? UIImage()
+                cell.img.contentMode = .scaleAspectFit
+                cell.title.text = com[indexPath.row]?.title ?? ""
+                cell.tocker.text = com[indexPath.row]?.ticker ?? ""
+                cell.price.text = "\(com[indexPath.row]?.price ?? 0.0)"
+                if((com[indexPath.row]?.priceChange)! > 0.0){
+                    cell.priceChange.textColor = .systemGreen
+                }
+                else if ((com[indexPath.row]?.priceChange)! < 0.0){
+                    cell.priceChange.textColor = .systemRed
+                }
+                cell.priceChange.text = "\(com[indexPath.row]?.priceChange ?? 0.0)"
+            }
+        }
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width/1.2, height: collectionView.frame.height/4)
+    }
+    
+    @objc private func refresh(_ sender: UIRefreshControl){
+        CompanyInfo.getCompanies { k in
+            self.companies = k
+            CompanyInfo.getMarkets(tickers: self.companies) { com in
+                self.companiesGet = com!
+                
+                self.companiesGet.sort { k, v in
+                    k!.title! < v!.title!
+                }
+                self.gallery.reloadData()
+                sender.endRefreshing()
+            }
+            
+        }
     }
 }
