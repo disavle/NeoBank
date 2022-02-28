@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class MarketViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -22,6 +23,8 @@ class MarketViewController: UIViewController,UICollectionViewDelegate, UICollect
         ref.addTarget(self, action: #selector(refresh), for: .valueChanged)
         return ref
     }()
+    private var indecator: UIActivityIndicatorView!
+    private var alert: UIAlertController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +32,15 @@ class MarketViewController: UIViewController,UICollectionViewDelegate, UICollect
         navigationController?.navigationBar.isHidden = true
         
         view.backgroundColor = .systemBackground
+        
+        indecator = {
+            let ind = UIActivityIndicatorView()
+            ind.style = .large
+            ind.center = view.center
+            view.addSubview(ind)
+            ind.startAnimating()
+            return ind
+        }()
         
         currencyView = {
             let vie = UIView()
@@ -137,6 +149,11 @@ class MarketViewController: UIViewController,UICollectionViewDelegate, UICollect
         
         CurrencyRate.getCurrencyList { currencies, er in
             
+            guard er == nil else {
+                self.alertAction(er!)
+                return
+            }
+            
             self.currency = currencies!
             
             self.currency.sort(by: { key1, key2 in
@@ -174,6 +191,7 @@ class MarketViewController: UIViewController,UICollectionViewDelegate, UICollect
                     self.EURLabelPrice.text = "\(i.price!)₽"
                 }
             }
+            self.indecator.stopAnimating()
         }
     }
     
@@ -199,6 +217,10 @@ class MarketViewController: UIViewController,UICollectionViewDelegate, UICollect
     
     @objc private func refresh(_ sender: UIRefreshControl){
         CurrencyRate.getCurrencyList { currencies, er in
+            guard er == nil else {
+                self.alertAction(er!)
+                return
+            }
             self.currency = currencies!
             self.currency.sort(by: { key1, key2 in
                 key1.title < key2.title
@@ -208,11 +230,11 @@ class MarketViewController: UIViewController,UICollectionViewDelegate, UICollect
             for i in currencies!{
                 if (i.title == "USD"){
                     self.USDLabel.text = i.title
-                    self.USDLabelPrice.text = "\(i.price!)"
+                    self.USDLabelPrice.text = "\(i.price!)₽"
                 }
                 if (i.title == "EUR"){
                     self.EURLabel.text = i.title
-                    self.EURLabelPrice.text = "\(i.price!)"
+                    self.EURLabelPrice.text = "\(i.price!)₽"
                 }
             }
             sender.endRefreshing()
@@ -221,6 +243,15 @@ class MarketViewController: UIViewController,UICollectionViewDelegate, UICollect
     
     @objc func back(){
         navigationController?.popViewController(animated: true)
+    }
+    
+    func alertAction(_ er: AFError){
+        alert = UIAlertController(title: er.responseCode?.description, message: er.errorDescription!, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "cancel", style: .destructive, handler: { k in
+            self.back()
+        }))
+        indecator.stopAnimating()
+        present(self.alert, animated: true)
     }
 }
 

@@ -60,7 +60,7 @@ class PaymentView: UITableView, UITableViewDelegate, UITableViewDataSource{
         return cell
     }
     
-    func get(){
+    func get( _ completion: @escaping (Bool)->()){
         let userId = Auth.auth().currentUser?.uid
         let db = Firestore.firestore()
         db.collection("card").whereField("userId", isEqualTo: userId!).getDocuments  { snapshot, err in
@@ -71,6 +71,7 @@ class PaymentView: UITableView, UITableViewDelegate, UITableViewDataSource{
                         let docData1 = snapshot1!.documents
                         self.payments = docData1
                         self.count = docData1.count
+                        completion(true)
                     }
                 }
             }

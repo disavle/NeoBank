@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class PaymentsViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -18,7 +19,7 @@ class PaymentsViewController: UIViewController,UICollectionViewDelegate, UIColle
         ref.addTarget(self, action: #selector(refresh), for: .valueChanged)
         return ref
     }()
-    
+    private var alert: UIAlertController!
     private var indecator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
@@ -57,7 +58,13 @@ class PaymentsViewController: UIViewController,UICollectionViewDelegate, UIColle
         
         CompanyInfo.getCompanies { k in
             self.companies = k
-            CompanyInfo.getMarkets(tickers: self.companies) { com in
+            CompanyInfo.getMarkets(tickers: self.companies) { com,er  in
+                
+                guard er == nil else {
+                    self.alertAction(er!)
+                    return
+                }
+                
                 self.companiesGet = com!
                 
                 self.companiesGet!.sort { k, v in
@@ -77,7 +84,7 @@ class PaymentsViewController: UIViewController,UICollectionViewDelegate, UIColle
                 gal.layer.cornerRadius = 15
                 gal.backgroundColor = .tertiarySystemBackground
                 gal.contentInsetAdjustmentBehavior = .always
-                gal.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
+                gal.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
                 gal.refreshControl = self.refControl
                 self.view.insertSubview(gal, belowSubview: self.indecator)
                 gal.snp.makeConstraints { make in
@@ -121,22 +128,41 @@ class PaymentsViewController: UIViewController,UICollectionViewDelegate, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width/1.2, height: collectionView.frame.height/4)
+        return CGSize(width: collectionView.frame.width/1.13, height: collectionView.frame.height/4)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let com = companiesGet{
+            let vc = CompanyViewController()
+            vc.setup(ticker: com[indexPath.row]?.ticker ?? "")
+            let nav = UINavigationController(rootViewController: vc)
+            present(nav, animated: true, completion: nil)
+        }
     }
     
     @objc private func refresh(_ sender: UIRefreshControl){
         CompanyInfo.getCompanies { k in
             self.companies = k
-            CompanyInfo.getMarkets(tickers: self.companies) { com in
+            CompanyInfo.getMarkets(tickers: self.companies) { com,er  in
+                guard er == nil else {
+                    self.alertAction(er!)
+                    return
+                }
                 self.companiesGet = com!
                 
                 self.companiesGet.sort { k, v in
                     k!.title! < v!.title!
                 }
-                self.gallery.reloadData()
-                sender.endRefreshing()
             }
-            
+            self.gallery.reloadData()
+            sender.endRefreshing()
         }
+    }
+    
+    func alertAction(_ er: AFError){
+        alert = UIAlertController(title: er.responseCode?.description, message: er.errorDescription!, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "cancel", style: .destructive, handler: nil))
+        indecator.stopAnimating()
+        present(self.alert, animated: true)
     }
 }

@@ -13,8 +13,10 @@ class SumView{
     var sum: UIView!
     var labelSum: UILabel!
     private var sumBefore = ""
+    private var indecator: UIActivityIndicatorView!
     
     init(view: UIView, extraView: UIView?){
+        
         sum = {
             let sum = UIView()
             sum.backgroundColor = .secondarySystemBackground
@@ -49,6 +51,17 @@ class SumView{
             }
             return label
         }()
+        
+        indecator = {
+            let ind = UIActivityIndicatorView()
+            ind.style = .large
+            ind.color = .systemPink
+            sum.addSubview(ind)
+            ind.snp.makeConstraints { make in
+                make.center.equalToSuperview()
+            }
+            return ind
+        }()
     }
     
     func getSum(){
@@ -70,6 +83,7 @@ class SumView{
     
     //MARK: Add payment Fix for demonstration
     @objc func addPay(sender: UITapGestureRecognizer) {
+        indecator.startAnimating()
         let userId = Auth.auth().currentUser?.uid
         let db = Firestore.firestore()
         let paymentId = UUID().uuidString
@@ -83,8 +97,12 @@ class SumView{
                         print("Error auth")
                     } else {
                         self.changeSum(change: changedSum)
-                        HomeViewController.shared.pay.get()
-                        TapticManager.shared.vibrateFeedback(for: .success)
+                        HomeViewController.shared.pay.get { k in
+                            if k{
+                                TapticManager.shared.vibrateFeedback(for: .success)
+                                self.indecator.stopAnimating()
+                            }
+                        }
                     }
                 }
             }
