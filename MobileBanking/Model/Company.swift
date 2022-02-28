@@ -48,20 +48,28 @@ class CompanyInfo{
         }
     }
     
-    static func getMarkets(tickers: [String], _ completion: @escaping ([Company]?)->()){
+    static func getMarkets(tickers: [String], _ completion: @escaping ([Company]?, AFError?)->()){
         var coms = [Company]()
         for i in tickers{
             getInfo(ticker: i) { title, ticker, price, priceChange, er in
+                guard er == nil else {
+                    completion(nil, er)
+                    return
+                }
                 getImg(ticker: i) { img, errr in
+                    guard errr == nil else {
+                        completion(nil, errr)
+                        return
+                    }
                     coms.append(Company(img: img, title: title, ticker: ticker, price: price, priceChange: priceChange))
-                    completion(coms)
+                    completion(coms, nil)
                 }
             }
         }
         
     }
     
-    static func getCompanies( _ completion: @escaping ([String])->()){
+    static func getCompanies( _ completion: @escaping ([String]) ->()){
         let db = Firestore.firestore()
         db.collection("companies").document("ebutyWDPRJl5CIzPgR8N").getDocument { result, err in
             guard let ar = result?.data() else{return completion([""])}

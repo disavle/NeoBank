@@ -23,6 +23,7 @@ class HomeViewController: UIViewController, UITableViewDataSource {
     var card: Card!
     var sum: SumView!
     var pay: PaymentView!
+    var indecator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,11 +69,24 @@ class HomeViewController: UIViewController, UITableViewDataSource {
         tableView.tableHeaderView = UIView()
         tableView.dataSource = self
         
-        DispatchQueue.main.async {
-            self.card.getBack(self)
-            self.card.getFront()
-            self.sum.getSum()
-            self.pay.get()
+        indecator = {
+            let ind = UIActivityIndicatorView()
+            ind.style = .large
+            view.addSubview(ind)
+            ind.snp.makeConstraints { make in
+                make.center.equalToSuperview()
+            }
+            ind.startAnimating()
+            return ind
+        }()
+        
+        card.getBack(self)
+        card.getFront()
+        sum.getSum()
+        pay.get {k in
+            if k{
+                self.indecator.stopAnimating()
+            }
         }
     }
     
@@ -93,7 +107,11 @@ class HomeViewController: UIViewController, UITableViewDataSource {
         card.getBack(nil)
         card.getFront()
         sum.getSum()
-        pay.get()
-        sender.endRefreshing()
+        pay.get {k in
+            if k{
+                sender.endRefreshing()
+            }
+        }
+        
     }
 }
