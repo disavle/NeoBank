@@ -18,6 +18,19 @@ struct Company {
     var priceChange: Float?
 }
 
+struct CompanyBio {
+    var image: UIImage?
+    var name: String?
+    var tags: [String]?
+    var website: String?
+    var describ: String?
+    var CEO: String?
+    var employees: Int?
+    var country: String?
+    var city: String?
+    var address: String?
+}
+
 private let tokenCompany = "pk_99ae19bce0234d0b9c11e9c3208e2270"
 private let queryCompany = ["token":tokenCompany]
 
@@ -74,6 +87,26 @@ class CompanyInfo{
         db.collection("companies").document("ebutyWDPRJl5CIzPgR8N").getDocument { result, err in
             guard let ar = result?.data() else{return completion([""])}
             completion(Array(ar.values) as! [String])
+        }
+    }
+    
+    static func getCompanyBio(ticker: String, _ completion: @escaping (CompanyBio?,AFError?) ->()){
+        let url = "https://cloud.iexapis.com/stable/stock/\(ticker)/company"
+        AF.request(url, method: .get, parameters: queryCompany).validate().responseData { response in
+            if let error = response.error {
+                debugPrint(error)
+                completion(nil, error)
+            }
+            guard let res = response.value else {return}
+            let company = JSON(res)
+            getImg(ticker: ticker) { img, errr in
+                guard errr == nil  else {
+                    completion(nil, errr)
+                    return
+                }
+                completion(CompanyBio(image: img, name: company["companyName"].string, tags: (company["tags"].arrayObject as! [String]), website: company["website"].string, describ: company["description"].string, CEO: company["CEO"].string, employees: company["employees"].int, country: company["country"].string, city: company["city"].string, address: company["address"].string),nil)
+            }
+            
         }
     }
     

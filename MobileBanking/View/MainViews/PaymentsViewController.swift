@@ -131,6 +131,15 @@ class PaymentsViewController: UIViewController,UICollectionViewDelegate, UIColle
         return CGSize(width: collectionView.frame.width/1.13, height: collectionView.frame.height/4)
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let com = companiesGet{
+            let vc = CompanyViewController()
+            vc.setup(ticker: com[indexPath.row]?.ticker ?? "")
+            let nav = UINavigationController(rootViewController: vc)
+            present(nav, animated: true, completion: nil)
+        }
+    }
+    
     @objc private func refresh(_ sender: UIRefreshControl){
         CompanyInfo.getCompanies { k in
             self.companies = k
