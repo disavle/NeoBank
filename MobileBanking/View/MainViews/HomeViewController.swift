@@ -24,6 +24,7 @@ class HomeViewController: UIViewController, UITableViewDataSource {
     var sum: SumView!
     var pay: PaymentView!
     var indecator: UIActivityIndicatorView!
+    private var filter: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,6 +89,27 @@ class HomeViewController: UIViewController, UITableViewDataSource {
                 self.indecator.stopAnimating()
             }
         }
+        
+        filter = {
+            let lab = UIButton()
+            lab.setTitle("Анализ", for: .normal)
+            lab.addTarget(self, action: #selector(goToFilter), for: .touchUpInside)
+            lab.setTitleColor(.systemPink, for: .normal)
+            lab.titleLabel?.font = UIFont.font(17, UIFont.FontType.main)
+            lab.tintColor = .systemPink
+            lab.sizeToFit()
+            lab.backgroundColor = .tertiarySystemBackground
+            lab.layer.cornerRadius = 15
+            lab.layer.masksToBounds = true
+            pay.addSubview(lab)
+            pay.contentInset = UIEdgeInsets(top: 25, left: 0, bottom: 0, right: 0)
+            lab.snp.makeConstraints { snap in
+                snap.top.equalToSuperview().offset(-20)
+                snap.centerX.equalToSuperview()
+                snap.width.equalToSuperview().dividedBy(1.2)
+            }
+            return lab
+        }()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -113,5 +135,11 @@ class HomeViewController: UIViewController, UITableViewDataSource {
             }
         }
         
+    }
+    
+    @objc func goToFilter(){
+        let vc = FilterViewController()
+        let nav = UINavigationController(rootViewController: vc)
+        present(nav, animated: true, completion: nil)
     }
 }

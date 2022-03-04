@@ -46,6 +46,8 @@
 		0CB0000F27CBAE5000FF611B /* GalleryMarketItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB0000E27CBAE5000FF611B /* GalleryMarketItem.swift */; };
 		0CB8895227458EC500C3D319 /* LogIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB8895127458EC500C3D319 /* LogIn.swift */; };
 		0CC439B726C514D0009E0B80 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC439B626C514D0009E0B80 /* HomeViewController.swift */; };
+		0CCD617D27D27A340047C9E8 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CCD617C27D27A340047C9E8 /* FilterViewController.swift */; };
+		0CCD617F27D287BC0047C9E8 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CCD617E27D287BC0047C9E8 /* Filter.swift */; };
 		0CE5F8DE27462593002DCBF5 /* MusticaproSemibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0CE5F8DD27462593002DCBF5 /* MusticaproSemibold.otf */; };
 		0CFC699126B1A33500D02C76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CFC699026B1A33500D02C76 /* AppDelegate.swift */; };
 		0CFC699526B1A33500D02C76 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CFC699426B1A33500D02C76 /* ViewController.swift */; };
@@ -130,6 +132,8 @@
 		0CB0000E27CBAE5000FF611B /* GalleryMarketItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryMarketItem.swift; sourceTree = "<group>"; };
 		0CB8895127458EC500C3D319 /* LogIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogIn.swift; sourceTree = "<group>"; };
 		0CC439B626C514D0009E0B80 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		0CCD617C27D27A340047C9E8 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		0CCD617E27D287BC0047C9E8 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		0CE5F8DD27462593002DCBF5 /* MusticaproSemibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MusticaproSemibold.otf; sourceTree = "<group>"; };
 		0CFC698D26B1A33500D02C76 /* MobileBanking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileBanking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CFC699026B1A33500D02C76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -205,6 +209,7 @@
 				0C37D564274957A400F396C2 /* Currency.swift */,
 				0C1AFCE827CAB72B00BA3451 /* CurrencyRate.swift */,
 				0CB0000A27CB7F9200FF611B /* Company.swift */,
+				0CCD617E27D287BC0047C9E8 /* Filter.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -250,6 +255,7 @@
 				0CB0000C27CBA08900FF611B /* MarketViewController.swift */,
 				0CB0000E27CBAE5000FF611B /* GalleryMarketItem.swift */,
 				0CAF505027CCD8DA0057B227 /* CompanyViewController.swift */,
+				0CCD617C27D27A340047C9E8 /* FilterViewController.swift */,
 			);
 			path = SupportViews;
 			sourceTree = "<group>";
@@ -650,6 +656,7 @@
 				0CAF505127CCD8DA0057B227 /* CompanyViewController.swift in Sources */,
 				0C1AFCED27CAC44100BA3451 /* GallaryItem.swift in Sources */,
 				0CB0000F27CBAE5000FF611B /* GalleryMarketItem.swift in Sources */,
+				0CCD617F27D287BC0047C9E8 /* Filter.swift in Sources */,
 				0CFC699B26B1A33500D02C76 /* MobileBanking.xcdatamodeld in Sources */,
 				0C2EDF4C26C63FA10085B8D0 /* TapticManager.swift in Sources */,
 				0CFC699526B1A33500D02C76 /* ViewController.swift in Sources */,
@@ -660,6 +667,7 @@
 				0C7268DC26C6EAB500443204 /* ProgressableAnimationView.swift in Sources */,
 				0C1570E4271C474300A2BA77 /* SignInViewController.swift in Sources */,
 				0C6BD80F26C9766900F711E7 /* ButtonContainer.swift in Sources */,
+				0CCD617D27D27A340047C9E8 /* FilterViewController.swift in Sources */,
 				0C37D56727497D7800F396C2 /* Sum.swift in Sources */,
 				0C2EDF5026C64E0B0085B8D0 /* SettingsTableViewCell.swift in Sources */,
 				0C9383C726C58E02008955E5 /* ChatViewController.swift in Sources */,
