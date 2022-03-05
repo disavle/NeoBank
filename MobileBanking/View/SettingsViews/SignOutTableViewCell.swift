@@ -14,7 +14,7 @@ class SignOutTableViewCell: UITableViewCell {
     let signOut: UIButton = {
         let button = UIButton()
         button.titleLabel?.font = UIFont.font(17, .main)
-        button.setTitleColor(.systemRed, for: .normal)
+        button.contentVerticalAlignment = .center
         return button
     }()
 
@@ -24,8 +24,8 @@ class SignOutTableViewCell: UITableViewCell {
         signOut.snp.makeConstraints(){maker in
             maker.centerY.equalToSuperview()
             maker.centerX.equalToSuperview()
-            maker.width.equalTo(100)
-            maker.height.equalTo(100)
+            maker.width.equalToSuperview()
+            maker.height.equalToSuperview()
         }
     }
     

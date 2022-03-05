@@ -46,7 +46,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -58,11 +58,24 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             cell.toggle.addTarget(self, action: #selector(mode), for: .primaryActionTriggered)
             return cell
         }
+        if indexPath.row == 2 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: SignOutTableViewCell.id, for: indexPath) as! SignOutTableViewCell
+            cell.signOut.setTitle("Выйти", for: .normal)
+            cell.signOut.tag = indexPath.row
+            cell.selectionStyle = .none
+            cell.signOut.setTitleColor(.systemRed, for: .normal)
+            cell.signOut.addTarget(self, action: #selector(SignOut), for: .touchUpInside)
+            return cell
+        }
         let cell = tableView.dequeueReusableCell(withIdentifier: SignOutTableViewCell.id, for: indexPath) as! SignOutTableViewCell
-        cell.signOut.setTitle("Выйти", for: .normal)
+        cell.signOut.setTitle("Изменить иконку приложения", for: .normal)
         cell.signOut.tag = indexPath.row
         cell.selectionStyle = .none
-        cell.signOut.addTarget(self, action: #selector(SignOut), for: .touchUpInside)
+        cell.signOut.contentEdgeInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
+        cell.signOut.contentHorizontalAlignment = .left
+        cell.signOut.titleLabel?.font = UIFont.font(15, .main)
+        cell.signOut.setTitleColor(.label, for: .normal)
+        cell.signOut.addTarget(self, action: #selector(changeIcon), for: .touchUpInside)
         return cell
     }
     
@@ -92,5 +105,27 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         }   catch{
             print(error)
         }
+    }
+    
+    @objc func changeIcon(_ sender: UIButton){
+        sender.isSelected = !sender.isSelected
+        if sender.isSelected{
+            UIApplication.shared.setAlternateIconName("NeoBankWhite") { error in
+                guard error == nil else {
+                    print("wrong")
+                    return
+                }
+                print("ok")
+            }
+        } else {
+            UIApplication.shared.setAlternateIconName(nil) { error in
+                guard error == nil else {
+                    print("wrong")
+                    return
+                }
+                print("ok")
+            }
+        }
+        
     }
 }
