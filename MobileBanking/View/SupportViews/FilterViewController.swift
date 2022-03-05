@@ -8,13 +8,15 @@
 import UIKit
 import Firebase
 
-class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
     
     private var tableView: UITableView!
     private var count = 0
     private var pays = [QueryDocumentSnapshot]()
-    private var filtersView: UIView!
+    private var filtersView: UIStackView!
+    private var scrollView: UIScrollView!
     private var indecator: UIActivityIndicatorView!
+    private var filtersArray = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,15 +38,33 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         Filter.getCategories(filt: nil) { set,ar  in
             
-            self.filtersView = {
-                let v = UIView()
+            self.scrollView = {
+                let v = UIScrollView()
+                v.delegate = self
                 v.sizeToFit()
+                v.showsHorizontalScrollIndicator = false
+                v.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
                 self.view.addSubview(v)
                 v.snp.makeConstraints { make in
                     make.centerX.equalToSuperview()
                     make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
                     make.width.equalToSuperview()
-//                    make.height.equalTo(200)
+                    make.height.equalToSuperview().dividedBy(10)
+                }
+                return v
+            }()
+            
+            self.filtersView = {
+                let v = UIStackView()
+                v.sizeToFit()
+                v.alignment = .center
+                v.spacing = 10
+                v.axis = .horizontal
+                v.distribution = .fill
+                self.scrollView.addSubview(v)
+                v.snp.makeConstraints { make in
+                    make.edges.equalTo(self.scrollView)
+                    make.height.equalToSuperview()
                 }
                 return v
             }()
@@ -71,47 +91,30 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.count = ar.count
             self.pays = ar
             
-//            for button in set{
-                let but: UIButton = {
+            let setSorted = set.sorted()
+            
+            for button in setSorted{
+                let _: UIButton = {
                     let lab = UIButton()
-                    lab.setTitle(set[0], for: .normal)
+                    lab.setTitle(button, for: .normal)
                     lab.addTarget(self, action: #selector(self.filter), for: .touchUpInside)
                     lab.setTitleColor(.systemPink, for: .normal)
                     lab.titleLabel?.font = UIFont.font(15, UIFont.FontType.main)
                     lab.tintColor = .label
-                    lab.layer.cornerRadius = 15
+                    lab.layer.cornerRadius = 5
                     lab.layer.masksToBounds = true
+                    lab.contentHorizontalAlignment = .center
+                    lab.contentVerticalAlignment = .center
                     lab.backgroundColor = .quaternaryLabel
-                    self.filtersView.addSubview(lab)
+                    lab.sizeToFit()
+                    lab.contentEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+                    self.filtersView.addArrangedSubview(lab)
                     lab.snp.makeConstraints { snap in
-                        snap.center.equalToSuperview()
-                        snap.width.equalToSuperview().dividedBy(3)
-                        snap.height.equalToSuperview().dividedBy(5)
+                        snap.height.equalToSuperview().dividedBy(2.7)
                     }
                     return lab
                 }()
-            
-            let but2: UIButton = {
-                let lab = UIButton()
-                lab.setTitle(set[1], for: .normal)
-                lab.addTarget(self, action: #selector(self.filter), for: .touchUpInside)
-                lab.setTitleColor(.systemPink, for: .normal)
-                lab.titleLabel?.font = UIFont.font(15, UIFont.FontType.main)
-                lab.tintColor = .label
-                lab.layer.cornerRadius = 15
-                lab.layer.masksToBounds = true
-                lab.backgroundColor = .quaternaryLabel
-                self.filtersView.addSubview(lab)
-                lab.snp.makeConstraints { snap in
-                    snap.center.equalTo(but.snp.center).offset(50)
-                    snap.width.equalToSuperview().dividedBy(3)
-                    snap.height.equalToSuperview().dividedBy(5)
-                }
-                return lab
-            }()
-                
-                
-//            }
+            }
             self.indecator.stopAnimating()
         }
     }
@@ -143,25 +146,34 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     @objc func filter(_ sender: UIButton){
+        indecator.startAnimating()
         sender.isSelected = !sender.isSelected
+        if sender.isSelected{
+            filtersArray.append(sender.titleLabel!.text!)
+        } else {
+            filtersArray = filtersArray.filter({ i in
+                i != sender.titleLabel!.text!
+            })
+        }
         if !sender.isSelected{
-            indecator.startAnimating()
+            sender.backgroundColor = .quaternaryLabel
+        } else {
+            sender.backgroundColor = .secondaryLabel
+        }
+        if filtersArray == []{
             Filter.getCategories(filt: nil) { set,ar  in
                 self.count = ar.count
                 self.pays = ar
                 self.indecator.stopAnimating()
                 self.tableView.reloadData()
             }
-            sender.backgroundColor = .quaternaryLabel
         } else {
-            indecator.startAnimating()
-            Filter.getCategories(filt: sender.title(for: .normal)) { set,ar  in
+            Filter.getCategories(filt: filtersArray) { set,ar  in
                 self.count = ar.count
                 self.pays = ar
                 self.indecator.stopAnimating()
                 self.tableView.reloadData()
             }
-            sender.backgroundColor = .secondaryLabel
         }
     }
 }

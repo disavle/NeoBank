@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 
 class Filter{
-    static func getCategories(filt: String? ,_ completion: @escaping ([String],[QueryDocumentSnapshot])->()){
+    static func getCategories(filt: [String]? ,_ completion: @escaping ([String],[QueryDocumentSnapshot])->()){
         let userId = Auth.auth().currentUser?.uid
         let db = Firestore.firestore()
         db.collection("card").whereField("userId", isEqualTo: userId!).getDocuments  { snapshot, err in
@@ -23,10 +23,19 @@ class Filter{
                         }
                         let ar = Array(Set(set as! [String]))
                         if filt != nil{
-                            let res = docData1.filter { i in
-                                (i.data()["name"] as! String) == filt
+                            var result = [QueryDocumentSnapshot]()
+                            for i in docData1{
+                                for j in filt!{
+                                    if (i.data()["name"] as! String) == j{
+                                        result.append(i)
+                                    }
+                                }
                             }
-                            completion(ar,res)
+                            completion(ar,result)
+//                            let res = docData1.filter { i in
+//                                (i.data()["name"] as! String) == filt || (i.data()["name"] as! String) == "Бензин"
+//                            }
+//                            completion(ar,res)
                         } else {
                             completion(ar,docData1)
                         }
