@@ -17,6 +17,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     private var scrollView: UIScrollView!
     private var indecator: UIActivityIndicatorView!
     private var filtersArray = [String]()
+    private var sum: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +25,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         view.backgroundColor = .tertiarySystemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
         title = "Анализ"
+        navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor:  UIColor.label, .font: UIFont.font(35, .main)]
         
         indecator = {
             let ind = UIActivityIndicatorView()
@@ -36,7 +38,26 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return ind
         }()
         
-        Filter.getCategories(filt: nil) { set,ar  in
+        Filter.getCategories(filt: nil) { set,ar,s   in
+            
+            self.sum = {
+                let lab = UILabel()
+                lab.textAlignment = .center
+                lab.backgroundColor = .quaternaryLabel
+                lab.layer.cornerRadius = 15
+                lab.layer.masksToBounds = true
+                lab.font = UIFont.font(22, UIFont.FontType.contemp)
+                lab.tintColor = .label
+                lab.text = "\(Utils.payForm(str: s.description))$"
+                self.view.addSubview(lab)
+                lab.snp.makeConstraints { make in
+                    make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(10)
+                    make.width.equalToSuperview().dividedBy(1.2)
+                    make.height.equalToSuperview().dividedBy(14)
+                    make.centerX.equalToSuperview()
+                }
+                return lab
+            }()
             
             self.scrollView = {
                 let v = UIScrollView()
@@ -47,9 +68,9 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 self.view.addSubview(v)
                 v.snp.makeConstraints { make in
                     make.centerX.equalToSuperview()
-                    make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+                    make.top.equalTo(self.sum.snp.bottom)
                     make.width.equalToSuperview()
-                    make.height.equalToSuperview().dividedBy(10)
+                    make.height.equalToSuperview().dividedBy(16)
                 }
                 return v
             }()
@@ -81,7 +102,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 self.view.insertSubview(tab, belowSubview: self.indecator)
                 tab.snp.makeConstraints { make in
                     make.centerX.equalToSuperview()
-                    make.top.equalTo(self.filtersView.snp.bottom)
+                    make.top.equalTo(self.scrollView.snp.bottom)
                     make.width.equalToSuperview()
                     make.bottom.equalToSuperview()
                 }
@@ -100,7 +121,6 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     lab.addTarget(self, action: #selector(self.filter), for: .touchUpInside)
                     lab.setTitleColor(.systemPink, for: .normal)
                     lab.titleLabel?.font = UIFont.font(15, UIFont.FontType.main)
-                    lab.tintColor = .label
                     lab.layer.cornerRadius = 5
                     lab.layer.masksToBounds = true
                     lab.contentHorizontalAlignment = .center
@@ -161,14 +181,16 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             sender.backgroundColor = .secondaryLabel
         }
         if filtersArray == []{
-            Filter.getCategories(filt: nil) { set,ar  in
+            Filter.getCategories(filt: nil) { set,ar,s   in
+                self.sum.text = "\(Utils.payForm(str: s.description))$"
                 self.count = ar.count
                 self.pays = ar
                 self.indecator.stopAnimating()
                 self.tableView.reloadData()
             }
         } else {
-            Filter.getCategories(filt: filtersArray) { set,ar  in
+            Filter.getCategories(filt: filtersArray) { set,ar,s   in
+                self.sum.text = "\(Utils.payForm(str: s.description))$"
                 self.count = ar.count
                 self.pays = ar
                 self.indecator.stopAnimating()
