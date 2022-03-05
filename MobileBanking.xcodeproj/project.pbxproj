@@ -14,6 +14,7 @@
 		0C1AFCE927CAB72B00BA3451 /* CurrencyRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1AFCE827CAB72B00BA3451 /* CurrencyRate.swift */; };
 		0C1AFCED27CAC44100BA3451 /* GallaryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1AFCEB27CAC44100BA3451 /* GallaryItem.swift */; };
 		0C25D99F27443FC100A452A0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C25D99E27443FC100A452A0 /* Extensions.swift */; };
+		0C287BE027D4053D00D82996 /* NeoBankWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C287BDF27D4053D00D82996 /* NeoBankWhite.png */; };
 		0C2EDF4C26C63FA10085B8D0 /* TapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2EDF4B26C63FA10085B8D0 /* TapticManager.swift */; };
 		0C2EDF4E26C641500085B8D0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2EDF4D26C641500085B8D0 /* SettingsViewController.swift */; };
 		0C2EDF5026C64E0B0085B8D0 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2EDF4F26C64E0B0085B8D0 /* SettingsTableViewCell.swift */; };
@@ -100,6 +101,7 @@
 		0C1AFCE827CAB72B00BA3451 /* CurrencyRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRate.swift; sourceTree = "<group>"; };
 		0C1AFCEB27CAC44100BA3451 /* GallaryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GallaryItem.swift; sourceTree = "<group>"; };
 		0C25D99E27443FC100A452A0 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		0C287BDF27D4053D00D82996 /* NeoBankWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NeoBankWhite.png; sourceTree = "<group>"; };
 		0C2EDF4B26C63FA10085B8D0 /* TapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapticManager.swift; sourceTree = "<group>"; };
 		0C2EDF4D26C641500085B8D0 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		0C2EDF4F26C64E0B0085B8D0 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
@@ -352,6 +354,7 @@
 				0CFC69C626B1ADB200D02C76 /* Kepler-296.otf */,
 				0CFC699C26B1A33600D02C76 /* Assets.xcassets */,
 				0CFC699E26B1A33600D02C76 /* LaunchScreen.storyboard */,
+				0C287BDF27D4053D00D82996 /* NeoBankWhite.png */,
 				0CFC69A126B1A33600D02C76 /* Info.plist */,
 				0CAE02CB271B4640009E4CF1 /* GoogleService-Info.plist */,
 			);
@@ -521,6 +524,7 @@
 				0CFC69C726B1ADB200D02C76 /* Kepler-296.otf in Resources */,
 				0CE5F8DE27462593002DCBF5 /* MusticaproSemibold.otf in Resources */,
 				0CFC699D26B1A33600D02C76 /* Assets.xcassets in Resources */,
+				0C287BE027D4053D00D82996 /* NeoBankWhite.png in Resources */,
 				0C83F7E027469499006D31FF /* StretchPro.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
