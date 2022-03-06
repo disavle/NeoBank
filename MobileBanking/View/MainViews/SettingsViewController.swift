@@ -108,7 +108,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @objc func changeIcon(_ sender: UIButton){
+        sender.isSelected = UserDefaults.standard.bool(forKey: "icon")
         sender.isSelected = !sender.isSelected
+        UserDefaults.standard.setValue(sender.isSelected, forKey: "icon")
         if sender.isSelected{
             UIApplication.shared.setAlternateIconName("NeoBankWhite") { error in
                 guard error == nil else {
