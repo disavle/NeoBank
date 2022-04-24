@@ -13,11 +13,13 @@ class ViewController: UIViewController {
     var label: UILabel!
     let authed: Void = {
         let sign = UserDefaults.standard.value(forKey: "verify") as? Bool ?? false
+        print(sign)
         if sign == false{
             Auth.auth().addStateDidChangeListener { auth, user in
-                if (user != nil){
+                if (user == nil){
                     do{
                         try Auth.auth().signOut()
+                        print("Signed out")
                     }   catch{
                         print(error)
                     }

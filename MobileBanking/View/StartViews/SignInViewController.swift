@@ -199,6 +199,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                     }
                 }
             } else {
+                //MARK: Check once launch the app
+                UserDefaults.standard.set(true, forKey: "verify")
                 self.error.alpha = 0
                 LogIn().Home(self.view)
             }
