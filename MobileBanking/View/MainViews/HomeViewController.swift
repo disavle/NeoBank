@@ -28,16 +28,15 @@ class HomeViewController: UIViewController, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //MARK: Check once launch the app
-        UserDefaults.standard.set(true, forKey: "verify")
+        
+//        Auth.auth().addStateDidChangeListener { auth, user in
+//            if auth != nil{
+//                print("jopa")
+//            }
+//        }
         
         navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .systemBackground
-        
-    }
-    
-    override func loadView() {
-        super.loadView()
         
         tableView = {
             let tableView = UITableView()
@@ -110,6 +109,7 @@ class HomeViewController: UIViewController, UITableViewDataSource {
             }
             return lab
         }()
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

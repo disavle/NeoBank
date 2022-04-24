@@ -216,7 +216,7 @@ class PasswordViewController: UIViewController {
     func verify(){
         let context = LAContext()
         var error: NSError? = nil
-        let reason = "Please authorize with touchID"
+        let reason = "Please authorize with faceID"
         if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error){
             context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { [weak self] success, error in
                 DispatchQueue.main.async {
