@@ -19,6 +19,7 @@ class Card{
     var form: UIView!
     var ac: UIAlertController!
     var view: UIView!
+    var flag: Bool!
     
     init(_ view: UIView){
         self.view = view
@@ -138,14 +139,20 @@ class Card{
         }
     }
     
-    func getBack(_ viewController: UIViewController?){
+    func getBack(_ viewController: UIViewController?, _ flag: Bool){
+        self.flag = flag
         let userId = Auth.auth().currentUser?.uid
         let db = Firestore.firestore()
         db.collection("card").whereField("userId", isEqualTo: userId!).getDocuments  { snapshot, err in
             if err == nil && snapshot != nil{
                 let docData = snapshot!.documents[0]
                 let changeCardNum = docData["cardNum"].map(String.init(describing:))!
-                self.labelCardNum.text = "xxxx xxxx xxxx "+changeCardNum.dropFirst(12)
+                if flag{
+                    self.labelCardNum.text = "xxxx xxxx xxxx "+changeCardNum.dropFirst(12)
+                }
+                else {
+                    self.labelCardNum.text = changeCardNum.separate()
+                }
                 self.labelPIN.text = docData["PIN"].map(String.init(describing:))!
                 self.labelCVV.text = "CVV: \(docData["CVV"].map(String.init(describing:))!)"
                 self.labelDate.text = self.dateForm(str: docData["expiredDate"].map(String.init(describing:))!)
@@ -161,7 +168,7 @@ class Card{
     
     @objc func animationCard(sender: UITapGestureRecognizer) {
         guard let a = sender.view else { return }
-        DispatchQueue.main.asyncAfter(deadline: .now()+1.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now()+1.5) { [self] in
             if (self.mcLabel.alpha == 0){
                 self.labelCardNum.alpha = 1
                 self.labelCardName.alpha = 1
@@ -180,7 +187,7 @@ class Card{
                 TapticManager.shared.vibrateFeedback(for: .warning)
             }
             self.getFront()
-            self.getBack(nil)
+            self.getBack(nil, self.flag)
         }
         UIView.animate(withDuration: 1, delay: 0.25, usingSpringWithDamping: 0.2, initialSpringVelocity: 0.2, options: [], animations: {
             a.center.x = self.view.bounds.width - 100

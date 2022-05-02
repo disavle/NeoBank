@@ -26,14 +26,10 @@ class HomeViewController: UIViewController, UITableViewDataSource {
     var indecator: UIActivityIndicatorView!
     private var filter: UIButton!
     
+    var flag = UserDefaults.standard.value(forKey: "fullCardNum") as? Bool ?? true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        Auth.auth().addStateDidChangeListener { auth, user in
-//            if auth != nil{
-//                print("jopa")
-//            }
-//        }
         
         navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .systemBackground
@@ -80,7 +76,7 @@ class HomeViewController: UIViewController, UITableViewDataSource {
             return ind
         }()
         
-        card.getBack(self)
+        card.getBack(self, flag)
         card.getFront()
         sum.getSum()
         pay.get {k in
@@ -126,7 +122,7 @@ class HomeViewController: UIViewController, UITableViewDataSource {
     }
     
     @objc private func refresh(_ sender: UIRefreshControl){
-        card.getBack(nil)
+        card.getBack(nil,flag)
         card.getFront()
         sum.getSum()
         pay.get {k in
@@ -141,5 +137,21 @@ class HomeViewController: UIViewController, UITableViewDataSource {
         let vc = FilterViewController()
         let nav = UINavigationController(rootViewController: vc)
         present(nav, animated: true, completion: nil)
+    }
+  
+    // MARK: - Gesture shake for showing full numCard
+    
+    override func becomeFirstResponder() -> Bool {
+        return true
+    }
+    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?){
+        if motion == .motionShake {
+            self.flag = !flag
+            print("flagView = \(flag)")
+            UserDefaults.standard.set(flag, forKey: "fullCardNum")
+            card.getBack(nil,flag)
+            TapticManager.shared.vibrateFeedback(for: .success)
+        }
     }
 }
