@@ -1,3 +1,4 @@
+# It's bad rep for studing, due to there is no architecture, SOLID, OOP, Demetra, Unit-test and you name it. All in all, you can use it, if you want)
 #  <img src="https://user-images.githubusercontent.com/69400943/129394941-27a788f0-a661-47f5-b3a7-ea0bbfe86bbd.png"  width="50" height="50" /> NeoBank
 ## Mobile Banking App for iOS
 
